@@ -3,6 +3,8 @@ import { makeAutoObservable } from 'mobx';
 export class AllDocumentsState {
   private _selectedDate: Date = new Date();
 
+  private _documents: string[] = [];
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -17,7 +19,19 @@ export class AllDocumentsState {
     return { month, year };
   }
 
+  get allDocuments() {
+    return this._documents;
+  }
+
   updateDate(newDate: Date) {
     this._selectedDate = newDate;
+  }
+
+  initialize({
+    documents,
+  }: {
+    documents: string[],
+  }) {
+    this._documents = documents;
   }
 }

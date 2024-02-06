@@ -3,6 +3,10 @@ import { AllDocumentsState } from './AllDocumentsState';
 
 const allDocumentsState = new AllDocumentsState();
 
+allDocumentsState.initialize({
+  documents: ['file-1', 'file-2', 'file-3'],
+});
+
 describe('AllDocumentsState', () => {
   it(`
     GIVEN all documents page 
@@ -25,5 +29,13 @@ describe('AllDocumentsState', () => {
     allDocumentsState.updateDate(currentDate);
     expect(allDocumentsState.monthYearDate.month).eq(currentDate.getMonth() + 1);
     expect(allDocumentsState.monthYearDate.year).eq(currentDate.getFullYear());
+  });
+
+  it(`
+  GIVEN all documents page 
+  WHEN initialized
+  THEN return all documents
+  `, () => {
+    expect(allDocumentsState.allDocuments).to.has.lengthOf(3);
   });
 });
