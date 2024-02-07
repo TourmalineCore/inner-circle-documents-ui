@@ -1,0 +1,35 @@
+.date-picker-documents {
+  max-width: 235px;
+  max-height: 40px;
+
+  &__button {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    border: 1px solid var(--comp-color-gray);
+    border-radius: 12px;
+    padding: 8px 16px;
+    max-height: 36px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #000;
+    background-color: var(--color-white);
+    cursor: pointer;
+    gap: 8px;
+
+    &:hover,
+    &:active {
+      opacity: 0.75;
+    }
+  }
+
+  &__arrow {
+    margin-left: 16px;
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
