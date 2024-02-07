@@ -1,7 +1,7 @@
 import {
   HTMLProps, forwardRef,
 } from 'react';
-import ReactDatePicker from 'react-datepicker';
+import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
 import logoData from '../../assets/icons/logo-data-picker.svg';
 
 const DatePickerCustomElement = forwardRef<HTMLButtonElement, HTMLProps<HTMLButtonElement>>(({ value, onClick }, ref) => (
@@ -21,10 +21,11 @@ const DatePickerCustomElement = forwardRef<HTMLButtonElement, HTMLProps<HTMLButt
 export const DatePicker = ({
   selectedDate,
   onChange,
+  ...otherProps
 }:{
   selectedDate: Date;
   onChange: (date: Date) => void;
-}) => (
+} & ReactDatePickerProps) => (
   <div
     className="date-picker"
     data-cy="date-picker"
@@ -35,6 +36,7 @@ export const DatePicker = ({
       showMonthYearPicker
       dateFormat="MMMM yyyy"
       customInput={<DatePickerCustomElement />}
+      {...otherProps}
     />
   </div>
 );
