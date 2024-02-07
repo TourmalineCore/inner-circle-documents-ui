@@ -17,7 +17,7 @@ export class AllDocumentsState {
     return { month, year };
   }
 
-  updateDate(newDate: Date) {
+  updateDate = (newDate: Date) => {
     this._selectedDate = newDate;
-  }
+  };
 }
