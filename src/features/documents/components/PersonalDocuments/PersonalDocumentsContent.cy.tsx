@@ -1,4 +1,6 @@
-import { PersonalDocumentContent } from './PersonalDocumentsContent';
+import { AllDocumentsState } from '../AllDocuments/state/AllDocumentsState';
+import { AllDocumentsStateContext } from '../AllDocuments/state/AllDocumentsStateContext';
+import { PersonalDocumentsContent } from './PersonalDocumentsContent';
 
 describe('PersonalDocumentContent', () => {
   it(`
@@ -17,7 +19,12 @@ describe('PersonalDocumentContent', () => {
 });
 
 function mountComponent() {
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
+  const documentsState = new AllDocumentsState();
+
   cy.mount(
-    <PersonalDocumentContent />,
+    <AllDocumentsStateContext.Provider value={documentsState}>
+      <PersonalDocumentsContent />
+    </AllDocumentsStateContext.Provider>,
   );
 }
