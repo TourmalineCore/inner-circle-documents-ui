@@ -23,9 +23,9 @@ export class AllDocumentsState {
     return this._documents;
   }
 
-  updateDate(newDate: Date) {
+  updateDate = (newDate: Date) => {
     this._selectedDate = newDate;
-  }
+  };
 
   initialize({
     documents,
