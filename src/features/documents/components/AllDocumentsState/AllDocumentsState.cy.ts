@@ -1,10 +1,16 @@
-import '../../../../../../cypress/support/commands';
+import '../../../../../cypress/support/commands';
 import { AllDocumentsState } from './AllDocumentsState';
 
 const allDocumentsState = new AllDocumentsState();
 
 allDocumentsState.initialize({
-  documents: ['file-1', 'file-2', 'file-3'],
+  documents: [{
+    id: '1',
+    name: 'Ivanov I.I',
+    date: new Date(),
+    previewLink: '',
+    downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
+  }],
 });
 
 describe('AllDocumentsState', () => {
@@ -36,6 +42,6 @@ describe('AllDocumentsState', () => {
   WHEN initialized
   THEN return all documents
   `, () => {
-    expect(allDocumentsState.allDocuments).to.has.lengthOf(3);
+    expect(allDocumentsState.allDocuments).to.has.lengthOf(1);
   });
 });

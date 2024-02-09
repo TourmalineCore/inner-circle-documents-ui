@@ -1,25 +1,26 @@
-import { ReactComponent as IconFileDownload } from '../../../../../../assets/icons/file-download-icon.svg';
+import { ReactComponent as IconFileDownload } from '../../../../assets/icons/file-download-icon.svg';
+import { DocumentsProps } from '../types';
 
 export function DocumentsList({
   list,
 }: {
-  list: string[]
+  list: DocumentsProps
 }) {
   return (
     <div className="documents-list" data-cy="documents-list">
       <ul className="documents-list__list" data-cy="documents-list-list">
-        {list.map((documentName) => (
+        {list.map(({ name, downloadLink }) => (
           <li
-            key={documentName}
+            key={name}
             className="documents-list__item"
             data-cy="documents-list-item"
           >
             <span className="documents-list__text" data-cy="documents-list-text">
-              {documentName}
+              {name}
             </span>
-            <span className="documents-list__download" data-cy="documents-list-download">
+            <a href={downloadLink} className="documents-list__download" data-cy="documents-list-download" rel="noreferrer">
               <IconFileDownload />
-            </span>
+            </a>
           </li>
         ))}
       </ul>

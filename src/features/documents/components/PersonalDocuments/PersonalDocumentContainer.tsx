@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { AllDocumentsState } from '../AllDocuments/state/AllDocumentsState';
+import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
 import { PersonalDocumentsContent } from './PersonalDocumentsContent';
-import { AllDocumentsStateContext } from '../AllDocuments/state/AllDocumentsStateContext';
+import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 
 export function PersonalDocumentsContainer() {
   const documentsState = useMemo(

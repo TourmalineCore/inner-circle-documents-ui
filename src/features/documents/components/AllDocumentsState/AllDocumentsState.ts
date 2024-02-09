@@ -1,9 +1,10 @@
 import { makeAutoObservable } from 'mobx';
+import { DocumentsProps } from '../types';
 
 export class AllDocumentsState {
   private _selectedDate: Date = new Date();
 
-  private _documents: string[] = [];
+  private _documents: DocumentsProps = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -30,7 +31,7 @@ export class AllDocumentsState {
   initialize({
     documents,
   }: {
-    documents: string[],
+    documents: DocumentsProps,
   }) {
     this._documents = documents;
   }
