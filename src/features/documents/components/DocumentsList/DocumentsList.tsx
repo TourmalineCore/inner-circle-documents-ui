@@ -9,9 +9,9 @@ export function DocumentsList({
   return (
     <div className="documents-list" data-cy="documents-list">
       <ul className="documents-list__list" data-cy="documents-list-list">
-        {list.map(({ name, downloadLink }) => (
+        {list.map(({ id, name, downloadLink }) => (
           <li
-            key={name}
+            key={id}
             className="documents-list__item"
             data-cy="documents-list-item"
           >
