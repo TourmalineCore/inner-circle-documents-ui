@@ -2,8 +2,8 @@ import { DatePicker } from './DatePicker';
 
 describe('DatePicker', () => {
   it(`
-  GIVEN all documents page 
-  WHEN visit documents page
+  GIVEN component DatePicker 
+  WHEN visit a page that uses component DatePicker
   THEN render date picker component
   `, () => {
     mountComponent();
@@ -13,8 +13,8 @@ describe('DatePicker', () => {
   });
 
   it(`
-  GIVEN all documents page 
-  WHEN visit documents page
+  GIVEN component DatePicker 
+  WHEN visit a page that uses component DatePicker
   THEN render correct date
   `, () => {
     mountComponent();
@@ -24,7 +24,7 @@ describe('DatePicker', () => {
   });
 
   it(`
-  GIVEN all documents page 
+  GIVEN component DatePicker  
   WHEN select month
   THEN call onChange functions
   `, () => {
