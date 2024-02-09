@@ -18,7 +18,7 @@ export function DocumentsList({
             <span className="documents-list__text" data-cy="documents-list-text">
               {name}
             </span>
-            <a href={downloadLink} className="documents-list__download" data-cy="documents-list-download" rel="noreferrer">
+            <a href={downloadLink} className="documents-list__download" data-cy="documents-list-download">
               <IconFileDownload />
             </a>
           </li>
