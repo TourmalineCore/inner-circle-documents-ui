@@ -24,7 +24,7 @@ describe('UploadingDocumentsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-documents-list')
+    cy.getByData('uploading-documents-content-list')
       .should('not.exist');
   });
 });
