@@ -1,4 +1,3 @@
-import '../../../../../cypress/support/commands';
 import { AllDocumentsState } from './AllDocumentsState';
 
 const allDocumentsState = new AllDocumentsState();

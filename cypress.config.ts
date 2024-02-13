@@ -22,12 +22,7 @@ export default defineConfig({
       on('task', {
         deleteFolder(folderName) {
             return new Promise((resolve, reject) => {
-              rm(folderName, { maxRetries: 10, recursive: true }, (err) => {
-                  if (err) {
-                      console.error(err)
-
-                      return reject(err)
-                  }
+              rm(folderName, { maxRetries: 10, recursive: true }, () => {
                   resolve(null)
               })
             })
