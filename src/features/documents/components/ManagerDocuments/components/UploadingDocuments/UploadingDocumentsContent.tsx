@@ -1,4 +1,12 @@
-export function UploadingDocumentsContent() {
+import { observer } from 'mobx-react-lite';
+import { useContext } from 'react';
+import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
+
+export const UploadingDocumentsContent = observer(() => {
+  const { allUploadedDocuments } = useContext(AllDocumentsStateContext);
+
+  const uploadedDocumentsIsEmpty = allUploadedDocuments.length === 0;
+
   return (
     <section className="uploading-documents-content" data-cy="uploading-documents-content">
       <input
@@ -8,6 +16,13 @@ export function UploadingDocumentsContent() {
         multiple
         accept=".pdf"
       />
+      { !uploadedDocumentsIsEmpty
+       && (
+         <ul
+           className="uploading-documents-content__list"
+           data-cy="uploading-documents-content-list"
+         />
+       )}
     </section>
   );
-}
+});
