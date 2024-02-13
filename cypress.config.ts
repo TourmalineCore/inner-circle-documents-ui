@@ -1,4 +1,6 @@
 import { defineConfig } from 'cypress';
+import { downloadFile } from 'cypress-downloadfile/lib/addPlugin';
+import { rm } from 'fs'
 
 export default defineConfig({
   e2e: {
@@ -15,5 +17,17 @@ export default defineConfig({
       framework: 'create-react-app',
       bundler: 'webpack',
     },
+    setupNodeEvents(on, config) {
+      on('task', { downloadFile }),
+      on('task', {
+        deleteFolder(folderName) {
+            return new Promise((resolve, reject) => {
+              rm(folderName, { maxRetries: 10, recursive: true }, () => {
+                  resolve(null)
+              })
+            })
+        },
+      })
+    }
   },
 });

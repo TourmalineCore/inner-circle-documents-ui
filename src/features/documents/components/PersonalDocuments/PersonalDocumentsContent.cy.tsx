@@ -1,12 +1,12 @@
-import { AllDocumentsState } from '../AllDocuments/state/AllDocumentsState';
-import { AllDocumentsStateContext } from '../AllDocuments/state/AllDocumentsStateContext';
+import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
+import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { PersonalDocumentsContent } from './PersonalDocumentsContent';
 
 describe('PersonalDocumentContent', () => {
   it(`
   GIVEN personal documents page
   WHEN visit personal documents page
-  THEN render date picker component
+  THEN render date picker and documents list components
   `, () => {
     mountComponent();
 
@@ -14,6 +14,9 @@ describe('PersonalDocumentContent', () => {
       .should('exist');
 
     cy.getByData('date-picker')
+      .should('exist');
+
+    cy.getByData('documents-list')
       .should('exist');
   });
 
@@ -39,7 +42,7 @@ describe('PersonalDocumentContent', () => {
   });
 
   it(`
-  GIVEN all compensations page 
+  GIVEN personal documents page 
   WHEN select pervious year in date picker component
   THEN render correct date
   `, () => {

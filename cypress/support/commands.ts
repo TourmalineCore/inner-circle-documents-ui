@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+/// <reference types="cypress-downloadfile"/>
+
+import 'cypress-downloadfile/lib/downloadFileCommand';
 
 Cypress.on('uncaught:exception', () => false);
 

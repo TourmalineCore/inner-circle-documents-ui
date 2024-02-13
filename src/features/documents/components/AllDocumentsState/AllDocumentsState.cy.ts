@@ -1,7 +1,16 @@
-import '../../../../../../cypress/support/commands';
 import { AllDocumentsState } from './AllDocumentsState';
 
 const allDocumentsState = new AllDocumentsState();
+
+allDocumentsState.initialize({
+  documents: [{
+    id: '1',
+    name: 'Ivanov I.I',
+    date: new Date(),
+    previewLink: '',
+    downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
+  }],
+});
 
 describe('AllDocumentsState', () => {
   it(`
@@ -25,5 +34,13 @@ describe('AllDocumentsState', () => {
     allDocumentsState.updateDate(currentDate);
     expect(allDocumentsState.monthYearDate.month).eq(currentDate.getMonth() + 1);
     expect(allDocumentsState.monthYearDate.year).eq(currentDate.getFullYear());
+  });
+
+  it(`
+  GIVEN all documents page 
+  WHEN initialized
+  THEN return all documents
+  `, () => {
+    expect(allDocumentsState.allDocuments).to.has.lengthOf(1);
   });
 });
