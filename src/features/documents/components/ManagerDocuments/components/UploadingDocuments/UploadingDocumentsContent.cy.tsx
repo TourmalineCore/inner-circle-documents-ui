@@ -5,8 +5,8 @@ import { UploadingDocumentsContent } from './UploadingDocumentsContent';
 describe('UploadingDocumentsContent', () => {
   it(`
   GIVEN uploading documents page
-  WHEN visit personal documents page
-  THEN render section uploading documents content
+  WHEN visit uploading documents
+  THEN render content uploading document
   `, () => {
     mountComponent();
 
@@ -15,6 +15,17 @@ describe('UploadingDocumentsContent', () => {
 
     cy.getByData('uploading-documents-content-uploader')
       .should('exist');
+  });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN visit uploading documents
+  THEN not render uploading document list
+  `, () => {
+    mountComponent();
+
+    cy.getByData('uploading-documents-list')
+      .should('not.exist');
   });
 });
 
