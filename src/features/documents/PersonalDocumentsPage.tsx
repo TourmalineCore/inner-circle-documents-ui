@@ -1,4 +1,4 @@
-import { PersonalDocumentsContainer } from './components/PersonalDocuments/PersonalDocumentContainer';
+import { PersonalDocumentsContainer } from './components/PersonalDocuments/PersonalDocumentsContainer';
 
 export function PersonalDocumentsPage() {
   return (
