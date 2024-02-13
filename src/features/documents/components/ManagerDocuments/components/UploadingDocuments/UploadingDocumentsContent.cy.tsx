@@ -1,19 +1,19 @@
 import { AllDocumentsState } from '../../../AllDocumentsState/AllDocumentsState';
 import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
-import { UploadedDocumentsContent } from './UploadedDocumentsContent';
+import { UploadingDocumentsContent } from './UploadingDocumentsContent';
 
-describe('UploadedDocumentsContent', () => {
+describe('UploadingDocumentsContent', () => {
   it(`
-  GIVEN uploaded documents page
+  GIVEN uploading documents page
   WHEN visit personal documents page
-  THEN render section uploaded documents content
+  THEN render section uploading documents content
   `, () => {
     mountComponent();
 
-    cy.getByData('uploaded-documents-content')
+    cy.getByData('uploading-documents-content')
       .should('exist');
 
-    cy.getByData('uploaded-documents-content-uploader')
+    cy.getByData('uploading-documents-content-uploader')
       .should('exist');
   });
 });
@@ -24,7 +24,7 @@ function mountComponent() {
 
   cy.mount(
     <AllDocumentsStateContext.Provider value={documentsState}>
-      <UploadedDocumentsContent />
+      <UploadingDocumentsContent />
     </AllDocumentsStateContext.Provider>,
   );
 }
