@@ -12,6 +12,9 @@ describe('UploadedDocumentsContent', () => {
 
     cy.getByData('uploaded-documents-content')
       .should('exist');
+
+    cy.getByData('uploaded-documents-content-uploader')
+      .should('exist');
   });
 });
 
