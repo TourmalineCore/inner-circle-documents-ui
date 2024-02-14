@@ -34,9 +34,13 @@ describe('UploadedDocumentsCard', () => {
 });
 
 function mountComponent() {
-  const testFileName = 'Расчетный листок Иванов за ноябрь 2023';
+  const testFile = new File(
+    ['Иванов'],
+    'Расчетный листок Иванов за ноябрь 2023',
+    { type: 'application/pdf' },
+  );
 
   cy.mount(
-    <UploadedDocumentCard name={testFileName} />,
+    <UploadedDocumentCard file={testFile} />,
   );
 }
