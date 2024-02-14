@@ -1,4 +1,8 @@
-export function UploadedDocumentCard() {
+export function UploadedDocumentCard({
+  name,
+}: {
+  name: string;
+}) {
   return (
     <div
       className="uploaded-document-card"
@@ -12,7 +16,7 @@ export function UploadedDocumentCard() {
           className="uploaded-document-card__name"
           data-cy="uploaded-document-card-name"
         >
-          Title
+          {name.split(' ')[2]}
         </h3>
         <span
           className="uploaded-document-card__delete"
