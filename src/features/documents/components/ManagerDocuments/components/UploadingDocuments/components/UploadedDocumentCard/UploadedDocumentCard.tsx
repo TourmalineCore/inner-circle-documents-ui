@@ -1,7 +1,7 @@
 export function UploadedDocumentCard({
-  name,
+  file,
 }: {
-  name: string;
+  file: File;
 }) {
   return (
     <div
@@ -16,7 +16,7 @@ export function UploadedDocumentCard({
           className="uploaded-document-card__name"
           data-cy="uploaded-document-card-name"
         >
-          {name.split(' ')[2]}
+          {file.name.split(' ')[2]}
         </h3>
         <span
           className="uploaded-document-card__delete"

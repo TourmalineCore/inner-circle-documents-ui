@@ -30,7 +30,7 @@ export const UploadingDocumentsContent = observer(() => {
                className="uploading-documents-content__item"
                data-cy="uploading-documents-content-item"
              >
-               <UploadedDocumentCard name={file.name} />
+               <UploadedDocumentCard file={file} />
              </li>
            ))}
          </ul>
