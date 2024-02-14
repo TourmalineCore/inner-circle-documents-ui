@@ -50,6 +50,9 @@ describe('UploadingDocumentsContent', () => {
 
     cy.getByData('uploading-documents-content-item')
       .should('have.length', 2);
+
+    cy.getByData('uploaded-document-card')
+      .should('have.length', 2);
   });
 
   it(`
@@ -69,6 +72,9 @@ describe('UploadingDocumentsContent', () => {
       .should('exist');
 
     cy.getByData('uploading-documents-content-item')
+      .should('have.length', 1);
+
+    cy.getByData('uploaded-document-card')
       .should('have.length', 1);
   });
 });
