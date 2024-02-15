@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useContext } from 'react';
+import { ChangeEvent, useContext } from 'react';
 import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
 import { UploadedDocuments } from './components/UploadedDocuments/UploadedDocuments';
 
@@ -38,8 +38,9 @@ export const UploadingDocumentsContent = observer(() => {
     </section>
   );
 
-  function handleChange(event: any) {
-    const fileList: File[] = Object.values(event.target.files);
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const fileList: File[] = Object.values(event.target.files!);
+
     documentsState.setUploadedDocuments(fileList);
   }
 });

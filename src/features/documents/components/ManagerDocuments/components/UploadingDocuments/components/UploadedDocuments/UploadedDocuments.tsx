@@ -31,8 +31,10 @@ export function UploadedDocuments({
   );
 
   function validationTextDocument(texts: any) {
-    for (let i = 0; i < texts.items.length; i++) {
-      if (texts.items[i].str.includes(file.name.split(' ')[2])) {
+    const documentName = file.name.split(' ')[2];
+
+    for (const item of texts.items) {
+      if (item.str.includes(documentName)) {
         setValidationFinish(true);
         return;
       }
