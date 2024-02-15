@@ -38,6 +38,10 @@ export class AllDocumentsState {
     this._uploadedDocuments = files;
   }
 
+  deleteUploadedDocument(file: File) {
+    this._uploadedDocuments = this._uploadedDocuments.filter(({ name }) => name !== file.name);
+  }
+
   initialize({
     documents,
     uploadedDocuments,
