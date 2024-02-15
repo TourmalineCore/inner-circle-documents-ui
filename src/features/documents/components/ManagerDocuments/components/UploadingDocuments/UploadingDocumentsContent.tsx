@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
-import { UploadedDocuments } from './components/UploadedDocumentCard/UploadedDocuments';
+import { UploadedDocuments } from './components/UploadedDocuments/UploadedDocuments';
 
 export const UploadingDocumentsContent = observer(() => {
   const documentsState = useContext(AllDocumentsStateContext);
