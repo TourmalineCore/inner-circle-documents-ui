@@ -84,7 +84,7 @@ describe('AllDocumentsState', () => {
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(1);
 
-    allDocumentsState.deleteUploadedDocument(testFile);
+    allDocumentsState.deleteUploadedDocument(testFile.name);
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(0);
   });
