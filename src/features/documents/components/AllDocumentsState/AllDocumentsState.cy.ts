@@ -58,7 +58,7 @@ describe('AllDocumentsState', () => {
   });
 
   it(`
-  GIVEN documents page 
+  GIVEN uploaded documents page 
   WHEN upload documents
   THEN return all uploaded documents
   `, () => {
@@ -71,7 +71,7 @@ describe('AllDocumentsState', () => {
   });
 
   it(`
-  GIVEN documents page 
+  GIVEN uploaded documents page 
   WHEN delete uploaded documents
   THEN uploaded document deleted
   `, () => {
