@@ -69,4 +69,29 @@ describe('AllDocumentsState', () => {
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(2);
   });
+
+  it(`
+  GIVEN documents page 
+  WHEN delete uploaded documents
+  THEN uploaded document deleted
+  `, () => {
+    const testFile = new File([''], 'testFile.pdf', { type: 'application/pdf' });
+
+    allDocumentsState.initialize({
+      documents: [{
+        id: '1',
+        name: 'Ivanov I.I',
+        date: new Date(),
+        previewLink: '',
+        downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
+      }],
+      uploadedDocuments: [testFile],
+    });
+
+    expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(1);
+
+    allDocumentsState.deleteUploadedDocument(testFile);
+
+    expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(0);
+  });
 });
