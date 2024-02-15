@@ -36,8 +36,8 @@ describe('UploadingDocumentsContent', () => {
     mountComponent();
 
     cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/document.pdf',
-      'cypress/fixtures/document.pdf',
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ]);
 
     cy.getByData('uploading-documents-content-list')
@@ -58,7 +58,7 @@ describe('UploadingDocumentsContent', () => {
     mountComponent();
 
     cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/document.pdf',
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ]);
 
     cy.getByData('uploading-documents-content-list')
