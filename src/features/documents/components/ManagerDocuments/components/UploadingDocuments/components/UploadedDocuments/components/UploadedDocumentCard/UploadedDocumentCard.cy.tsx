@@ -23,6 +23,9 @@ describe('UploadedDocumentsCard', () => {
     cy.getByData('uploaded-document-card-delete')
       .should('exist');
 
+    cy.getByData('uploaded-document-card-icon')
+      .should('exist');
+
     cy.getByData('uploaded-document-card-error')
       .should('not.exist');
   });
