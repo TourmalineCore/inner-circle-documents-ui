@@ -1,6 +1,8 @@
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
+import { useContext } from 'react';
 import IconDelet from '../../../../../../../../../../assets/icons/icon-delete.svg';
+import { AllDocumentsStateContext } from '../../../../../../../AllDocumentsState/AllDocumentsStateContext';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -13,6 +15,8 @@ export function UploadedDocumentCard({
   name: string;
   error: boolean
 }) {
+  const documentsState = useContext(AllDocumentsStateContext);
+
   return (
     <div
       className="uploaded-document-card"
@@ -29,9 +33,11 @@ export function UploadedDocumentCard({
           >
             {name.split(' ')[2]}
           </h3>
-          <span
+          <button
+            type="button"
             className="uploaded-document-card__delete"
             data-cy="uploaded-document-card-delete"
+            onClick={() => documentsState.deleteUploadedDocument(name)}
           >
             <img
               className="uploaded-document-card__icon"
@@ -41,7 +47,7 @@ export function UploadedDocumentCard({
               height="20"
               alt="DeleteIcon"
             />
-          </span>
+          </button>
         </div>
         {error && (
           <span
