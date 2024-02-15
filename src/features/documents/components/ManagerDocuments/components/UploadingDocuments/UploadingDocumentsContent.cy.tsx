@@ -70,6 +70,36 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploaded-document-card')
       .should('have.length', 1);
   });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN click delete button on the document card
+  THEN deleted document
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ]);
+
+    cy.getByData('uploading-documents-content-list')
+      .should('exist');
+
+    cy.getByData('uploading-documents-content-item')
+      .should('have.length', 1);
+
+    cy.getByData('uploaded-document-card')
+      .should('have.length', 1);
+
+    cy.getByData('uploaded-document-card-delete')
+      .click();
+
+    cy.getByData('uploading-documents-content-item')
+      .should('not.exist');
+
+    cy.getByData('uploaded-document-card')
+      .should('not.exist');
+  });
 });
 
 function mountComponent() {
