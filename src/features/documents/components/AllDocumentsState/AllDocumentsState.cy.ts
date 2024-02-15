@@ -78,13 +78,7 @@ describe('AllDocumentsState', () => {
     const testFile = new File([''], 'testFile.pdf', { type: 'application/pdf' });
 
     allDocumentsState.initialize({
-      documents: [{
-        id: '1',
-        name: 'Ivanov I.I',
-        date: new Date(),
-        previewLink: '',
-        downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
-      }],
+      documents: [],
       uploadedDocuments: [testFile],
     });
 
