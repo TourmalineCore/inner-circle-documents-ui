@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - develop
-      - feature/add-setting-ci-cd
 
 env:
   GITHUB_REGISTRY: ghcr.io
