@@ -26,15 +26,20 @@ export function UploadedDocument({
           />
         </Document>
       </div>
-      {validationFinish && <UploadedDocumentCard name={file.name} error={error} />}
+      {validationFinish && (
+        <UploadedDocumentCard
+          name={file.name}
+          error={error}
+        />
+      )}
     </>
   );
 
   function validationTextDocument(texts: any) {
-    const documentName = file.name.split(' ')[2];
+    const firstName = file.name.split(' ')[2];
 
     for (const item of texts.items) {
-      if (item.str.includes(documentName)) {
+      if (item.str.includes(firstName)) {
         setValidationFinish(true);
         return;
       }

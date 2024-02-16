@@ -16,6 +16,7 @@ export function UploadedDocumentCard({
   error: boolean
 }) {
   const documentsState = useContext(AllDocumentsStateContext);
+  const firstName = name.split(' ')[2];
 
   return (
     <div
@@ -34,7 +35,7 @@ export function UploadedDocumentCard({
             className="uploaded-document-card__name"
             data-cy="uploaded-document-card-name"
           >
-            {name.split(' ')[2]}
+            {firstName}
           </h3>
           <button
             type="button"
