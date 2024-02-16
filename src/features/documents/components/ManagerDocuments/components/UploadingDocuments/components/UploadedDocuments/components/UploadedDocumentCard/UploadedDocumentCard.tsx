@@ -6,7 +6,7 @@ import { AllDocumentsStateContext } from '../../../../../../../AllDocumentsState
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const ERROR_TEXT = 'Failed to upload';
+const ERROR_TEXT = 'The data in the file does not match the file name';
 
 export function UploadedDocumentCard({
   name,
