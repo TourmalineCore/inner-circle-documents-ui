@@ -4,7 +4,7 @@ describe('UploadedDocumentCard', () => {
   it(`
   GIVEN uploaded document card
   WHEN upload correct document
-  THEN correct render uploaded document card
+  THEN render uploaded document card without error
   `, () => {
     mountComponent({
       name: 'Расчетный листок Иванов за ноябрь 2023',
@@ -39,7 +39,7 @@ describe('UploadedDocumentCard', () => {
   it(`
   GIVEN uploaded document card
   WHEN upload incorrect document 
-  THEN render correct error
+  THEN render uploaded document card with error
   `, () => {
     mountComponent({
       name: 'Расчетный листок Иванов за ноябрь 2023',
