@@ -1,4 +1,4 @@
-name: deploy DOCUMENTS to dev k8s
+name: deploy DOCUMENTS to dev k8s 
 
 on:
   push:
