@@ -1,7 +1,8 @@
-import { PersonalDocumentsPage } from './PersonalDocumentsPage';
+import { ManagerDocumentsPage } from './ManagerDocumentsPage';
 
 export function DocumentsPage() {
   return (
-    <PersonalDocumentsPage />
+    // <PersonalDocumentsPage />
+    <ManagerDocumentsPage />
   );
 }

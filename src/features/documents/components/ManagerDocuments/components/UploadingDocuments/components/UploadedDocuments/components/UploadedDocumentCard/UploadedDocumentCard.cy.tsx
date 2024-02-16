@@ -50,7 +50,7 @@ describe('UploadedDocumentCard', () => {
       .should('have.text', 'Иванов');
 
     cy.getByData('uploaded-document-card-error')
-      .should('have.text', 'Failed to upload');
+      .should('have.text', 'The data in the file doesn\'t match the file name');
   });
 });
 
