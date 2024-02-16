@@ -62,6 +62,11 @@ describe('AllDocumentsState', () => {
   WHEN upload documents
   THEN return all uploaded documents
   `, () => {
+    allDocumentsState.initialize({
+      documents: [],
+      uploadedDocuments: [],
+    });
+
     const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
     const secondTestFile = new File([''], 'SecondFile.pdf', { type: 'application/pdf' });
 
