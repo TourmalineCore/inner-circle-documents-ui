@@ -1,10 +1,10 @@
 import { UploadedDocumentCard } from './UploadedDocumentCard';
 
-describe('UploadedDocumentsCard', () => {
+describe('UploadedDocumentCard', () => {
   it(`
   GIVEN uploaded document card
-  WHEN upload documents
-  THEN render uploaded document card
+  WHEN upload correct document
+  THEN correct render uploaded document card
   `, () => {
     mountComponent({
       name: 'Расчетный листок Иванов за ноябрь 2023',
@@ -17,6 +17,9 @@ describe('UploadedDocumentsCard', () => {
     cy.getByData('uploaded-document-card-inner')
       .should('exist');
 
+    cy.getByData('uploaded-document-card-header')
+      .should('exist');
+
     cy.getByData('uploaded-document-card-name')
       .should('exist');
 
@@ -26,27 +29,16 @@ describe('UploadedDocumentsCard', () => {
     cy.getByData('uploaded-document-card-icon')
       .should('exist');
 
+    cy.getByData('uploaded-document-card-name')
+      .should('have.text', 'Иванов');
+
     cy.getByData('uploaded-document-card-error')
       .should('not.exist');
   });
 
   it(`
   GIVEN uploaded document card
-  WHEN upload documents
-  THEN render correct name card
-  `, () => {
-    mountComponent({
-      name: 'Расчетный листок Иванов за ноябрь 2023',
-      error: false,
-    });
-
-    cy.getByData('uploaded-document-card-name')
-      .should('have.text', 'Иванов');
-  });
-
-  it(`
-  GIVEN uploaded document card
-  WHEN upload documents
+  WHEN upload incorrect document 
   THEN render correct error
   `, () => {
     mountComponent({

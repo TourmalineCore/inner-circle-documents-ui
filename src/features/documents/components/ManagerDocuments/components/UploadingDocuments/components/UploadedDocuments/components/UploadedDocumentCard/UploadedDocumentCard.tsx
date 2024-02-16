@@ -26,7 +26,10 @@ export function UploadedDocumentCard({
         className="uploaded-document-card__inner"
         data-cy="uploaded-document-card-inner"
       >
-        <div className="uploaded-document-card__header">
+        <div
+          className="uploaded-document-card__header"
+          data-cy="uploaded-document-card-header"
+        >
           <h3
             className="uploaded-document-card__name"
             data-cy="uploaded-document-card-name"
