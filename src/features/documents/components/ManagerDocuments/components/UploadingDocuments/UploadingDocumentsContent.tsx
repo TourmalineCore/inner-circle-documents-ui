@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
-import { UploadedDocuments } from './components/UploadedDocuments/UploadedDocuments';
+import { UploadedDocument } from './components/UploadedDocuments/UploadedDocuments';
 import { UploaderDocuments } from './components/UploaderDocuments/UploaderDocuments';
 
 export const UploadingDocumentsContent = observer(() => {
@@ -24,7 +24,7 @@ export const UploadingDocumentsContent = observer(() => {
                className="uploading-documents-content__item"
                data-cy="uploading-documents-content-item"
              >
-               <UploadedDocuments file={file} />
+               <UploadedDocument file={file} />
              </li>
            ))}
          </ul>

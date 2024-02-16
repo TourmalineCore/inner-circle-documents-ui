@@ -7,7 +7,7 @@ import { UploadedDocumentCard } from './components/UploadedDocumentCard/Uploaded
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export function UploadedDocuments({
+export function UploadedDocument({
   file,
 }: {
   file: File;
