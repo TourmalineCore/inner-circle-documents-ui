@@ -36,10 +36,10 @@ export function UploadedDocument({
   );
 
   function validationTextDocument(texts: any) {
-    const firstName = file.name.split(' ')[2];
+    const lastName = file.name.split(' ')[2];
 
     for (const item of texts.items) {
-      if (item.str.includes(firstName)) {
+      if (item.str.includes(lastName)) {
         setValidationFinish(true);
         return;
       }
