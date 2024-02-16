@@ -52,7 +52,7 @@ describe('AllDocumentsState', () => {
   `, () => {
     const testFile = new File([''], 'filename.pdf', { type: 'application/pdf' });
 
-    allDocumentsState.setUploadedDocuments([testFile]);
+    allDocumentsState.addUploadedDocuments([testFile]);
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(1);
   });
@@ -65,7 +65,7 @@ describe('AllDocumentsState', () => {
     const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
     const secondTestFile = new File([''], 'SecondFile.pdf', { type: 'application/pdf' });
 
-    allDocumentsState.setUploadedDocuments([firstTestFile, secondTestFile]);
+    allDocumentsState.addUploadedDocuments([firstTestFile, secondTestFile]);
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(2);
   });
