@@ -1,10 +1,10 @@
 .husky
-cypress.*
-cypress
+# cypress.*
+# cypress
 .commitlintrc.*
-*.cy.*
+# *.cy.*
 .eslintrc.json
-cypress.config.ts
+# cypress.config.ts
 LICENSE
 README.md
 test-guideline-ui.md
