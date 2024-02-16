@@ -18,6 +18,6 @@ export function UploaderDocuments() {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const fileList: File[] = Object.values(event.target.files!);
 
-    documentsState.setUploadedDocuments(fileList);
+    documentsState.addUploadedDocuments(fileList);
   }
 }

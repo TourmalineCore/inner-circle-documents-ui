@@ -34,8 +34,8 @@ export class AllDocumentsState {
     this._selectedDate = newDate;
   };
 
-  setUploadedDocuments(files: File[]) {
-    this._uploadedDocuments = files;
+  addUploadedDocuments(files: File[]) {
+    this._uploadedDocuments.push(...files);
   }
 
   deleteUploadedDocument(fileName: string) {
