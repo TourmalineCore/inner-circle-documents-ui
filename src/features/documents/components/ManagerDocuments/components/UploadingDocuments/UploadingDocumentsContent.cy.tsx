@@ -13,7 +13,7 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content')
       .should('exist');
 
-    cy.getByData('uploading-documents-content-uploader')
+    cy.getByData('uploader-documents')
       .should('exist');
   });
 

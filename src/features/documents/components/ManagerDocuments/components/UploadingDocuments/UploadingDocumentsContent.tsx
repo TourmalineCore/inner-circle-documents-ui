@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
-import { ChangeEvent, useContext } from 'react';
+import { useContext } from 'react';
 import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
 import { UploadedDocuments } from './components/UploadedDocuments/UploadedDocuments';
+import { UploaderDocuments } from './components/UploadedDocuments/components/UploaderDocuments/UploaderDocuments';
 
 export const UploadingDocumentsContent = observer(() => {
   const documentsState = useContext(AllDocumentsStateContext);
@@ -10,14 +11,7 @@ export const UploadingDocumentsContent = observer(() => {
 
   return (
     <section className="uploading-documents-content" data-cy="uploading-documents-content">
-      <input
-        className="uploading-documents-content__uploader"
-        data-cy="uploading-documents-content-uploader"
-        onChange={handleChange}
-        type="file"
-        multiple
-        accept=".pdf"
-      />
+      <UploaderDocuments />
       {!uploadedDocumentsIsEmpty
        && (
          <ul
@@ -37,10 +31,4 @@ export const UploadingDocumentsContent = observer(() => {
        )}
     </section>
   );
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const fileList: File[] = Object.values(event.target.files!);
-
-    documentsState.setUploadedDocuments(fileList);
-  }
 });
