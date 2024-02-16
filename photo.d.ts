@@ -14,3 +14,8 @@ declare module '*.jpg' {
   const path: string;
   export default path;
 }
+
+declare module '*.pdf' {
+  const src: string;
+  export default src;
+}

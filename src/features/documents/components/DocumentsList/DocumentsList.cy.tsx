@@ -101,6 +101,7 @@ function mountComponent() {
         downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
       },
     ],
+    uploadedDocuments: [],
   });
 
   cy.mount(

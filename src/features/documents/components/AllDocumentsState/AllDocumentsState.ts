@@ -6,6 +6,8 @@ export class AllDocumentsState {
 
   private _documents: DocumentsProps = [];
 
+  private _uploadedDocuments: File[] = [];
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -24,15 +26,30 @@ export class AllDocumentsState {
     return this._documents;
   }
 
+  get allUploadedDocuments() {
+    return this._uploadedDocuments;
+  }
+
   updateDate = (newDate: Date) => {
     this._selectedDate = newDate;
   };
 
+  addUploadedDocuments(files: File[]) {
+    this._uploadedDocuments.push(...files);
+  }
+
+  deleteUploadedDocument(fileName: string) {
+    this._uploadedDocuments = this._uploadedDocuments.filter(({ name }) => name !== fileName);
+  }
+
   initialize({
     documents,
+    uploadedDocuments,
   }: {
+    uploadedDocuments: File[]
     documents: DocumentsProps,
   }) {
     this._documents = documents;
+    this._uploadedDocuments = uploadedDocuments;
   }
 }

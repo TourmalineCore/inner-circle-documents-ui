@@ -16,6 +16,8 @@
 
 // Features
 @import "../features/documents/components/DocumentsList/DocumentsList";
+@import "../features/documents/components/ManagerDocuments/components/UploadingDocuments/UploadingDocumentsContent";
+@import "../features/documents/components/ManagerDocuments/components/UploadingDocuments/components/UploadedDocuments/components/UploadedDocumentCard/UploadedDocumentCard";
 
 // Template
 @import "../template/components/Breadcrumbs/Breadcrumbs";
