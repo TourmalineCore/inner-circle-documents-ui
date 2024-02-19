@@ -65,9 +65,6 @@ describe('UploadingDocumentsContent', () => {
 
     cy.getByData('uploaded-document-card')
       .should('have.length', 2);
-
-    cy.getByData('uploading-documents-content-button')
-      .should('not.be.disabled');
   });
 
   it(`
@@ -89,9 +86,6 @@ describe('UploadingDocumentsContent', () => {
 
     cy.getByData('uploaded-document-card')
       .should('have.length', 1);
-
-    cy.getByData('uploading-documents-content-button')
-      .should('not.be.disabled');
   });
 
   it(`
@@ -125,6 +119,42 @@ describe('UploadingDocumentsContent', () => {
 
     cy.getByData('uploaded-document-card')
       .should('not.exist');
+
+    cy.getByData('uploading-documents-content-button')
+      .should('be.disabled');
+  });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN upload document
+  THEN send button not be disabled
+  `, () => {
+    mountComponent();
+
+    cy.getByData('uploading-documents-content-button')
+      .should('be.disabled');
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ]);
+
+    cy.getByData('uploading-documents-content-button')
+      .should('not.be.disabled');
+  });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN delete last uploaded document
+  THEN send button be disabled
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ]);
+
+    cy.getByData('uploaded-document-card-delete')
+      .click();
 
     cy.getByData('uploading-documents-content-button')
       .should('be.disabled');
