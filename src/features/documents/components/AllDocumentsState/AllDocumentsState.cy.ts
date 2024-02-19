@@ -2,17 +2,6 @@ import { AllDocumentsState } from './AllDocumentsState';
 
 const allDocumentsState = new AllDocumentsState();
 
-allDocumentsState.initialize({
-  documents: [{
-    id: '1',
-    name: 'Ivanov I.I',
-    date: new Date(),
-    previewLink: '',
-    downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
-  }],
-  uploadedDocuments: [],
-});
-
 describe('AllDocumentsState', () => {
   it(`
     GIVEN documents page 
@@ -42,6 +31,18 @@ describe('AllDocumentsState', () => {
   WHEN initialized
   THEN return all documents
   `, () => {
+    allDocumentsState.initialize({
+      documents: [{
+        id: '1',
+        name: 'Ivanov I.I',
+        date: new Date(),
+        previewLink: '',
+        downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
+      }],
+      uploadedDocuments: [],
+      notValidDocuments: [],
+    });
+
     expect(allDocumentsState.allDocuments).to.has.lengthOf(1);
   });
 
@@ -65,6 +66,7 @@ describe('AllDocumentsState', () => {
     allDocumentsState.initialize({
       documents: [],
       uploadedDocuments: [],
+      notValidDocuments: [],
     });
 
     const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
@@ -78,13 +80,14 @@ describe('AllDocumentsState', () => {
   it(`
   GIVEN uploaded documents page 
   WHEN delete uploaded documents
-  THEN uploaded document deleted
+  THEN uploaded and not valid document deleted
   `, () => {
     const testFile = new File([''], 'testFile.pdf', { type: 'application/pdf' });
 
     allDocumentsState.initialize({
       documents: [],
       uploadedDocuments: [testFile],
+      notValidDocuments: [testFile],
     });
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(1);
@@ -92,5 +95,19 @@ describe('AllDocumentsState', () => {
     allDocumentsState.deleteUploadedDocument(testFile.name);
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(0);
+
+    expect(allDocumentsState.allNotValidDocuments).to.has.lengthOf(0);
+  });
+
+  it(`
+  GIVEN uploaded documents page 
+  WHEN uploaded not valid documents
+  THEN return not valid documents
+  `, () => {
+    const testFile = new File([''], 'testFile.pdf', { type: 'application/pdf' });
+
+    allDocumentsState.addNotValidDocuments(testFile);
+
+    expect(allDocumentsState.allNotValidDocuments).to.has.lengthOf(1);
   });
 });

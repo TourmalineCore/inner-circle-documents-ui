@@ -102,6 +102,7 @@ function mountComponent() {
       },
     ],
     uploadedDocuments: [],
+    notValidDocuments: [],
   });
 
   cy.mount(
