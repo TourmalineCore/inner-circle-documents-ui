@@ -65,6 +65,9 @@ describe('UploadingDocumentsContent', () => {
 
     cy.getByData('uploaded-document-card')
       .should('have.length', 2);
+
+    cy.getByData('uploading-documents-content-button')
+      .should('not.be.disabled');
   });
 
   it(`
@@ -86,6 +89,9 @@ describe('UploadingDocumentsContent', () => {
 
     cy.getByData('uploaded-document-card')
       .should('have.length', 1);
+
+    cy.getByData('uploading-documents-content-button')
+      .should('not.be.disabled');
   });
 
   it(`
@@ -108,6 +114,9 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploaded-document-card')
       .should('have.length', 1);
 
+    cy.getByData('uploading-documents-content-button')
+      .should('not.be.disabled');
+
     cy.getByData('uploaded-document-card-delete')
       .click();
 
@@ -116,6 +125,9 @@ describe('UploadingDocumentsContent', () => {
 
     cy.getByData('uploaded-document-card')
       .should('not.exist');
+
+    cy.getByData('uploading-documents-content-button')
+      .should('be.disabled');
   });
 });
 
