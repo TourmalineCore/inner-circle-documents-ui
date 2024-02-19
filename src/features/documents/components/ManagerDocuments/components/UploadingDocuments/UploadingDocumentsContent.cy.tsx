@@ -13,11 +13,25 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content')
       .should('exist');
 
-    cy.getByData('uploading-documents-header')
+    cy.getByData('uploading-documents-content-header')
       .should('exist');
 
     cy.getByData('uploader-documents')
       .should('exist');
+  });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN visit uploading documents
+  THEN render disabled send button
+  `, () => {
+    mountComponent();
+
+    cy.getByData('uploading-documents-content-button')
+      .should('exist');
+
+    cy.getByData('uploading-documents-content-button')
+      .should('be.disabled');
   });
 
   it(`
