@@ -9,6 +9,7 @@ export const UploadingDocumentsContent = observer(() => {
   const documentsState = useContext(AllDocumentsStateContext);
 
   const uploadedDocumentsIsEmpty = documentsState.allUploadedDocuments.length === 0;
+  const notValidDocumentsIsEmpty = documentsState.allNotValidDocuments.length === 0;
 
   return (
     <section className="uploading-documents-content" data-cy="uploading-documents-content">
@@ -20,7 +21,7 @@ export const UploadingDocumentsContent = observer(() => {
         <Button
           className="uploading-documents-content__button"
           data-cy="uploading-documents-content-button"
-          disabled={uploadedDocumentsIsEmpty}
+          disabled={!notValidDocumentsIsEmpty ? true : uploadedDocumentsIsEmpty}
         >
           Confirm
         </Button>
@@ -37,7 +38,10 @@ export const UploadingDocumentsContent = observer(() => {
                className="uploading-documents-content__item"
                data-cy="uploading-documents-content-item"
              >
-               <UploadedDocument file={file} />
+               <UploadedDocument
+                 file={file}
+                 addNotValidDocuments={() => documentsState.addNotValidDocuments(file)}
+               />
              </li>
            ))}
          </ul>

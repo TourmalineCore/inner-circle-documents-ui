@@ -9,8 +9,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 export function UploadedDocument({
   file,
+  addNotValidDocuments,
 }: {
   file: File;
+  addNotValidDocuments: () => void
 }) {
   const [error, setError] = useState(false);
   const [validationFinish, setValidationFinish] = useState(false);
@@ -44,6 +46,7 @@ export function UploadedDocument({
         return;
       }
     }
+    addNotValidDocuments();
     setError(true);
     setValidationFinish(true);
   }
