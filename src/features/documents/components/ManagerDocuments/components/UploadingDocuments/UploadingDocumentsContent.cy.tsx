@@ -13,6 +13,9 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content')
       .should('exist');
 
+    cy.getByData('uploading-documents-header')
+      .should('exist');
+
     cy.getByData('uploader-documents')
       .should('exist');
   });
