@@ -159,6 +159,48 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content-button')
       .should('be.disabled');
   });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN click to send button
+  THEN send button have cancel text
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ]);
+
+    cy.getByData('uploading-documents-content-button')
+      .should('have.text', 'Confirm');
+
+    cy.getByData('uploading-documents-content-button')
+      .click();
+
+    cy.getByData('uploading-documents-content-button')
+      .should('have.text', 'Cancel...3');
+  });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN double click to send button
+  THEN send button have confirm
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ]);
+
+    cy.getByData('uploading-documents-content-button')
+      .click();
+
+    cy.getByData('uploading-documents-content-button')
+      .click();
+
+    cy.getByData('uploading-documents-content-button')
+      .should('have.text', 'Confirm');
+  });
 });
 
 function mountComponent() {
