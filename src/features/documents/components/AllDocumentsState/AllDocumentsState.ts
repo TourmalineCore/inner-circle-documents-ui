@@ -8,6 +8,8 @@ export class AllDocumentsState {
 
   private _uploadedDocuments: File[] = [];
 
+  private _notValidDocuments: File[] = [];
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -30,6 +32,10 @@ export class AllDocumentsState {
     return this._uploadedDocuments;
   }
 
+  get allNotValidDocuments() {
+    return this._notValidDocuments;
+  }
+
   updateDate = (newDate: Date) => {
     this._selectedDate = newDate;
   };
@@ -40,16 +46,24 @@ export class AllDocumentsState {
 
   deleteUploadedDocument(fileName: string) {
     this._uploadedDocuments = this._uploadedDocuments.filter(({ name }) => name !== fileName);
+    this._notValidDocuments = this._notValidDocuments.filter(({ name }) => name !== fileName);
+  }
+
+  addNotValidDocuments(file: File) {
+    this._notValidDocuments.push(file);
   }
 
   initialize({
     documents,
     uploadedDocuments,
+    notValidDocuments,
   }: {
     uploadedDocuments: File[]
     documents: DocumentsProps,
+    notValidDocuments: File[]
   }) {
     this._documents = documents;
     this._uploadedDocuments = uploadedDocuments;
+    this._notValidDocuments = notValidDocuments;
   }
 }
