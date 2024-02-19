@@ -20,7 +20,7 @@ export const UploadingDocumentsContent = observer(() => {
         <Button
           className="uploading-documents-content__button"
           data-cy="uploading-documents-content-button"
-          disabled
+          disabled={uploadedDocumentsIsEmpty}
         >
           Confirm
         </Button>
