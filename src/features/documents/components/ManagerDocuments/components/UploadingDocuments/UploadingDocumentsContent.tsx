@@ -11,7 +11,12 @@ export const UploadingDocumentsContent = observer(() => {
 
   return (
     <section className="uploading-documents-content" data-cy="uploading-documents-content">
-      <UploaderDocuments />
+      <div
+        className="uploading-documetns__header"
+        data-cy="uploading-documents-header"
+      >
+        <UploaderDocuments />
+      </div>
       {!uploadedDocumentsIsEmpty
        && (
          <ul
