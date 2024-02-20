@@ -113,4 +113,25 @@ describe('AllDocumentsState', () => {
 
     expect(allDocumentsState.allNotValidDocuments).to.has.lengthOf(1);
   });
+
+  it(`
+  GIVEN uploaded documents page 
+  WHEN clear uploaded documents
+  THEN return empty uploaded documents list
+  `, () => {
+    const testFile = {
+      id: 1,
+      file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
+    };
+
+    allDocumentsState.initialize({
+      documents: [],
+      uploadedDocuments: [testFile],
+      notValidDocumentsIds: [],
+    });
+
+    allDocumentsState.clearUploadedDocuments();
+
+    expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(0);
+  });
 });
