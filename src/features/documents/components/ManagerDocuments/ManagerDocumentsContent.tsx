@@ -4,6 +4,7 @@ import { DatePicker } from '../../../../components/DatePicker/DatePicker';
 import { DocumentsList } from '../DocumentsList/DocumentsList';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { DocumentsProps } from '../types';
+import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
 
 const mockDocuments: DocumentsProps = [
   {
@@ -28,6 +29,7 @@ export const ManagerDocumentsContent = observer(() => {
           selectedDate={documentsState.selectedDate}
           onChange={documentsState.updateDate}
         />
+        <UploaderDocuments />
       </div>
       <DocumentsList list={mockDocuments} />
     </section>
