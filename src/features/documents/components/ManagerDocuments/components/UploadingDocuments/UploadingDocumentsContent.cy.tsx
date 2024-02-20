@@ -201,6 +201,27 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content-button')
       .should('have.text', 'Confirm');
   });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN start send documents after delete uploaded document
+  THEN send button have confirm
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ]);
+
+    cy.getByData('uploading-documents-content-button')
+      .click();
+
+    cy.getByData('uploaded-document-card-delete')
+      .click();
+
+    cy.getByData('uploading-documents-content-button')
+      .should('have.text', 'Confirm');
+  });
 });
 
 function mountComponent() {
