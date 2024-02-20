@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import { UploaderDocuments } from './UploaderDocuments';
 
 describe('UploadedDocumentCard', () => {
@@ -15,6 +16,8 @@ describe('UploadedDocumentCard', () => {
 
 function mountComponent() {
   cy.mount(
-    <UploaderDocuments />,
+    <BrowserRouter>
+      <UploaderDocuments />
+    </BrowserRouter>,
   );
 }

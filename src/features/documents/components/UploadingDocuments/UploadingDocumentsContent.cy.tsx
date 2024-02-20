@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { UploadingDocumentsContent } from './UploadingDocumentsContent';
@@ -253,8 +254,10 @@ function mountComponent() {
   const documentsState = new AllDocumentsState();
 
   cy.mount(
-    <AllDocumentsStateContext.Provider value={documentsState}>
-      <UploadingDocumentsContent />
-    </AllDocumentsStateContext.Provider>,
+    <BrowserRouter>
+      <AllDocumentsStateContext.Provider value={documentsState}>
+        <UploadingDocumentsContent />
+      </AllDocumentsStateContext.Provider>
+    </BrowserRouter>,
   );
 }
