@@ -6,7 +6,7 @@ describe('ManagerDocumentsContent', () => {
   it(`
   GIVEN manager documents page
   WHEN visit manager documents page
-  THEN render date picker and documents list components
+  THEN render all component manager page
   `, () => {
     mountComponent();
 
@@ -14,6 +14,9 @@ describe('ManagerDocumentsContent', () => {
       .should('exist');
 
     cy.getByData('manager-documents-content-header')
+      .should('exist');
+
+    cy.getByData('uploader-documents')
       .should('exist');
 
     cy.getByData('date-picker')
