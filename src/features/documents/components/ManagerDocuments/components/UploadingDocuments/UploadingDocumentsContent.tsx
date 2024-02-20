@@ -46,7 +46,7 @@ export const UploadingDocumentsContent = observer(() => {
                <UploadedDocument
                  fileId={id}
                  file={file}
-                 addNotValidDocuments={() => documentsState.addNotValidDocuments(id)}
+                 addNotValidDocuments={() => documentsState.addNotValidDocumentsId(id)}
                />
              </li>
            ))}

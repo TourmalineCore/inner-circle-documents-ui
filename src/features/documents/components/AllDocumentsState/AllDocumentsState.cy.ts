@@ -40,7 +40,7 @@ describe('AllDocumentsState', () => {
         downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
       }],
       uploadedDocuments: [],
-      notValidDocuments: [],
+      notValidDocumentsIds: [],
     });
 
     expect(allDocumentsState.allDocuments).to.has.lengthOf(1);
@@ -66,7 +66,7 @@ describe('AllDocumentsState', () => {
     allDocumentsState.initialize({
       documents: [],
       uploadedDocuments: [],
-      notValidDocuments: [],
+      notValidDocumentsIds: [],
     });
 
     const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
@@ -90,7 +90,7 @@ describe('AllDocumentsState', () => {
     allDocumentsState.initialize({
       documents: [],
       uploadedDocuments: [testFile],
-      notValidDocuments: [1],
+      notValidDocumentsIds: [1],
     });
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(1);
@@ -109,7 +109,7 @@ describe('AllDocumentsState', () => {
   `, () => {
     const testId = 1;
 
-    allDocumentsState.addNotValidDocuments(testId);
+    allDocumentsState.addNotValidDocumentsId(testId);
 
     expect(allDocumentsState.allNotValidDocuments).to.has.lengthOf(1);
   });
