@@ -1,4 +1,10 @@
 .uploading-documents-content {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__list {
     display: grid;
     padding-top: 40px;

@@ -7,6 +7,7 @@ describe('UploadedDocumentCard', () => {
   THEN render uploaded document card without error
   `, () => {
     mountComponent({
+      fileId: 1,
       name: 'Расчетный листок Иванов за ноябрь 2023',
       error: false,
     });
@@ -42,6 +43,7 @@ describe('UploadedDocumentCard', () => {
   THEN render uploaded document card with error
   `, () => {
     mountComponent({
+      fileId: 1,
       name: 'Расчетный листок Иванов за ноябрь 2023',
       error: true,
     });
@@ -55,13 +57,15 @@ describe('UploadedDocumentCard', () => {
 });
 
 function mountComponent({
+  fileId,
   name,
   error,
 }: {
+  fileId: number;
   name: string;
   error: boolean
 }) {
   cy.mount(
-    <UploadedDocumentCard name={name} error={error} />,
+    <UploadedDocumentCard fileId={fileId} name={name} error={error} />,
   );
 }

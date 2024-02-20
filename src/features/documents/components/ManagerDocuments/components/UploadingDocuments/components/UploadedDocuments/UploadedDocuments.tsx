@@ -8,9 +8,13 @@ import { UploadedDocumentCard } from './components/UploadedDocumentCard/Uploaded
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export function UploadedDocument({
+  fileId,
   file,
+  addNotValidDocuments,
 }: {
+  fileId: number
   file: File;
+  addNotValidDocuments: () => void
 }) {
   const [error, setError] = useState(false);
   const [validationFinish, setValidationFinish] = useState(false);
@@ -28,6 +32,7 @@ export function UploadedDocument({
       </div>
       {validationFinish && (
         <UploadedDocumentCard
+          fileId={fileId}
           name={file.name}
           error={error}
         />
@@ -44,6 +49,7 @@ export function UploadedDocument({
         return;
       }
     }
+    addNotValidDocuments();
     setError(true);
     setValidationFinish(true);
   }

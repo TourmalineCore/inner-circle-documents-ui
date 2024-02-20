@@ -9,11 +9,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 const ERROR_TEXT = 'The data in the file doesn\'t match the file name';
 
 export function UploadedDocumentCard({
+  fileId,
   name,
   error,
 }: {
+  fileId: number,
   name: string;
-  error: boolean
+  error: boolean;
 }) {
   const documentsState = useContext(AllDocumentsStateContext);
   const lastName = name.split(' ')[2];
@@ -41,7 +43,7 @@ export function UploadedDocumentCard({
             type="button"
             className="uploaded-document-card__delete"
             data-cy="uploaded-document-card-delete"
-            onClick={() => documentsState.deleteUploadedDocument(name)}
+            onClick={() => documentsState.deleteUploadedDocument(fileId)}
           >
             <img
               className="uploaded-document-card__icon"
