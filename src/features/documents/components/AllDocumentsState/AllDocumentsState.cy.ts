@@ -39,8 +39,6 @@ describe('AllDocumentsState', () => {
         previewLink: '',
         downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
       }],
-      uploadedDocuments: [],
-      notValidDocumentsIds: [],
     });
 
     expect(allDocumentsState.allDocuments).to.has.lengthOf(1);
@@ -65,8 +63,6 @@ describe('AllDocumentsState', () => {
   `, () => {
     allDocumentsState.initialize({
       documents: [],
-      uploadedDocuments: [],
-      notValidDocumentsIds: [],
     });
 
     const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
@@ -127,7 +123,6 @@ describe('AllDocumentsState', () => {
     allDocumentsState.initialize({
       documents: [],
       uploadedDocuments: [testFile],
-      notValidDocumentsIds: [],
     });
 
     allDocumentsState.clearUploadedDocuments();

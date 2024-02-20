@@ -59,12 +59,12 @@ export class AllDocumentsState {
 
   initialize({
     documents,
-    uploadedDocuments,
-    notValidDocumentsIds,
+    uploadedDocuments = [],
+    notValidDocumentsIds = [],
   }: {
-    uploadedDocuments: UploadedDocumentsProps
     documents: DocumentsProps,
-    notValidDocumentsIds: number[]
+    uploadedDocuments?: UploadedDocumentsProps
+    notValidDocumentsIds?: number[]
   }) {
     this._documents = documents;
     this._uploadedDocuments = uploadedDocuments;

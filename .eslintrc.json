@@ -96,7 +96,6 @@
     ],
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-array-for-each": "off",
-    "default-param-last": "off",
-    "cypress/no-unnecessary-waiting": "off"
+    "default-param-last": "off"
   }
 }

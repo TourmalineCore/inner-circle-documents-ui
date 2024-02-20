@@ -237,9 +237,7 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content-button')
       .click();
 
-    cy.wait(4000);
-
-    cy.getByData('uploading-documents-content-list')
+    cy.get('.uploading-documents-content__list', { timeout: 4000 })
       .should('not.exist');
 
     cy.getByData('uploading-documents-content-item')
