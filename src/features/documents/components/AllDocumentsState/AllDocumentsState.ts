@@ -53,6 +53,10 @@ export class AllDocumentsState {
     this._notValidDocumentsIds.push(fileId);
   }
 
+  clearUploadedDocuments() {
+    this._uploadedDocuments = [];
+  }
+
   initialize({
     documents,
     uploadedDocuments,
