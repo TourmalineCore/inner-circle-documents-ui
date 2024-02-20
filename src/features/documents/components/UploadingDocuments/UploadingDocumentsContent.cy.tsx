@@ -1,5 +1,5 @@
-import { AllDocumentsState } from '../../../AllDocumentsState/AllDocumentsState';
-import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
+import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
+import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { UploadingDocumentsContent } from './UploadingDocumentsContent';
 
 describe('UploadingDocumentsContent', () => {

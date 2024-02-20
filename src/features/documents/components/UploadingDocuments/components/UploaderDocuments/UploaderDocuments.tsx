@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext } from 'react';
-import { AllDocumentsStateContext } from '../../../../../AllDocumentsState/AllDocumentsStateContext';
+import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
 
 export function UploaderDocuments() {
   const documentsState = useContext(AllDocumentsStateContext);
