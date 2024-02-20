@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AllDocumentsStateContext } from '../../../../AllDocumentsState/AllDocumentsStateContext';
 
 const BEGIN_TIME = 3;
 
 export function useTimer() {
   const [sendTime, setSendTime] = useState(BEGIN_TIME);
   const [timerRun, setTimerRun] = useState(false);
+  const documentsState = useContext(AllDocumentsStateContext);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -33,6 +35,7 @@ export function useTimer() {
   }
 
   async function uploadDocuments() {
+    documentsState.clearUploadedDocuments();
     // TODO TEST LOG
     console.log('SUCCESS');
   }
