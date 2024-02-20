@@ -10,6 +10,7 @@ export function UploaderDocuments() {
       data-cy="uploader-documents"
       onChange={handleChange}
       type="file"
+      value=""
       multiple
       accept=".pdf"
     />
@@ -17,7 +18,6 @@ export function UploaderDocuments() {
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const fileList: File[] = Object.values(event.target.files!);
-
     documentsState.addUploadedDocuments(fileList);
   }
 }

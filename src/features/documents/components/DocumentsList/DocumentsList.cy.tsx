@@ -94,7 +94,7 @@ function mountComponent() {
   allDocumentsState.initialize({
     documents: [
       {
-        id: '1',
+        id: 1,
         name: 'Ivanov I.I',
         date: new Date(),
         previewLink: '',

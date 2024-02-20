@@ -37,15 +37,16 @@ export const UploadingDocumentsContent = observer(() => {
            className="uploading-documents-content__list"
            data-cy="uploading-documents-content-list"
          >
-           {documentsState.allUploadedDocuments.map((file) => (
+           {documentsState.allUploadedDocuments.map(({ id, file }) => (
              <li
-               key={file.name}
+               key={id}
                className="uploading-documents-content__item"
                data-cy="uploading-documents-content-item"
              >
                <UploadedDocument
+                 fileId={id}
                  file={file}
-                 addNotValidDocuments={() => documentsState.addNotValidDocuments(file)}
+                 addNotValidDocuments={() => documentsState.addNotValidDocuments(id)}
                />
              </li>
            ))}

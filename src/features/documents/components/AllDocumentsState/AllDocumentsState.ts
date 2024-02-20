@@ -1,14 +1,14 @@
 import { makeAutoObservable } from 'mobx';
-import { DocumentsProps } from '../types';
+import { DocumentsProps, UploadedDocumentsProps } from '../types';
 
 export class AllDocumentsState {
   private _selectedDate: Date = new Date();
 
   private _documents: DocumentsProps = [];
 
-  private _uploadedDocuments: File[] = [];
+  private _uploadedDocuments: UploadedDocumentsProps = [];
 
-  private _notValidDocuments: File[] = [];
+  private _notValidDocuments: number[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -41,16 +41,16 @@ export class AllDocumentsState {
   };
 
   addUploadedDocuments(files: File[]) {
-    this._uploadedDocuments.push(...files);
+    this._uploadedDocuments.push(...files.map((file, index) => ({ id: this._uploadedDocuments.length + index, file })));
   }
 
-  deleteUploadedDocument(fileName: string) {
-    this._uploadedDocuments = this._uploadedDocuments.filter(({ name }) => name !== fileName);
-    this._notValidDocuments = this._notValidDocuments.filter(({ name }) => name !== fileName);
+  deleteUploadedDocument(fileId: number) {
+    this._uploadedDocuments = this._uploadedDocuments.filter(({ id }) => id !== fileId);
+    this._notValidDocuments = this._notValidDocuments.filter((id) => id !== fileId);
   }
 
-  addNotValidDocuments(file: File) {
-    this._notValidDocuments.push(file);
+  addNotValidDocuments(fileId: number) {
+    this._notValidDocuments.push(fileId);
   }
 
   initialize({
@@ -58,9 +58,9 @@ export class AllDocumentsState {
     uploadedDocuments,
     notValidDocuments,
   }: {
-    uploadedDocuments: File[]
+    uploadedDocuments: UploadedDocumentsProps
     documents: DocumentsProps,
-    notValidDocuments: File[]
+    notValidDocuments: number[]
   }) {
     this._documents = documents;
     this._uploadedDocuments = uploadedDocuments;

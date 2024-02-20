@@ -33,7 +33,7 @@ describe('AllDocumentsState', () => {
   `, () => {
     allDocumentsState.initialize({
       documents: [{
-        id: '1',
+        id: 1,
         name: 'Ivanov I.I',
         date: new Date(),
         previewLink: '',
@@ -82,17 +82,20 @@ describe('AllDocumentsState', () => {
   WHEN delete uploaded documents
   THEN uploaded and not valid document deleted
   `, () => {
-    const testFile = new File([''], 'testFile.pdf', { type: 'application/pdf' });
+    const testFile = {
+      id: 1,
+      file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
+    };
 
     allDocumentsState.initialize({
       documents: [],
       uploadedDocuments: [testFile],
-      notValidDocuments: [testFile],
+      notValidDocuments: [1],
     });
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(1);
 
-    allDocumentsState.deleteUploadedDocument(testFile.name);
+    allDocumentsState.deleteUploadedDocument(testFile.id);
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(0);
 
@@ -104,9 +107,9 @@ describe('AllDocumentsState', () => {
   WHEN uploaded not valid documents
   THEN return not valid documents
   `, () => {
-    const testFile = new File([''], 'testFile.pdf', { type: 'application/pdf' });
+    const testId = 1;
 
-    allDocumentsState.addNotValidDocuments(testFile);
+    allDocumentsState.addNotValidDocuments(testId);
 
     expect(allDocumentsState.allNotValidDocuments).to.has.lengthOf(1);
   });
