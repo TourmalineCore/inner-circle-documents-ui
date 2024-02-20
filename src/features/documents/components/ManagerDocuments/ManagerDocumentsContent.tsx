@@ -20,10 +20,15 @@ export const ManagerDocumentsContent = observer(() => {
 
   return (
     <section className="manager-documents-content" data-cy="manager-documents-content">
-      <DatePicker
-        selectedDate={documentsState.selectedDate}
-        onChange={documentsState.updateDate}
-      />
+      <div
+        className="manager-documents-content__header"
+        data-cy="manager-documents-content-header"
+      >
+        <DatePicker
+          selectedDate={documentsState.selectedDate}
+          onChange={documentsState.updateDate}
+        />
+      </div>
       <DocumentsList list={mockDocuments} />
     </section>
   );

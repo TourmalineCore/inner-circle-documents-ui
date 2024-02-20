@@ -13,7 +13,7 @@ describe('ManagerDocumentsContent', () => {
     cy.getByData('manager-documents-content')
       .should('exist');
 
-    cy.getByData('manager-documents-header')
+    cy.getByData('manager-documents-content-header')
       .should('exist');
 
     cy.getByData('date-picker')
