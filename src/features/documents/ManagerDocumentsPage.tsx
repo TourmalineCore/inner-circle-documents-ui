@@ -1,7 +1,7 @@
-import { UploadingDocumentsContainer } from './components/ManagerDocuments/components/UploadingDocuments/UploadingDocumentsContainer';
+import { ManagerDocumentsContainer } from './components/ManagerDocuments/ManagerDocumentsContainer';
 
 export function ManagerDocumentsPage() {
   return (
-    <UploadingDocumentsContainer />
+    <ManagerDocumentsContainer />
   );
 }
