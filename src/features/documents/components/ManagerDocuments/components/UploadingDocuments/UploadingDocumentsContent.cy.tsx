@@ -222,6 +222,32 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content-button')
       .should('have.text', 'Confirm');
   });
+
+  it(`
+  GIVEN uploading documents page
+  WHEN start send documents and wait end
+  THEN uploaded documents list is empty
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ]);
+
+    cy.getByData('uploading-documents-content-button')
+      .click();
+
+    cy.wait(4000);
+
+    cy.getByData('uploading-documents-content-list')
+      .should('not.exist');
+
+    cy.getByData('uploading-documents-content-item')
+      .should('have.length', 0);
+
+    cy.getByData('uploaded-document-card')
+      .should('have.length', 0);
+  });
 });
 
 function mountComponent() {
