@@ -8,15 +8,23 @@ export function UploaderDocuments() {
   const navigate = useNavigate();
 
   return (
-    <input
+    <label
       className="uploader-documents"
       data-cy="uploader-documents"
-      onChange={handleChange}
-      type="file"
-      value=""
-      multiple
-      accept=".pdf"
-    />
+    >
+      <input
+        className="uploader-documents__input"
+        onChange={handleChange}
+        type="file"
+        value=""
+        multiple
+        accept=".pdf"
+      />
+      <span className="uploader-documents__text">
+        Upload files
+      </span>
+    </label>
+
   );
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
