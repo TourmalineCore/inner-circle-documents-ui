@@ -15,7 +15,7 @@ export function UploadedDocumentCard({
 }: {
   fileId: number,
   name: string;
-  error: boolean
+  error: boolean;
 }) {
   const documentsState = useContext(AllDocumentsStateContext);
   const lastName = name.split(' ')[2];

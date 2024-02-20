@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useContext } from 'react';
+import { useContext, useLayoutEffect } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
 import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
 import { UploadedDocument } from './components/UploadedDocuments/UploadedDocuments';
@@ -8,12 +8,17 @@ import { useTimer } from './hooks/useTimer';
 
 export const UploadingDocumentsContent = observer(() => {
   const {
-    timerRun, sendTime, startSend, endSend,
+    timerRun, sendTime,
+    startSend, endSend,
   } = useTimer();
   const documentsState = useContext(AllDocumentsStateContext);
 
   const uploadedDocumentsIsEmpty = documentsState.allUploadedDocuments.length === 0;
   const notValidDocumentsIsEmpty = documentsState.allNotValidDocuments.length === 0;
+
+  useLayoutEffect(() => {
+    endSend();
+  }, [documentsState.allUploadedDocuments]);
 
   return (
     <section className="uploading-documents-content" data-cy="uploading-documents-content">
