@@ -9,7 +9,7 @@ import { getMonthAndYear } from '../../../../common/utils/getMonthAndYear';
 export const ManagementDocumentsContent = observer(() => {
   const documentsState = useContext(AllDocumentsStateContext);
 
-  const filteredDocument = documentsState.selectedDate !== null
+  const documents = documentsState.selectedDate !== null
     ? documentsState.allDocuments.filter((document) => getMonthAndYear(document.date) === getMonthAndYear(documentsState.selectedDate!))
     : documentsState.allDocuments;
 
@@ -26,7 +26,7 @@ export const ManagementDocumentsContent = observer(() => {
         />
         <UploaderDocuments />
       </div>
-      <DocumentsList list={filteredDocument} />
+      <DocumentsList list={documents} />
     </section>
   );
 });
