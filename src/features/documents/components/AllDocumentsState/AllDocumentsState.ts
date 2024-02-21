@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { DocumentsProps, UploadedDocumentsProps } from '../types';
 
 export class AllDocumentsState {
-  private _selectedDate: Date = new Date();
+  private _selectedDate: Date | null = new Date();
 
   private _documents: DocumentsProps = [];
 
@@ -18,12 +18,6 @@ export class AllDocumentsState {
     return this._selectedDate;
   }
 
-  get monthYearDate() {
-    const month = this._selectedDate.getMonth() + 1;
-    const year = this._selectedDate.getFullYear();
-    return { month, year };
-  }
-
   get allDocuments() {
     return this._documents;
   }
@@ -36,7 +30,7 @@ export class AllDocumentsState {
     return this._notValidDocumentsIds;
   }
 
-  updateDate = (newDate: Date) => {
+  updateDate = (newDate: Date | null) => {
     this._selectedDate = newDate;
   };
 
