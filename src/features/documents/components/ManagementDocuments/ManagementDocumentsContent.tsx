@@ -16,14 +16,14 @@ const mockDocuments: DocumentsProps = [
   },
 ];
 
-export const ManagerDocumentsContent = observer(() => {
+export const ManagementDocumentsContent = observer(() => {
   const documentsState = useContext(AllDocumentsStateContext);
 
   return (
-    <section className="manager-documents-content" data-cy="manager-documents-content">
+    <section className="management-documents-content" data-cy="management-documents-content">
       <div
-        className="manager-documents-content__header"
-        data-cy="manager-documents-content-header"
+        className="management-documents-content__header"
+        data-cy="management-documents-content-header"
       >
         <DatePicker
           selectedDate={documentsState.selectedDate}

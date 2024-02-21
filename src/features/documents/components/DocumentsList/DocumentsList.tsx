@@ -1,5 +1,6 @@
 import { ReactComponent as IconFileDownload } from '../../../../assets/icons/file-download-icon.svg';
 import { DocumentsProps } from '../types';
+import { getMonthAndYear } from '../../../../common/utils/getMonthAndYear';
 
 export function DocumentsList({
   list,
@@ -18,6 +19,7 @@ export function DocumentsList({
         {list.map(({
           id,
           name,
+          date,
           downloadLink,
         }) => (
           <li
@@ -29,7 +31,7 @@ export function DocumentsList({
               className="documents-list__text"
               data-cy="documents-list-text"
             >
-              {name}
+              {`${name} - ${getMonthAndYear(date)}`}
             </span>
             <a
               href={downloadLink}

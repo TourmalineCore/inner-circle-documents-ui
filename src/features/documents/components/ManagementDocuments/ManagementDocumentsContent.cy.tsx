@@ -1,20 +1,20 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
-import { ManagerDocumentsContent } from './ManagerDocumentsContent';
+import { ManagerDocumentsContainer } from './ManagementDocumentsContainer';
 
-describe('ManagerDocumentsContent', () => {
+describe('ManagementDocumentsContent', () => {
   it(`
-  GIVEN manager documents page
+  GIVEN management documents page
   WHEN visit manager documents page
-  THEN render all component manager page
+  THEN render all component management page
   `, () => {
     mountComponent();
 
-    cy.getByData('manager-documents-content')
+    cy.getByData('management-documents-content')
       .should('exist');
 
-    cy.getByData('manager-documents-content-header')
+    cy.getByData('management-documents-content-header')
       .should('exist');
 
     cy.getByData('uploader-documents')
@@ -28,7 +28,7 @@ describe('ManagerDocumentsContent', () => {
   });
 
   it(`
-  GIVEN manager documents page
+  GIVEN management documents page
   WHEN select next year in date picker component
   THEN render correct date
   `, () => {
@@ -49,7 +49,7 @@ describe('ManagerDocumentsContent', () => {
   });
 
   it(`
-  GIVEN manager documents page 
+  GIVEN management documents page 
   WHEN select pervious year in date picker component
   THEN render correct date
   `, () => {
@@ -77,7 +77,7 @@ function mountComponent() {
   cy.mount(
     <BrowserRouter>
       <AllDocumentsStateContext.Provider value={documentsState}>
-        <ManagerDocumentsContent />
+        <ManagerDocumentsContainer />
       </AllDocumentsStateContext.Provider>
     </BrowserRouter>,
   );
