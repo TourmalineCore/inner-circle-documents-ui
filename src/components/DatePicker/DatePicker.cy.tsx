@@ -28,7 +28,7 @@ describe('DatePicker', () => {
 
   it(`
   GIVEN component DatePicker 
-  WHEN click to delete icon
+  WHEN click on the delete icon
   THEN call onClearDate functions
   `, () => {
     mountComponent();

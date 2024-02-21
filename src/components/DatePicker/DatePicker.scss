@@ -1,5 +1,8 @@
 .date-picker {
-  max-width: 235px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 272px;
   max-height: 40px;
 
   &__button {
@@ -27,5 +30,12 @@
 
   &__arrow {
     margin-left: 16px;
+  }
+
+  &__delete {
+    display: flex;
+    border: none;
+    background: none;
+    cursor: pointer;
   }
 }
