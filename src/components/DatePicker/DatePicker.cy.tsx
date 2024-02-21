@@ -15,6 +15,31 @@ describe('DatePicker', () => {
   it(`
   GIVEN component DatePicker 
   WHEN visit a page that uses component DatePicker
+  THEN render delete icon
+  `, () => {
+    mountComponent();
+
+    cy.getByData('date-picker-delete')
+      .should('exist');
+  });
+
+  it(`
+  GIVEN component DatePicker 
+  WHEN click to delete icon
+  THEN call onClearDate functions
+  `, () => {
+    mountComponent();
+
+    cy.getByData('date-picker-delete')
+      .click();
+
+    cy.get('@onClearDate')
+      .should('have.been.calledOnce');
+  });
+
+  it(`
+  GIVEN component DatePicker 
+  WHEN visit a page that uses component DatePicker
   THEN render correct date
   `, () => {
     mountComponent();
@@ -44,11 +69,13 @@ describe('DatePicker', () => {
 function mountComponent() {
   const selectedDate = new Date('2024-10-01T05:00:00Z');
   const onChangeSpy = cy.spy().as('onChange');
+  const onClearDate = cy.spy().as('onClearDate');
 
   cy.mount(
     <DatePicker
       selectedDate={selectedDate}
       onChange={onChangeSpy}
+      onClearDate={onClearDate}
     />,
   );
 }
