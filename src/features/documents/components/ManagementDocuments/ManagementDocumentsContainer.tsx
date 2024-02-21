@@ -1,6 +1,6 @@
 import { ManagementDocumentsContent } from './ManagementDocumentsContent';
 
-export function ManagerDocumentsContainer() {
+export function ManagementDocumentsContainer() {
   return (
     <ManagementDocumentsContent />
   );
