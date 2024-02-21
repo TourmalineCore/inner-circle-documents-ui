@@ -3,21 +3,15 @@ import { useContext } from 'react';
 import { DatePicker } from '../../../../components/DatePicker/DatePicker';
 import { DocumentsList } from '../DocumentsList/DocumentsList';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
-import { DocumentsProps } from '../types';
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
-
-const mockDocuments: DocumentsProps = [
-  {
-    id: 1,
-    name: 'Ivanov I.I',
-    date: new Date(),
-    previewLink: '',
-    downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
-  },
-];
+import { getMonthAndYear } from '../../../../common/utils/getMonthAndYear';
 
 export const ManagementDocumentsContent = observer(() => {
   const documentsState = useContext(AllDocumentsStateContext);
+
+  const filteredDocument = documentsState.selectedDate !== null
+    ? documentsState.allDocuments.filter((document) => getMonthAndYear(document.date) === getMonthAndYear(documentsState.selectedDate!))
+    : documentsState.allDocuments;
 
   return (
     <section className="management-documents-content" data-cy="management-documents-content">
@@ -28,10 +22,11 @@ export const ManagementDocumentsContent = observer(() => {
         <DatePicker
           selectedDate={documentsState.selectedDate}
           onChange={documentsState.updateDate}
+          onClearDate={documentsState.updateDate}
         />
         <UploaderDocuments />
       </div>
-      <DocumentsList list={mockDocuments} />
+      <DocumentsList list={filteredDocument} />
     </section>
   );
 });
