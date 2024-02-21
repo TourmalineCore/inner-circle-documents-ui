@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { AllDocumentsStateContext } from '../../../../AllDocumentsState/AllDocumentsStateContext';
+import { AllDocumentsStateContext } from '../../AllDocumentsState/AllDocumentsStateContext';
 
 const BEGIN_TIME = 3;
 

@@ -1,8 +1,8 @@
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { useContext } from 'react';
-import IconDelet from '../../../../../../../../../../assets/icons/icon-delete.svg';
-import { AllDocumentsStateContext } from '../../../../../../../AllDocumentsState/AllDocumentsStateContext';
+import IconDelet from '../../../../../../../../assets/icons/icon-delete.svg';
+import { AllDocumentsStateContext } from '../../../../../AllDocumentsState/AllDocumentsStateContext';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 

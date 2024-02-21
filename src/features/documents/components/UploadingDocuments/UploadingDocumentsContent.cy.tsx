@@ -1,5 +1,6 @@
-import { AllDocumentsState } from '../../../AllDocumentsState/AllDocumentsState';
-import { AllDocumentsStateContext } from '../../../AllDocumentsState/AllDocumentsStateContext';
+import { BrowserRouter } from 'react-router-dom';
+import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
+import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { UploadingDocumentsContent } from './UploadingDocumentsContent';
 
 describe('UploadingDocumentsContent', () => {
@@ -55,7 +56,7 @@ describe('UploadingDocumentsContent', () => {
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploading-documents-content-list')
       .should('exist');
@@ -76,7 +77,7 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploading-documents-content-list')
       .should('exist');
@@ -97,7 +98,7 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploading-documents-content-list')
       .should('exist');
@@ -136,7 +137,7 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploading-documents-content-button')
       .should('not.be.disabled');
@@ -151,7 +152,7 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploaded-document-card-delete')
       .click();
@@ -169,7 +170,7 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploading-documents-content-button')
       .should('have.text', 'Confirm');
@@ -190,7 +191,7 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploading-documents-content-button')
       .click();
@@ -211,7 +212,7 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploading-documents-content-button')
       .click();
@@ -232,7 +233,7 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ]);
+    ], { force: true });
 
     cy.getByData('uploading-documents-content-button')
       .click();
@@ -253,8 +254,10 @@ function mountComponent() {
   const documentsState = new AllDocumentsState();
 
   cy.mount(
-    <AllDocumentsStateContext.Provider value={documentsState}>
-      <UploadingDocumentsContent />
-    </AllDocumentsStateContext.Provider>,
+    <BrowserRouter>
+      <AllDocumentsStateContext.Provider value={documentsState}>
+        <UploadingDocumentsContent />
+      </AllDocumentsStateContext.Provider>
+    </BrowserRouter>,
   );
 }
