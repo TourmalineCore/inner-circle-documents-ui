@@ -56,7 +56,7 @@ describe('DocumentsList', () => {
 
     cy.getByData('documents-list-text')
       .first()
-      .should('have.text', 'Ivanov I.I');
+      .should('have.text', 'Ivanov I.I - February 2024');
   });
 
   it(`
