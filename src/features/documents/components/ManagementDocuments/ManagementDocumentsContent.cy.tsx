@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
+import moment from 'moment';
 import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { ManagementDocumentsContainer } from './ManagementDocumentsContainer';
@@ -96,15 +97,19 @@ describe('ManagementDocumentsContent', () => {
 
   it(`
   GIVEN management documents page 
-  WHEN click on the march month
+  WHEN select pervious year and click on last month
   THEN render 1 documents list item
   `, () => {
     mountComponent();
+    const currentDate = new Date();
 
     cy.getByData('date-picker-select')
       .click();
 
-    cy.contains('Mar')
+    cy.get('[aria-label="Previous Year"]')
+      .click();
+
+    cy.contains(moment(currentDate.setMonth(-1)).format('MMM'))
       .click();
 
     cy.getByData('documents-list-item')
@@ -168,7 +173,7 @@ function mountComponent() {
       {
         id: 3,
         name: 'Sidorov S.S',
-        date: new Date(new Date().setMonth(3, 0)),
+        date: new Date(new Date().setMonth(-1)),
         previewLink: '',
         downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
       },
