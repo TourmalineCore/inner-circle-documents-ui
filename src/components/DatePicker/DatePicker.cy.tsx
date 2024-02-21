@@ -21,6 +21,9 @@ describe('DatePicker', () => {
 
     cy.getByData('date-picker-delete')
       .should('exist');
+
+    cy.getByData('date-picker-delete-icon')
+      .should('exist');
   });
 
   it(`
