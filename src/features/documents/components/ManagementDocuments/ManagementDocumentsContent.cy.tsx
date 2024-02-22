@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import moment from 'moment';
 import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
-import { ManagementDocumentsContainer } from './ManagementDocumentsContainer';
+import { ManagementDocumentsContent } from './ManagementDocumentsContent';
 
 describe('ManagementDocumentsContent', () => {
   it(`
@@ -203,7 +203,7 @@ function mountComponent() {
   cy.mount(
     <BrowserRouter>
       <AllDocumentsStateContext.Provider value={documentsState}>
-        <ManagementDocumentsContainer />
+        <ManagementDocumentsContent />
       </AllDocumentsStateContext.Provider>
     </BrowserRouter>,
   );
