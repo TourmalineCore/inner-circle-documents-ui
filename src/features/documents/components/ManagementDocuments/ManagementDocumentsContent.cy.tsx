@@ -51,7 +51,7 @@ describe('ManagementDocumentsContent', () => {
 
   it(`
   GIVEN management documents page 
-  WHEN select pervious year in date picker component
+  WHEN select previous year in date picker component
   THEN render correct date
   `, () => {
     mountComponent();
@@ -97,7 +97,7 @@ describe('ManagementDocumentsContent', () => {
 
   it(`
   GIVEN management documents page 
-  WHEN select pervious year and click on last month
+  WHEN select previous year and click on last month
   THEN render 1 documents list item
   `, () => {
     mountComponent();
