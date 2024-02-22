@@ -11,7 +11,7 @@ export const ManagementDocumentsContent = observer(() => {
 
   const documents = documentsState.selectedDate !== null
     ? documentsState.allDocuments.filter((document) => getMonthAndYear(document.date) === getMonthAndYear(documentsState.selectedDate!))
-    : [...documentsState.allDocuments].sort((a, b) => (a.date > b.date ? 1 : -1));
+    : [...documentsState.allDocuments].sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return (
     <section className="management-documents-content" data-cy="management-documents-content">
