@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { DocumentsProps, UploadedDocumentsProps } from '../types';
+import { getMonthAndYear } from '../../../../common/utils/getMonthAndYear';
 
 export class AllDocumentsState {
   private _selectedDate: Date | null = new Date();
@@ -19,7 +20,9 @@ export class AllDocumentsState {
   }
 
   get allDocuments() {
-    return this._documents;
+    return this._selectedDate !== null
+      ? this._documents.filter((document) => getMonthAndYear(document.date) === getMonthAndYear(this._selectedDate!))
+      : [...this._documents].sort((a, b) => (a.date < b.date ? 1 : -1));
   }
 
   get allUploadedDocuments() {
