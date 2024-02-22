@@ -73,7 +73,7 @@ describe('ManagementDocumentsContent', () => {
   it(`
   GIVEN management documents page 
   WHEN click on the delete icon
-  THEN date picker have 'Select a date' text
+  THEN date picker have 'Select date' text
   `, () => {
     mountComponent();
 
@@ -81,7 +81,7 @@ describe('ManagementDocumentsContent', () => {
       .click();
 
     cy.getByData('date-picker-result')
-      .should('have.text', 'Select a date');
+      .should('have.text', 'Select date');
   });
 
   it(`

@@ -14,7 +14,7 @@ const DatePickerCustomElement = forwardRef<HTMLButtonElement, HTMLProps<HTMLButt
     data-cy="date-picker-select"
   >
     <img className="date-picker__icon" src={logoData} width="24" height="24" alt="DataPicker" />
-    <span data-cy="date-picker-result">{value === '' ? 'Select a date' : value}</span>
+    <span data-cy="date-picker-result">{value === '' ? 'Select date' : value}</span>
     <span className="date-picker__arrow">&or;</span>
   </button>
 ));
