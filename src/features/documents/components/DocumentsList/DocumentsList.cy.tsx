@@ -1,6 +1,18 @@
 import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
+import { DocumentsProps } from '../types';
 import { DocumentsList } from './DocumentsList';
+
+// TODO replacing the download url
+const testDocuments = [
+  {
+    id: 1,
+    name: 'Ivanov I.I',
+    date: new Date(),
+    previewLink: '',
+    downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
+  },
+];
 
 describe('DocumentsList', () => {
   it(`
@@ -8,7 +20,9 @@ describe('DocumentsList', () => {
     WHEN visit documents page
     THEN render documentList
     `, () => {
-    mountComponent();
+    mountComponent({
+      documents: testDocuments,
+    });
 
     cy.getByData('documents-list')
       .should('exist');
@@ -19,7 +33,9 @@ describe('DocumentsList', () => {
   WHEN visit documents page
   THEN render documentList list
   `, () => {
-    mountComponent();
+    mountComponent({
+      documents: testDocuments,
+    });
 
     cy.getByData('documents-list-list')
       .should('exist');
@@ -30,7 +46,9 @@ describe('DocumentsList', () => {
     WHEN visit documents page
     THEN render documentList element
     `, () => {
-    mountComponent();
+    mountComponent({
+      documents: testDocuments,
+    });
 
     cy.getByData('documents-list-item')
       .should('exist');
@@ -41,7 +59,9 @@ describe('DocumentsList', () => {
     WHEN visit documents page
     THEN render documentList item text
     `, () => {
-    mountComponent();
+    mountComponent({
+      documents: testDocuments,
+    });
 
     cy.getByData('documents-list-text')
       .should('exist');
@@ -52,7 +72,9 @@ describe('DocumentsList', () => {
     WHEN visit documents page
     THEN documentList item have text
     `, () => {
-    mountComponent();
+    mountComponent({
+      documents: testDocuments,
+    });
 
     cy.getByData('documents-list-text')
       .first()
@@ -64,7 +86,9 @@ describe('DocumentsList', () => {
     WHEN visit documents page
     THEN render documentList item download
     `, () => {
-    mountComponent();
+    mountComponent({
+      documents: testDocuments,
+    });
 
     cy.getByData('documents-list-download')
       .should('exist');
@@ -75,7 +99,17 @@ describe('DocumentsList', () => {
     WHEN click on the download button for the first documenList item
     THEN correct download file
     `, () => {
-    mountComponent();
+    mountComponent({
+      documents: [
+        {
+          id: 1,
+          name: 'Ivanov I.I',
+          date: new Date(),
+          previewLink: '',
+          downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
+        },
+      ],
+    });
 
     cy.getByData('documents-list-download')
       .invoke('attr', 'href')
@@ -85,23 +119,31 @@ describe('DocumentsList', () => {
 
     cy.task('deleteFolder', 'cypress/download');
   });
+
+  it(`
+    GIVEN documents page 
+    WHEN documents list is empty
+    THEN render empty test
+    `, () => {
+    mountComponent({
+      documents: [],
+    });
+
+    cy.getByData('documents-list-empty')
+      .should('exist');
+  });
 });
 
-function mountComponent() {
+function mountComponent({
+  documents,
+}: {
+  documents: DocumentsProps
+}) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const allDocumentsState = new AllDocumentsState();
 
-  // TODO replacing the download url
   allDocumentsState.initialize({
-    documents: [
-      {
-        id: 1,
-        name: 'Ivanov I.I',
-        date: new Date(),
-        previewLink: '',
-        downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
-      },
-    ],
+    documents,
   });
 
   cy.mount(
