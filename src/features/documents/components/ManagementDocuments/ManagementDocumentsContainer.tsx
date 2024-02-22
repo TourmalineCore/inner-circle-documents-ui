@@ -19,21 +19,21 @@ export function ManagementDocumentsContainer() {
       name: 'Ivanov I.I',
       date: new Date(),
       previewLink: '',
-      downloadLink: '',
+      downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
     },
     {
       id: 2,
       name: 'Sidorov S.S',
       date: new Date('2024-01-21T13:51:50.417Z'),
       previewLink: '',
-      downloadLink: '',
+      downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
     },
     {
       id: 3,
       name: 'Petrov P.P',
       date: new Date(),
       previewLink: '',
-      downloadLink: '',
+      downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
     }];
 
     documentsState.initialize({
