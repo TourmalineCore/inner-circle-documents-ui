@@ -146,6 +146,26 @@ describe('ManagementDocumentsContent', () => {
 
     cy.task('deleteFolder', 'cypress/download');
   });
+
+  it(`
+  GIVEN management documents page 
+  WHEN clicl
+  THEN render documents list empty text
+  `, () => {
+    mountComponent();
+
+    cy.getByData('date-picker-select')
+      .click();
+
+    cy.contains('Apr')
+      .click();
+
+    cy.getByData('documents-list-list')
+      .should('not.exist');
+
+    cy.getByData('documents-list-empty')
+      .should('exist');
+  });
 });
 
 function mountComponent() {
