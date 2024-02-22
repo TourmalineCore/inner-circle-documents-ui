@@ -1,8 +1,9 @@
 import { makeAutoObservable } from 'mobx';
 import { DocumentsProps, UploadedDocumentsProps } from '../types';
+import { getMonthAndYear } from '../../../../common/utils/getMonthAndYear';
 
 export class AllDocumentsState {
-  private _selectedDate: Date = new Date();
+  private _selectedDate: Date | null = new Date();
 
   private _documents: DocumentsProps = [];
 
@@ -18,14 +19,10 @@ export class AllDocumentsState {
     return this._selectedDate;
   }
 
-  get monthYearDate() {
-    const month = this._selectedDate.getMonth() + 1;
-    const year = this._selectedDate.getFullYear();
-    return { month, year };
-  }
-
   get allDocuments() {
-    return this._documents;
+    return this._selectedDate !== null
+      ? this._documents.filter((document) => getMonthAndYear(document.date) === getMonthAndYear(this._selectedDate!))
+      : [...this._documents].sort((a, b) => (a.date < b.date ? 1 : -1));
   }
 
   get allUploadedDocuments() {
@@ -36,7 +33,7 @@ export class AllDocumentsState {
     return this._notValidDocumentsIds;
   }
 
-  updateDate = (newDate: Date) => {
+  updateDate = (newDate: Date | null) => {
     this._selectedDate = newDate;
   };
 

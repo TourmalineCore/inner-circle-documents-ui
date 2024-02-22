@@ -43,7 +43,7 @@ describe('PersonalDocumentContent', () => {
 
   it(`
   GIVEN personal documents page 
-  WHEN select pervious year in date picker component
+  WHEN select previous year in date picker component
   THEN render correct date
   `, () => {
     mountComponent();
