@@ -1,24 +1,17 @@
 import { observer } from 'mobx-react-lite';
-import { useContext, useLayoutEffect } from 'react';
+import { useContext } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
+import { toast, ToastContainer } from 'react-toastify';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { UploadedDocument } from './components/UploadedDocuments/UploadedDocuments';
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
-import { useTimer } from './hooks/useTimer';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UploadingDocumentsContent = observer(() => {
-  const {
-    timerRun, sendTime,
-    startSend, endSend,
-  } = useTimer();
   const documentsState = useContext(AllDocumentsStateContext);
 
   const uploadedDocumentsIsEmpty = documentsState.allUploadedDocuments.length === 0;
   const notValidDocumentsIsEmpty = documentsState.allNotValidDocuments.length === 0;
-
-  useLayoutEffect(() => {
-    endSend();
-  }, [documentsState.allUploadedDocuments]);
 
   return (
     <section className="uploading-documents-content" data-cy="uploading-documents-content">
@@ -30,12 +23,15 @@ export const UploadingDocumentsContent = observer(() => {
           className="uploading-documents-content__button"
           data-cy="uploading-documents-content-button"
           disabled={!notValidDocumentsIsEmpty ? true : uploadedDocumentsIsEmpty}
-          onClick={timerRun ? endSend : startSend}
+          onClick={() => toast.info('Sending payslips', { toastId: 1 })}
         >
-          {timerRun ? `Cancel...${sendTime}` : 'Confirm'}
+          {timerRun ? `Cancel...${sendTime}` : 'Send'}
         </Button>
         <UploaderDocuments />
       </div>
+      <ToastContainer
+        position="top-center"
+      />
       {!uploadedDocumentsIsEmpty
        && (
          <ul
