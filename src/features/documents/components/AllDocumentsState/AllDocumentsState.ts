@@ -11,6 +11,8 @@ export class AllDocumentsState {
 
   private _notValidDocumentsIds: number[] = [];
 
+  private _isSent: boolean = false;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -33,6 +35,10 @@ export class AllDocumentsState {
     return this._notValidDocumentsIds;
   }
 
+  get isSent() {
+    return this._isSent;
+  }
+
   updateDate = (newDate: Date | null) => {
     this._selectedDate = newDate;
   };
@@ -52,6 +58,10 @@ export class AllDocumentsState {
 
   clearUploadedDocuments() {
     this._uploadedDocuments = [];
+  }
+
+  setIsSent(value: boolean) {
+    this._isSent = value;
   }
 
   initialize({
