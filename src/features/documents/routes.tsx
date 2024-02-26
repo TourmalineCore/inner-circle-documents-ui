@@ -6,7 +6,7 @@ import { UploadingDocumentsPage } from './UploadingDocumentsPage';
 export const documentsRoutes = [
   {
     path: '/',
-    breadcrumb: 'Documents',
+    breadcrumb: 'MailingPayslips',
     Component: DocumentsPage,
   },
   {

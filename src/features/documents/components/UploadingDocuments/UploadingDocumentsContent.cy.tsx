@@ -254,10 +254,8 @@ function mountComponent() {
   const documentsState = new AllDocumentsState();
 
   cy.mount(
-    <BrowserRouter>
-      <AllDocumentsStateContext.Provider value={documentsState}>
-        <UploadingDocumentsContent />
-      </AllDocumentsStateContext.Provider>
-    </BrowserRouter>,
+    <AllDocumentsStateContext.Provider value={documentsState}>
+      <UploadingDocumentsContent />
+    </AllDocumentsStateContext.Provider>,
   );
 }

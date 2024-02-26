@@ -27,8 +27,6 @@ describe('UploadedDocumentCard', () => {
 
 function mountComponent() {
   cy.mount(
-    <BrowserRouter>
-      <UploaderDocuments />
-    </BrowserRouter>,
+    <UploaderDocuments />,
   );
 }

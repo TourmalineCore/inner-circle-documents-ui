@@ -26,7 +26,6 @@ export const UploadingDocumentsContent = observer(() => {
         className="uploading-documents-content__header"
         data-cy="uploading-documents-content-header"
       >
-        <UploaderDocuments />
         <Button
           className="uploading-documents-content__button"
           data-cy="uploading-documents-content-button"
@@ -35,6 +34,7 @@ export const UploadingDocumentsContent = observer(() => {
         >
           {timerRun ? `Cancel...${sendTime}` : 'Confirm'}
         </Button>
+        <UploaderDocuments />
       </div>
       {!uploadedDocumentsIsEmpty
        && (
