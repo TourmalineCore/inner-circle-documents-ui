@@ -28,7 +28,7 @@ export class AllDocumentsState {
   }
 
   get allUploadedDocuments() {
-    return this._uploadedDocuments;
+    return [...this._uploadedDocuments].sort((a, b) => (a.file.name[2] < b.file.name[2] ? 1 : -1));
   }
 
   get allNotValidDocuments() {
