@@ -4,9 +4,9 @@ const allDocumentsState = new AllDocumentsState();
 
 describe('AllDocumentsState', () => {
   it(`
-  GIVEN documents page 
-  WHEN initialized
-  THEN return all documents
+  GIVEN one document
+  WHEN initialized state
+  THEN return array with one documents
   `, () => {
     allDocumentsState.initialize({
       documents: [{
@@ -22,9 +22,9 @@ describe('AllDocumentsState', () => {
   });
 
   it(`
-  GIVEN documents page 
+  GIVEN one uploaded documents
   WHEN upload documents
-  THEN return all uploaded documents
+  THEN return array one uploaded documents
   `, () => {
     const testFile = new File([''], 'filename.pdf', { type: 'application/pdf' });
 
@@ -34,9 +34,9 @@ describe('AllDocumentsState', () => {
   });
 
   it(`
-  GIVEN uploaded documents page 
+  GIVEN two uploaded documents
   WHEN upload documents
-  THEN return all uploaded documents
+  THEN return array with two uploaded documents
   `, () => {
     allDocumentsState.initialize({
       documents: [],
@@ -51,9 +51,9 @@ describe('AllDocumentsState', () => {
   });
 
   it(`
-  GIVEN uploaded documents page 
+  GIVEN empty uploaded and not valid documents 
   WHEN delete uploaded documents
-  THEN uploaded and not valid document deleted
+  THEN uploaded and not valid document is empty
   `, () => {
     const testFile = {
       id: 1,
@@ -76,9 +76,9 @@ describe('AllDocumentsState', () => {
   });
 
   it(`
-  GIVEN uploaded documents page 
+  GIVEN one not valid documents
   WHEN uploaded not valid documents
-  THEN return not valid documents
+  THEN return array with one not valid document
   `, () => {
     const testId = 1;
 
@@ -90,7 +90,7 @@ describe('AllDocumentsState', () => {
   it(`
   GIVEN uploaded documents page 
   WHEN clear uploaded documents
-  THEN return empty uploaded documents list
+  THEN return empty uploaded documents array
   `, () => {
     const testFile = {
       id: 1,
@@ -105,5 +105,15 @@ describe('AllDocumentsState', () => {
     allDocumentsState.clearUploadedDocuments();
 
     expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(0);
+  });
+
+  it(`
+  GIVEN 'isSent' equal true 
+  WHEN use method 'setIsSent'
+  THEN value changed
+  `, () => {
+    allDocumentsState.setIsSent(true);
+
+    expect(allDocumentsState.isSent).to.eq(true);
   });
 });
