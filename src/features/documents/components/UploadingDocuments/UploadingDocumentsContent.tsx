@@ -14,7 +14,10 @@ export const UploadingDocumentsContent = observer(() => {
   const notValidDocumentsIsEmpty = documentsState.allNotValidDocuments.length === 0;
 
   return (
-    <section className="uploading-documents-content" data-cy="uploading-documents-content">
+    <section
+      className="uploading-documents-content"
+      data-cy="uploading-documents-content"
+    >
       <div
         className="uploading-documents-content__header"
         data-cy="uploading-documents-content-header"
@@ -22,8 +25,19 @@ export const UploadingDocumentsContent = observer(() => {
         <Button
           className="uploading-documents-content__button"
           data-cy="uploading-documents-content-button"
-          disabled={!notValidDocumentsIsEmpty ? true : uploadedDocumentsIsEmpty}
-          onClick={() => toast.info('Sending payslips', { toastId: 1 })}
+          disabled={!notValidDocumentsIsEmpty || documentsState.isSent ? true : uploadedDocumentsIsEmpty}
+          onClick={() => {
+            toast.info(
+              'Sending payslips',
+              {
+                autoClose: 10000,
+                onOpen: () => documentsState.setIsSent(true),
+                onClose: handleCloseToast,
+                closeButton: closeToastButton,
+                draggable: false,
+              },
+            );
+          }}
         >
           Send
         </Button>
@@ -31,6 +45,7 @@ export const UploadingDocumentsContent = observer(() => {
       </div>
       <ToastContainer
         position="top-center"
+        closeOnClick={false}
       />
       {!uploadedDocumentsIsEmpty
        && (
@@ -55,4 +70,26 @@ export const UploadingDocumentsContent = observer(() => {
        )}
     </section>
   );
+
+  function closeToastButton() {
+    return (
+      <button
+        data-cy="toast-close-button"
+        type="button"
+        onClick={() => {
+          documentsState.setIsSent(false);
+          toast.dismiss();
+        }}
+      >
+        Cancel
+      </button>
+    );
+  }
+
+  function handleCloseToast() {
+    if (documentsState.isSent) {
+      documentsState.clearUploadedDocuments();
+      documentsState.setIsSent(false);
+    }
+  }
 });
