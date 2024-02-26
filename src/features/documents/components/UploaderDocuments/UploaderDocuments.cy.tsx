@@ -1,4 +1,3 @@
-import { BrowserRouter } from 'react-router-dom';
 import { UploaderDocuments } from './UploaderDocuments';
 
 describe('UploadedDocumentCard', () => {
