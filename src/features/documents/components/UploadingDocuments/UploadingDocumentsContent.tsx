@@ -25,7 +25,7 @@ export const UploadingDocumentsContent = observer(() => {
           disabled={!notValidDocumentsIsEmpty ? true : uploadedDocumentsIsEmpty}
           onClick={() => toast.info('Sending payslips', { toastId: 1 })}
         >
-          {timerRun ? `Cancel...${sendTime}` : 'Send'}
+          Send
         </Button>
         <UploaderDocuments />
       </div>
