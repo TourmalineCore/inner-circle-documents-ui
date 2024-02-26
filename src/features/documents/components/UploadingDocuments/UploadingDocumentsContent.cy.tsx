@@ -21,7 +21,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN disabled send button
   WHEN visit uploading documents
   THEN render disabled send button
   `, () => {
@@ -35,7 +35,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN not render uploading document list
   WHEN visit uploading documents
   THEN not render uploading document list
   `, () => {
@@ -46,7 +46,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN two uploaded document card
   WHEN upload file
   THEN correct upload file
   `, () => {
@@ -68,7 +68,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN one uploaded document card
   WHEN upload file
   THEN correct upload file
   `, () => {
@@ -125,7 +125,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN not disabled send button
   WHEN upload document
   THEN send button not be disabled
   `, () => {
@@ -143,7 +143,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN disabled send button
   WHEN delete last uploaded document
   THEN send button be disabled
   `, () => {
@@ -176,6 +176,45 @@ describe('UploadingDocumentsContent', () => {
 
     cy.get('.Toastify__toast')
       .should('exist');
+  });
+
+  it(`
+  GIVEN close toastify
+  WHEN click to close toast button
+  THEN render toastify
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ], { force: true });
+
+    cy.getByData('uploading-documents-content-button')
+      .click();
+
+    cy.getByData('toast-close-button')
+      .click();
+
+    cy.get('.Toastify__toast')
+      .should('not.exist');
+  });
+
+  it(`
+  GIVEN disabled send button
+  WHEN render toast
+  THEN send button disabled
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ], { force: true });
+
+    cy.getByData('uploading-documents-content-button')
+      .click();
+
+    cy.getByData('uploading-documents-content-button')
+      .should('be.disabled');
   });
 });
 
