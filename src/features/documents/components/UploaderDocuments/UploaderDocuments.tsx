@@ -20,8 +20,11 @@ export function UploaderDocuments() {
         multiple
         accept=".pdf"
       />
-      <span className="uploader-documents__text">
-        Upload files
+      <span
+        className="uploader-documents__text"
+        data-cy="uploader-documents-text"
+      >
+        Upload payslips
       </span>
     </label>
 
