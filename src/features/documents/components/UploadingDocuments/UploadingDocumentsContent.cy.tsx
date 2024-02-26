@@ -161,30 +161,9 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN component toastify
   WHEN click to send button
-  THEN send button have cancel text
-  `, () => {
-    mountComponent();
-
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
-
-    cy.getByData('uploading-documents-content-button')
-      .should('have.text', 'Confirm');
-
-    cy.getByData('uploading-documents-content-button')
-      .click();
-
-    cy.getByData('uploading-documents-content-button')
-      .should('have.text', 'Cancel...3');
-  });
-
-  it(`
-  GIVEN uploading documents page
-  WHEN double click to send button
-  THEN send button have confirm
+  THEN render toastify
   `, () => {
     mountComponent();
 
@@ -195,56 +174,8 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content-button')
       .click();
 
-    cy.getByData('uploading-documents-content-button')
-      .click();
-
-    cy.getByData('uploading-documents-content-button')
-      .should('have.text', 'Confirm');
-  });
-
-  it(`
-  GIVEN uploading documents page
-  WHEN start send documents after delete uploaded document
-  THEN send button have confirm
-  `, () => {
-    mountComponent();
-
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
-
-    cy.getByData('uploading-documents-content-button')
-      .click();
-
-    cy.getByData('uploaded-document-card-delete')
-      .click();
-
-    cy.getByData('uploading-documents-content-button')
-      .should('have.text', 'Confirm');
-  });
-
-  it(`
-  GIVEN uploading documents page
-  WHEN start send documents and wait end
-  THEN uploaded documents list is empty
-  `, () => {
-    mountComponent();
-
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
-
-    cy.getByData('uploading-documents-content-button')
-      .click();
-
-    cy.get('.uploading-documents-content__list', { timeout: 4000 })
-      .should('not.exist');
-
-    cy.getByData('uploading-documents-content-item')
-      .should('have.length', 0);
-
-    cy.getByData('uploaded-document-card')
-      .should('have.length', 0);
+    cy.get('.Toastify__toast')
+      .should('exist');
   });
 });
 
