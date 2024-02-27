@@ -11,7 +11,7 @@
     justify-content: space-between;
   }
 
-  &__info {
+  &__actions {
     display: flex;
     align-items: center;
   }
@@ -19,7 +19,6 @@
   &__name {
     overflow: hidden;
     margin: 0;
-    width: 70px;
     font-weight: 600;
     font-size: 14px;
     white-space: nowrap;
