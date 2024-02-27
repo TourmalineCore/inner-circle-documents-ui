@@ -35,40 +35,40 @@ export function UploadedDocumentCard({
           className="uploaded-document-card__header"
           data-cy="uploaded-document-card-header"
         >
-          <div className="uploaded-document-card__info">
-            <span
-              className="uploaded-document-card__name"
-              data-cy="uploaded-document-card-name"
-            >
-              {lastName}
-            </span>
+          <span
+            className="uploaded-document-card__name"
+            data-cy="uploaded-document-card-name"
+          >
+            {lastName}
+          </span>
+          <div className="uploaded-document-card__actions">
             <InfoTip
               icon={(
                 <img
                   src={IconQuestionMark}
-                  width="20"
-                  height="20"
+                  width="16"
+                  height="16"
                   alt="QestionMarkIcon"
                 />
               )}
               content={name}
             />
+            <button
+              type="button"
+              className="uploaded-document-card__delete"
+              data-cy="uploaded-document-card-delete"
+              onClick={() => documentsState.deleteUploadedDocument(fileId)}
+            >
+              <img
+                className="uploaded-document-card__delete-icon"
+                data-cy="uploaded-document-card-delete-icon"
+                src={IconDelet}
+                width="16"
+                height="16"
+                alt="DeleteIcon"
+              />
+            </button>
           </div>
-          <button
-            type="button"
-            className="uploaded-document-card__delete"
-            data-cy="uploaded-document-card-delete"
-            onClick={() => documentsState.deleteUploadedDocument(fileId)}
-          >
-            <img
-              className="uploaded-document-card__delete-icon"
-              data-cy="uploaded-document-card-delete-icon"
-              src={IconDelet}
-              width="20"
-              height="20"
-              alt="DeleteIcon"
-            />
-          </button>
         </div>
         {error && (
           <span
