@@ -24,7 +24,7 @@ describe('AllDocumentsState', () => {
   it(`
   GIVEN one uploaded documents
   WHEN upload documents
-  THEN return array one uploaded documents
+  THEN return array with one uploaded documents
   `, () => {
     const testFile = new File([''], 'filename.pdf', { type: 'application/pdf' });
 
@@ -110,7 +110,7 @@ describe('AllDocumentsState', () => {
   it(`
   GIVEN 'isSent' equal true 
   WHEN use method 'setIsSent'
-  THEN value changed
+  THEN value 'isSent' changed
   `, () => {
     allDocumentsState.setIsSent(true);
 
