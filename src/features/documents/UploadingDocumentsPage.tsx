@@ -1,6 +1,6 @@
 import { UploadingDocumentsContainer } from './components/UploadingDocuments/UploadingDocumentsContainer';
 
-export function UploadingDocumentsPage() {
+export function UploadingMailingPayslipsPage() {
   return (
     <UploadingDocumentsContainer />
   );
