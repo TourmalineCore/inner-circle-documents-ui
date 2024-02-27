@@ -27,7 +27,7 @@ describe('UploadedDocumentCard', () => {
     cy.getByData('uploaded-document-card-delete')
       .should('exist');
 
-    cy.getByData('uploaded-document-card-icon')
+    cy.getByData('uploaded-document-card-delete-icon')
       .should('exist');
 
     cy.getByData('uploaded-document-card-name')
@@ -52,7 +52,24 @@ describe('UploadedDocumentCard', () => {
       .should('have.text', 'Иванов');
 
     cy.getByData('uploaded-document-card-error')
-      .should('have.text', 'The data in the file doesn\'t match the file name');
+      .should('have.text', 'The lastName in the file doesn\'t match the file name');
+  });
+
+  it(`
+  GIVEN info tip text 
+  WHEN hover the mouse over the icon
+  THEN render info tip text
+  `, () => {
+    mountComponent({
+      fileId: 1,
+      name: 'Расчетный листок Иванов за ноябрь 2023',
+      error: true,
+    });
+
+    cy.get('.info-tip')
+      .trigger('mouseover');
+
+    cy.contains('Расчетный листок Иванов за ноябрь 2023');
   });
 });
 
