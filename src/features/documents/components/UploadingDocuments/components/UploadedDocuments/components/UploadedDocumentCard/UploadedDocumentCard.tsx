@@ -6,7 +6,7 @@ import { AllDocumentsStateContext } from '../../../../../AllDocumentsState/AllDo
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const ERROR_TEXT = 'The data in the file doesn\'t match the file name';
+const ERROR_TEXT = 'The lastName in the file doesn\'t match the file name';
 
 export function UploadedDocumentCard({
   fileId,
