@@ -1,4 +1,3 @@
-import { BrowserRouter } from 'react-router-dom';
 import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { UploadingDocumentsContent } from './UploadingDocumentsContent';
@@ -22,7 +21,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN disabled send button
   WHEN visit uploading documents
   THEN render disabled send button
   `, () => {
@@ -36,7 +35,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN not render uploading document list
   WHEN visit uploading documents
   THEN not render uploading document list
   `, () => {
@@ -47,7 +46,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN two uploaded document card
   WHEN upload file
   THEN correct upload file
   `, () => {
@@ -69,7 +68,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN one uploaded document card
   WHEN upload file
   THEN correct upload file
   `, () => {
@@ -126,7 +125,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN not disabled send button
   WHEN upload document
   THEN send button not be disabled
   `, () => {
@@ -144,7 +143,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN disabled send button
   WHEN delete last uploaded document
   THEN send button be disabled
   `, () => {
@@ -162,9 +161,9 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN component toastify
   WHEN click to send button
-  THEN send button have cancel text
+  THEN render toastify
   `, () => {
     mountComponent();
 
@@ -173,19 +172,16 @@ describe('UploadingDocumentsContent', () => {
     ], { force: true });
 
     cy.getByData('uploading-documents-content-button')
-      .should('have.text', 'Confirm');
-
-    cy.getByData('uploading-documents-content-button')
       .click();
 
-    cy.getByData('uploading-documents-content-button')
-      .should('have.text', 'Cancel...3');
+    cy.get('.Toastify__toast')
+      .should('exist');
   });
 
   it(`
-  GIVEN uploading documents page
-  WHEN double click to send button
-  THEN send button have confirm
+  GIVEN close toastify
+  WHEN click to close toast button
+  THEN render toastify
   `, () => {
     mountComponent();
 
@@ -196,56 +192,29 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploading-documents-content-button')
       .click();
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('toast-close-button')
       .click();
 
-    cy.getByData('uploading-documents-content-button')
-      .should('have.text', 'Confirm');
-  });
-
-  it(`
-  GIVEN uploading documents page
-  WHEN start send documents after delete uploaded document
-  THEN send button have confirm
-  `, () => {
-    mountComponent();
-
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
-
-    cy.getByData('uploading-documents-content-button')
-      .click();
-
-    cy.getByData('uploaded-document-card-delete')
-      .click();
-
-    cy.getByData('uploading-documents-content-button')
-      .should('have.text', 'Confirm');
-  });
-
-  it(`
-  GIVEN uploading documents page
-  WHEN start send documents and wait end
-  THEN uploaded documents list is empty
-  `, () => {
-    mountComponent();
-
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
-
-    cy.getByData('uploading-documents-content-button')
-      .click();
-
-    cy.get('.uploading-documents-content__list', { timeout: 4000 })
+    cy.get('.Toastify__toast')
       .should('not.exist');
+  });
 
-    cy.getByData('uploading-documents-content-item')
-      .should('have.length', 0);
+  it(`
+  GIVEN disabled send button
+  WHEN render toast
+  THEN send button disabled
+  `, () => {
+    mountComponent();
 
-    cy.getByData('uploaded-document-card')
-      .should('have.length', 0);
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+    ], { force: true });
+
+    cy.getByData('uploading-documents-content-button')
+      .click();
+
+    cy.getByData('uploading-documents-content-button')
+      .should('be.disabled');
   });
 });
 
@@ -254,10 +223,8 @@ function mountComponent() {
   const documentsState = new AllDocumentsState();
 
   cy.mount(
-    <BrowserRouter>
-      <AllDocumentsStateContext.Provider value={documentsState}>
-        <UploadingDocumentsContent />
-      </AllDocumentsStateContext.Provider>
-    </BrowserRouter>,
+    <AllDocumentsStateContext.Provider value={documentsState}>
+      <UploadingDocumentsContent />
+    </AllDocumentsStateContext.Provider>,
   );
 }

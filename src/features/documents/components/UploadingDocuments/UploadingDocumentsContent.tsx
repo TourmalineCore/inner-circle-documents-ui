@@ -1,41 +1,52 @@
 import { observer } from 'mobx-react-lite';
-import { useContext, useLayoutEffect } from 'react';
+import { useContext } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
+import { toast, ToastContainer } from 'react-toastify';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { UploadedDocument } from './components/UploadedDocuments/UploadedDocuments';
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
-import { useTimer } from './hooks/useTimer';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UploadingDocumentsContent = observer(() => {
-  const {
-    timerRun, sendTime,
-    startSend, endSend,
-  } = useTimer();
   const documentsState = useContext(AllDocumentsStateContext);
 
   const uploadedDocumentsIsEmpty = documentsState.allUploadedDocuments.length === 0;
   const notValidDocumentsIsEmpty = documentsState.allNotValidDocuments.length === 0;
 
-  useLayoutEffect(() => {
-    endSend();
-  }, [documentsState.allUploadedDocuments]);
-
   return (
-    <section className="uploading-documents-content" data-cy="uploading-documents-content">
+    <section
+      className="uploading-documents-content"
+      data-cy="uploading-documents-content"
+    >
       <div
         className="uploading-documents-content__header"
         data-cy="uploading-documents-content-header"
       >
-        <UploaderDocuments />
         <Button
           className="uploading-documents-content__button"
           data-cy="uploading-documents-content-button"
-          disabled={!notValidDocumentsIsEmpty ? true : uploadedDocumentsIsEmpty}
-          onClick={timerRun ? endSend : startSend}
+          disabled={!notValidDocumentsIsEmpty || documentsState.isSent ? true : uploadedDocumentsIsEmpty}
+          onClick={() => {
+            toast.info(
+              'Sending payslips',
+              {
+                autoClose: 10000,
+                onOpen: () => documentsState.setIsSent(true),
+                onClose: handleCloseToast,
+                closeButton: closeToastButton,
+                draggable: false,
+              },
+            );
+          }}
         >
-          {timerRun ? `Cancel...${sendTime}` : 'Confirm'}
+          Send
         </Button>
+        <UploaderDocuments />
       </div>
+      <ToastContainer
+        position="top-center"
+        closeOnClick={false}
+      />
       {!uploadedDocumentsIsEmpty
        && (
          <ul
@@ -59,4 +70,26 @@ export const UploadingDocumentsContent = observer(() => {
        )}
     </section>
   );
+
+  function closeToastButton() {
+    return (
+      <button
+        data-cy="toast-close-button"
+        type="button"
+        onClick={() => {
+          documentsState.setIsSent(false);
+          toast.dismiss();
+        }}
+      >
+        Cancel
+      </button>
+    );
+  }
+
+  function handleCloseToast() {
+    if (documentsState.isSent) {
+      documentsState.clearUploadedDocuments();
+      documentsState.setIsSent(false);
+    }
+  }
 });
