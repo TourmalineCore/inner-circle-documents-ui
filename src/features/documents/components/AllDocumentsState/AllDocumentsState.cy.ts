@@ -6,7 +6,7 @@ describe('AllDocumentsState', () => {
   it(`
   GIVEN one document
   WHEN initialized state
-  THEN return array with one documents
+  THEN return array with one document
   `, () => {
     allDocumentsState.initialize({
       documents: [{
@@ -24,7 +24,7 @@ describe('AllDocumentsState', () => {
   it(`
   GIVEN one uploaded documents
   WHEN upload documents
-  THEN return array with one uploaded documents
+  THEN return array with one uploaded document
   `, () => {
     const testFile = new File([''], 'filename.pdf', { type: 'application/pdf' });
 
