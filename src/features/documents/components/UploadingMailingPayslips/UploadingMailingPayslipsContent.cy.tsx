@@ -1,19 +1,19 @@
 import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
-import { UploadingDocumentsContent } from './UploadingDocumentsContent';
+import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsContent';
 
-describe('UploadingDocumentsContent', () => {
+describe('UploadingMailingPayslipsContent', () => {
   it(`
-  GIVEN uploading documents page
-  WHEN visit uploading documents
+  GIVEN uploading mailing payslips page
+  WHEN visit uploading mailingPayslips
   THEN render content uploading document
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-documents-content')
+    cy.getByData('uploading-payslips-content')
       .should('exist');
 
-    cy.getByData('uploading-documents-content-header')
+    cy.getByData('uploading-payslips-content-header')
       .should('exist');
 
     cy.getByData('uploader-documents')
@@ -22,26 +22,26 @@ describe('UploadingDocumentsContent', () => {
 
   it(`
   GIVEN disabled send button
-  WHEN visit uploading documents
+  WHEN visit uploading payslips
   THEN render disabled send button
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .should('exist');
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
 
   it(`
   GIVEN not render uploading document list
-  WHEN visit uploading documents
+  WHEN visit uploading payslips
   THEN not render uploading document list
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-documents-content-list')
+    cy.getByData('uploading-payslips-content-list')
       .should('not.exist');
   });
 
@@ -57,10 +57,10 @@ describe('UploadingDocumentsContent', () => {
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ], { force: true });
 
-    cy.getByData('uploading-documents-content-list')
+    cy.getByData('uploading-payslips-content-list')
       .should('exist');
 
-    cy.getByData('uploading-documents-content-item')
+    cy.getByData('uploading-payslips-content-item')
       .should('have.length', 2);
 
     cy.getByData('uploaded-document-card')
@@ -78,10 +78,10 @@ describe('UploadingDocumentsContent', () => {
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ], { force: true });
 
-    cy.getByData('uploading-documents-content-list')
+    cy.getByData('uploading-payslips-content-list')
       .should('exist');
 
-    cy.getByData('uploading-documents-content-item')
+    cy.getByData('uploading-payslips-content-item')
       .should('have.length', 1);
 
     cy.getByData('uploaded-document-card')
@@ -89,7 +89,7 @@ describe('UploadingDocumentsContent', () => {
   });
 
   it(`
-  GIVEN uploading documents page
+  GIVEN uploading mailing payslips page
   WHEN click delete button on the document card
   THEN deleted document
   `, () => {
@@ -99,28 +99,28 @@ describe('UploadingDocumentsContent', () => {
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ], { force: true });
 
-    cy.getByData('uploading-documents-content-list')
+    cy.getByData('uploading-payslips-content-list')
       .should('exist');
 
-    cy.getByData('uploading-documents-content-item')
+    cy.getByData('uploading-payslips-content-item')
       .should('have.length', 1);
 
     cy.getByData('uploaded-document-card')
       .should('have.length', 1);
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .should('not.be.disabled');
 
     cy.getByData('uploaded-document-card-delete')
       .click();
 
-    cy.getByData('uploading-documents-content-item')
+    cy.getByData('uploading-payslips-content-item')
       .should('not.exist');
 
     cy.getByData('uploaded-document-card')
       .should('not.exist');
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
 
@@ -131,14 +131,14 @@ describe('UploadingDocumentsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .should('be.disabled');
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ], { force: true });
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .should('not.be.disabled');
   });
 
@@ -156,7 +156,7 @@ describe('UploadingDocumentsContent', () => {
     cy.getByData('uploaded-document-card-delete')
       .click();
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
 
@@ -171,7 +171,7 @@ describe('UploadingDocumentsContent', () => {
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ], { force: true });
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .click();
 
     cy.get('.Toastify__toast')
@@ -181,7 +181,7 @@ describe('UploadingDocumentsContent', () => {
   it(`
   GIVEN close toastify
   WHEN click to close toast button
-  THEN render toastify
+  THEN closed toastify
   `, () => {
     mountComponent();
 
@@ -189,7 +189,7 @@ describe('UploadingDocumentsContent', () => {
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ], { force: true });
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .click();
 
     cy.getByData('toast-close-button')
@@ -210,10 +210,10 @@ describe('UploadingDocumentsContent', () => {
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
     ], { force: true });
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .click();
 
-    cy.getByData('uploading-documents-content-button')
+    cy.getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
 });
@@ -224,7 +224,7 @@ function mountComponent() {
 
   cy.mount(
     <AllDocumentsStateContext.Provider value={documentsState}>
-      <UploadingDocumentsContent />
+      <UploadingMailingPayslipsContent />
     </AllDocumentsStateContext.Provider>,
   );
 }

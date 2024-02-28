@@ -4,24 +4,6 @@ const allDocumentsState = new AllDocumentsState();
 
 describe('AllDocumentsState', () => {
   it(`
-  GIVEN one document
-  WHEN initialized state
-  THEN return array with one document
-  `, () => {
-    allDocumentsState.initialize({
-      documents: [{
-        id: 1,
-        name: 'Ivanov I.I',
-        date: new Date(),
-        previewLink: '',
-        downloadLink: 'https://drive.usercontent.google.com/u/0/uc?id=1WJ1otCKCJeyLzGiPC-8L65NtWQH9TO0D&export=download',
-      }],
-    });
-
-    expect(allDocumentsState.allDocuments).to.has.lengthOf(1);
-  });
-
-  it(`
   GIVEN one uploaded documents
   WHEN upload documents
   THEN return array with one uploaded document
@@ -39,7 +21,7 @@ describe('AllDocumentsState', () => {
   THEN return array with two uploaded documents
   `, () => {
     allDocumentsState.initialize({
-      documents: [],
+      uploadedDocuments: [],
     });
 
     const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
@@ -61,7 +43,6 @@ describe('AllDocumentsState', () => {
     };
 
     allDocumentsState.initialize({
-      documents: [],
       uploadedDocuments: [testFile],
       notValidDocumentsIds: [1],
     });
@@ -98,7 +79,6 @@ describe('AllDocumentsState', () => {
     };
 
     allDocumentsState.initialize({
-      documents: [],
       uploadedDocuments: [testFile],
     });
 

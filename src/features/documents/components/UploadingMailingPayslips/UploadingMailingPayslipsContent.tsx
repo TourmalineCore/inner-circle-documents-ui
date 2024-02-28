@@ -7,7 +7,7 @@ import { UploadedDocument } from './components/UploadedDocuments/UploadedDocumen
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const UploadingDocumentsContent = observer(() => {
+export const UploadingMailingPayslipsContent = observer(() => {
   const documentsState = useContext(AllDocumentsStateContext);
 
   const uploadedDocumentsIsEmpty = documentsState.allUploadedDocuments.length === 0;
@@ -15,16 +15,16 @@ export const UploadingDocumentsContent = observer(() => {
 
   return (
     <section
-      className="uploading-documents-content"
-      data-cy="uploading-documents-content"
+      className="uploading-payslips-content"
+      data-cy="uploading-payslips-content"
     >
       <div
-        className="uploading-documents-content__header"
-        data-cy="uploading-documents-content-header"
+        className="uploading-payslips-content__header"
+        data-cy="uploading-payslips-content-header"
       >
         <Button
-          className="uploading-documents-content__button"
-          data-cy="uploading-documents-content-button"
+          className="uploading-payslips-content__button"
+          data-cy="uploading-payslips-content-button"
           disabled={!notValidDocumentsIsEmpty || documentsState.isSent ? true : uploadedDocumentsIsEmpty}
           onClick={() => {
             toast.info(
@@ -50,14 +50,14 @@ export const UploadingDocumentsContent = observer(() => {
       {!uploadedDocumentsIsEmpty
        && (
          <ul
-           className="uploading-documents-content__list"
-           data-cy="uploading-documents-content-list"
+           className="uploading-payslips-content__list"
+           data-cy="uploading-payslips-content-list"
          >
            {documentsState.allUploadedDocuments.map(({ id, file }) => (
              <li
                key={id}
-               className="uploading-documents-content__item"
-               data-cy="uploading-documents-content-item"
+               className="uploading-payslips-content__item"
+               data-cy="uploading-payslips-content-item"
              >
                <UploadedDocument
                  fileId={id}
