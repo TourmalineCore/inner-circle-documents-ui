@@ -1,0 +1,41 @@
+.uploaded-document-card {
+  position: relative;
+  border: 1px solid var(--comp-color-gray);
+  padding: 5px;
+  min-height: 160px;
+  background-color: var(--color-white);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+
+  &__name {
+    overflow: hidden;
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__delete {
+    display: flex;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  &__error {
+    display: block;
+    margin-top: 40px;
+    font-size: 14px;
+    text-align: center;
+  }
+}

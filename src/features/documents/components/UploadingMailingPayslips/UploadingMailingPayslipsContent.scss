@@ -1,0 +1,15 @@
+.uploading-payslips-content {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  &__list {
+    display: grid;
+    padding-top: 40px;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  }
+}
