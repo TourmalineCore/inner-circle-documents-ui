@@ -1,7 +1,7 @@
-import { UploadingDocumentsContainer } from './components/UploadingMailingPayslips/UploadingMailingPayslipsContainer';
+import { UploadingMailingPayslipsContainer } from './components/UploadingMailingPayslips/UploadingMailingPayslipsContainer';
 
 export function UploadingMailingPayslipsPage() {
   return (
-    <UploadingDocumentsContainer />
+    <UploadingMailingPayslipsContainer />
   );
 }

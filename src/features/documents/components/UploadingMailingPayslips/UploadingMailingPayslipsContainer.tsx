@@ -1,6 +1,6 @@
 import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsContent';
 
-export function UploadingDocumentsContainer() {
+export function UploadingMailingPayslipsContainer() {
   return (
     <UploadingMailingPayslipsContent />
   );
