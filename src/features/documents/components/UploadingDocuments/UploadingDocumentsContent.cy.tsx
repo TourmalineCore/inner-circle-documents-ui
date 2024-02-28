@@ -181,7 +181,7 @@ describe('UploadingDocumentsContent', () => {
   it(`
   GIVEN close toastify
   WHEN click to close toast button
-  THEN render toastify
+  THEN closed toastify
   `, () => {
     mountComponent();
 
