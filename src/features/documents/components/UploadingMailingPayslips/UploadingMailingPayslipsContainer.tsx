@@ -3,7 +3,6 @@ import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsConte
 import { api } from '../../../../common/api';
 import { LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
-import { objectToFormData } from '../../../../common/utils/objectToFormData';
 
 export function UploadingMailingPayslipsContainer() {
   const documentsState = useContext(AllDocumentsStateContext);
@@ -13,13 +12,14 @@ export function UploadingMailingPayslipsContainer() {
   );
 
   async function sendMailingPayslipsAsync() {
-    const data = documentsState.allUploadedDocuments.map((uploadedDocument) => objectToFormData({
-      lastName: uploadedDocument.file.name.split(' ')[2],
-      file: uploadedDocument.file,
-    }));
+    const formData = new FormData();
+
+    for (const document of documentsState.allUploadedDocuments) {
+      formData.append(document.file.name, document.file);
+    }
 
     try {
-      await api.post(`${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, data);
+      await api.post(`${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, formData);
       documentsState.clearUploadedDocuments();
     } catch (e) {
       console.log(e);

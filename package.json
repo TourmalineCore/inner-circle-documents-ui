@@ -40,7 +40,6 @@
     "mobx": "^6.8.0",
     "mobx-react-lite": "^3.4.0",
     "moment": "^2.29.4",
-    "object-to-formdata": "^4.5.1",
     "react": "^17.0.2",
     "react-app-polyfill": "^3.0.0",
     "react-datepicker": "^4.10.0",
