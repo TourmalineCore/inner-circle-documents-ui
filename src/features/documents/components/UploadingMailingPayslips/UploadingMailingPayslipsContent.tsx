@@ -7,7 +7,11 @@ import { UploadedDocument } from './components/UploadedDocuments/UploadedDocumen
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const UploadingMailingPayslipsContent = observer(() => {
+export const UploadingMailingPayslipsContent = observer(({
+  onSubmit = () => {},
+}: {
+  onSubmit?: () => void
+}) => {
   const documentsState = useContext(AllDocumentsStateContext);
 
   const uploadedDocumentsIsEmpty = documentsState.allUploadedDocuments.length === 0;
@@ -88,8 +92,7 @@ export const UploadingMailingPayslipsContent = observer(() => {
 
   function handleCloseToast() {
     if (documentsState.isSent) {
-      documentsState.clearUploadedDocuments();
-      documentsState.setIsSent(false);
+      onSubmit();
     }
   }
 });
