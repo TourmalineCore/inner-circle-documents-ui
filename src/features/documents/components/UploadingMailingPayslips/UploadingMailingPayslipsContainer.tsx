@@ -9,10 +9,10 @@ export function UploadingMailingPayslipsContainer() {
   const documentsState = useContext(AllDocumentsStateContext);
 
   return (
-    <UploadingMailingPayslipsContent onSubmit={sendMailingPayslips} />
+    <UploadingMailingPayslipsContent onSubmit={sendMailingPayslipsAsync} />
   );
 
-  async function sendMailingPayslips() {
+  async function sendMailingPayslipsAsync() {
     const data = documentsState.allUploadedDocuments.map((uploadedDocument) => objectToFormData({
       lastName: uploadedDocument.file.name.split(' ')[2],
       file: uploadedDocument.file,
