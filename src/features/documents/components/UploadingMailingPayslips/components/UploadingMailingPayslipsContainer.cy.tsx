@@ -5,9 +5,9 @@ import { UploadingMailingPayslipsContainer } from '../UploadingMailingPayslipsCo
 
 describe('UploadingMailingPayslipsContent', () => {
   it(`
-  GIVEN uploading mailing payslips page
-  WHEN visit uploading mailingPayslips
-  THEN render content uploading document
+  GIVEN send mailing payslips
+  WHEN click on the send button 
+  THEN call request to send mailing payslips
   `, () => {
     mountComponent();
 
