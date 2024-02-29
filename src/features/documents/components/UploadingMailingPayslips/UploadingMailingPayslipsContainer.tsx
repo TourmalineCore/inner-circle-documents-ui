@@ -21,9 +21,10 @@ export function UploadingMailingPayslipsContainer() {
     try {
       await api.post(`${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, data);
       documentsState.clearUploadedDocuments();
-      documentsState.setIsSent(false);
     } catch (e) {
       console.log(e);
+    } finally {
+      documentsState.setIsSent(false);
     }
   }
 }
