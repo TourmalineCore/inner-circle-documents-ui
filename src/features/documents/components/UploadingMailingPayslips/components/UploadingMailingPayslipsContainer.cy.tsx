@@ -20,7 +20,7 @@ describe('UploadingMailingPayslipsContent', () => {
 
     cy.wait(11000);
 
-    cy.intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}uploadMailingPayslips`, {});
+    cy.intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, {});
 
     cy.getByData('uploading-payslips-content-list')
       .should('not.exist');
