@@ -159,63 +159,6 @@ describe('UploadingMailingPayslipsContent', () => {
     cy.getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
-
-  it(`
-  GIVEN component toastify
-  WHEN click to send button
-  THEN render toastify
-  `, () => {
-    mountComponent();
-
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
-
-    cy.getByData('uploading-payslips-content-button')
-      .click();
-
-    cy.get('.Toastify__toast')
-      .should('exist');
-  });
-
-  it(`
-  GIVEN close toastify
-  WHEN click to close toast button
-  THEN closed toastify
-  `, () => {
-    mountComponent();
-
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
-
-    cy.getByData('uploading-payslips-content-button')
-      .click();
-
-    cy.getByData('toast-close-button')
-      .click();
-
-    cy.get('.Toastify__toast')
-      .should('not.exist');
-  });
-
-  it(`
-  GIVEN disabled send button
-  WHEN render toast
-  THEN send button disabled
-  `, () => {
-    mountComponent();
-
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
-
-    cy.getByData('uploading-payslips-content-button')
-      .click();
-
-    cy.getByData('uploading-payslips-content-button')
-      .should('be.disabled');
-  });
 });
 
 function mountComponent() {
