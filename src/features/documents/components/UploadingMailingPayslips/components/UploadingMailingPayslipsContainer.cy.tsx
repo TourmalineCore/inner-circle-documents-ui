@@ -10,6 +10,8 @@ describe('UploadingMailingPayslipsContent', () => {
   THEN call request to send mailing payslips
   `, () => {
     mountComponent();
+    cy.intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, {})
+      .as('sendMailingPayslips');
 
     cy.get('input[type=file]').selectFile([
       'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
@@ -17,11 +19,6 @@ describe('UploadingMailingPayslipsContent', () => {
 
     cy.getByData('uploading-payslips-content-button')
       .click();
-
-    cy.wait(11000);
-
-    cy.intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, {})
-      .as('sendMailingPayslips');
 
     cy.wait('@sendMailingPayslips');
 
