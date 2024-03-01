@@ -17,6 +17,7 @@ export function UploadingMailingPayslipsContainer() {
       lastName: uploadedDocument.file.name.split(' ')[2],
       file: uploadedDocument.file,
     }));
+
     const formData = objectToFormData(data);
 
     try {
