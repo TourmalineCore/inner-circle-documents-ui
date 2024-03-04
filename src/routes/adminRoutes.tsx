@@ -14,16 +14,18 @@ import {
   sidebarAccountManagement,
 } from '../features/account-management/routers';
 import { allCompensationsAccessSidebarRoutes, getRouteForCompensations } from '../features/compensations/routes';
-import { documentsRoutes } from '../features/documents/routes';
+import { documentsRoutes, documentsSidebarRoutes } from '../features/documents/routes';
 
-export function getAdminRoutes() {
+export function getAdminRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
   const routes: {
     path: string;
     breadcrumb: string | ((props: BreadcrumbComponentProps) => string | undefined);
     Component: () => JSX.Element;
   }[] = [];
 
-  routes.push(...documentsRoutes);
+  if (accessPermissions.get('CanManageDocuments')) {
+    routes.push(...documentsRoutes);
+  }
 
   return routes;
 }
@@ -55,6 +57,10 @@ export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission,
 
   if (accessPermissions.get('CanManageCompensations') && !accessPermissions.get('CanRequestCompensations')) {
     routes.push(...getRouteForCompensations('CanManageCompensations'));
+  }
+
+  if (accessPermissions.get('CanManageDocuments')) {
+    routes.push(...documentsSidebarRoutes);
   }
 
   if (accessPermissions.get('ViewAccounts') && accessPermissions.get('ViewRoles')) {
