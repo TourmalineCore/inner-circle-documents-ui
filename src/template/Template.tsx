@@ -26,7 +26,7 @@ function Template() {
   const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext);
 
   const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(accessBasedOnPemissionsState.accessPermissions), location);
-  const adminRoutes = getAdminRoutes();
+  const adminRoutes = getAdminRoutes(accessBasedOnPemissionsState.accessPermissions);
 
   const breadcrumbs = useBreadcrumbs(adminRoutes as BreadcrumbsRoute<string>[], { excludePaths: ['/documents'] });
 
