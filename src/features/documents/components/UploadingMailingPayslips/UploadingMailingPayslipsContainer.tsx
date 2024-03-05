@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { toast } from 'react-toastify';
 import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsContent';
 import { api } from '../../../../common/api';
 import { LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config';
@@ -21,11 +22,10 @@ export function UploadingMailingPayslipsContainer() {
     const formData = objectToFormData({ payslips: data });
 
     try {
-      documentsState.setIsSent(true);
       await api.post(`${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, formData);
       documentsState.clearUploadedDocuments();
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      toast.error(e.message);
     } finally {
       documentsState.setIsSent(false);
     }

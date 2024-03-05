@@ -1,10 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
+import { ToastContainer } from 'react-toastify';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { UploadedDocument } from './components/UploadedDocuments/UploadedDocuments';
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
 import Preloader from '../../../../components/Preloader/Preloader';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UploadingMailingPayslipsContent = observer(({
   onSubmit = () => {},
@@ -58,6 +60,7 @@ export const UploadingMailingPayslipsContent = observer(({
          </ul>
        )}
       </section>
+      <ToastContainer position="top-center" />
       {documentsState.isSent && <Preloader />}
     </>
   );
