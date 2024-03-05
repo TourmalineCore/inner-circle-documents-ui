@@ -1,3 +1,5 @@
+import { AllDocumentsState } from '../../../../../AllDocumentsState/AllDocumentsState';
+import { AllDocumentsStateContext } from '../../../../../AllDocumentsState/AllDocumentsStateContext';
 import { UploadedDocumentCard } from './UploadedDocumentCard';
 
 describe('UploadedDocumentCard', () => {
@@ -82,7 +84,12 @@ function mountComponent({
   name: string;
   error: boolean
 }) {
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
+  const documentsState = new AllDocumentsState();
+
   cy.mount(
-    <UploadedDocumentCard fileId={fileId} name={name} error={error} />,
+    <AllDocumentsStateContext.Provider value={documentsState}>
+      <UploadedDocumentCard fileId={fileId} name={name} error={error} />
+    </AllDocumentsStateContext.Provider>,
   );
 }
