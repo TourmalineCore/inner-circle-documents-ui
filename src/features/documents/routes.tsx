@@ -6,7 +6,7 @@ import { UploadingMailingPayslipsPage } from './UploadingMailingPayslipsPage';
 export const documentsRoutes = [
   {
     path: '/',
-    breadcrumb: 'MailingPayslips',
+    breadcrumb: 'Mailing Payslips',
     Component: UploadingMailingPayslipsPage,
   },
 ];

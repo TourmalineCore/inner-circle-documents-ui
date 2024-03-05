@@ -4,6 +4,7 @@ import { Button } from '@tourmalinecore/react-tc-ui-kit';
 import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
 import { UploadedDocument } from './components/UploadedDocuments/UploadedDocuments';
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
+import Preloader from '../../../../components/Preloader/Preloader';
 
 export const UploadingMailingPayslipsContent = observer(({
   onSubmit = () => {},
@@ -16,25 +17,26 @@ export const UploadingMailingPayslipsContent = observer(({
   const notValidDocumentsIsEmpty = documentsState.allNotValidDocuments.length === 0;
 
   return (
-    <section
-      className="uploading-payslips-content"
-      data-cy="uploading-payslips-content"
-    >
-      <div
-        className="uploading-payslips-content__header"
-        data-cy="uploading-payslips-content-header"
+    <>
+      <section
+        className="uploading-payslips-content"
+        data-cy="uploading-payslips-content"
       >
-        <Button
-          className="uploading-payslips-content__button"
-          data-cy="uploading-payslips-content-button"
-          disabled={!notValidDocumentsIsEmpty || documentsState.isSent ? true : uploadedDocumentsIsEmpty}
-          onClick={() => onSubmit()}
+        <div
+          className="uploading-payslips-content__header"
+          data-cy="uploading-payslips-content-header"
         >
-          Send
-        </Button>
-        <UploaderDocuments />
-      </div>
-      {!uploadedDocumentsIsEmpty
+          <Button
+            className="uploading-payslips-content__button"
+            data-cy="uploading-payslips-content-button"
+            disabled={!notValidDocumentsIsEmpty || documentsState.isSent ? true : uploadedDocumentsIsEmpty}
+            onClick={() => onSubmit()}
+          >
+            Send
+          </Button>
+          <UploaderDocuments />
+        </div>
+        {!uploadedDocumentsIsEmpty
        && (
          <ul
            className="uploading-payslips-content__list"
@@ -55,6 +57,8 @@ export const UploadingMailingPayslipsContent = observer(({
            ))}
          </ul>
        )}
-    </section>
+      </section>
+      {documentsState.isSent && <Preloader />}
+    </>
   );
 });
