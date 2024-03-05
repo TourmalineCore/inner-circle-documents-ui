@@ -46,8 +46,8 @@ export function UploadedDocumentCard({
               icon={(
                 <img
                   src={IconQuestionMark}
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   alt="QestionMarkIcon"
                 />
               )}
@@ -57,14 +57,15 @@ export function UploadedDocumentCard({
               type="button"
               className="uploaded-document-card__delete"
               data-cy="uploaded-document-card-delete"
+              disabled={documentsState.isSent}
               onClick={() => documentsState.deleteUploadedDocument(fileId)}
             >
               <img
                 className="uploaded-document-card__delete-icon"
                 data-cy="uploaded-document-card-delete-icon"
                 src={IconDelet}
-                width="16"
-                height="16"
+                width="18"
+                height="18"
                 alt="DeleteIcon"
               />
             </button>

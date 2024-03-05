@@ -21,6 +21,7 @@ export function UploadingMailingPayslipsContainer() {
     const formData = objectToFormData({ payslips: data });
 
     try {
+      documentsState.setIsSent(true);
       await api.post(`${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, formData);
       documentsState.clearUploadedDocuments();
     } catch (e) {
