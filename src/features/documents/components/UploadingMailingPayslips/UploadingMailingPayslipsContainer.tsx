@@ -14,8 +14,8 @@ export function UploadingMailingPayslipsContainer() {
 
   async function sendMailingPayslipsAsync() {
     const data = documentsState.allUploadedDocuments.map((uploadedDocument) => ({
-      lastName: uploadedDocument.file.name.split(' ')[2],
-      file: uploadedDocument.file,
+      File: uploadedDocument.file,
+      LastName: uploadedDocument.file.name.split(' ')[2],
     }));
 
     const formData = objectToFormData({ payslips: data });
