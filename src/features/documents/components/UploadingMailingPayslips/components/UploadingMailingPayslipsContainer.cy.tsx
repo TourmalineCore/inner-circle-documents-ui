@@ -29,7 +29,7 @@ describe('UploadingMailingPayslipsContent', () => {
   it(`
   GIVEN error message 
   WHEN call request to send mailing payslips 
-  THEN toasify with error message
+  THEN render toasify with error message
   `, () => {
     mountComponent();
     cy.intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, { forceNetworkError: true })
