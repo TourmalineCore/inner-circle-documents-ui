@@ -4,9 +4,9 @@ import { SidebarRoutesProps } from '../types';
 import {
   employeesSidebarRoutes,
 } from '../features/employees/routes';
-import {
-  analyticsSidebarRoutes,
-} from '../features/analytics/routes';
+// import {
+// analyticsSidebarRoutes,
+// } from '../features/analytics/routes';
 import { Permission } from './state/AccessBasedOnPemissionsState';
 import {
   accountsSidebarRoutes,
@@ -39,9 +39,9 @@ export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission,
     routes.push(...profileSidebarRoutes);
   }
 
-  if (accessPermissions.get('AccessAnalyticalForecastsPage')) {
-    routes.push(...analyticsSidebarRoutes);
-  }
+  // if (accessPermissions.get('AccessAnalyticalForecastsPage')) {
+  //   routes.push(...analyticsSidebarRoutes);
+  // }
 
   if (accessPermissions.get('ViewContacts') || accessPermissions.get('ViewSalaryAndDocumentsData')) {
     routes.push(...employeesSidebarRoutes);
