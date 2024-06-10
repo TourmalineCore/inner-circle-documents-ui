@@ -9,15 +9,9 @@ export function validatePayslipsFileNames({
   }[],
 }): number[] {
   const indexes: number[] = [];
-  payslipFileNames.forEach((fileName, index) => {
-    let isMatched = false;
-    employees.forEach((employee) => {
-      if (fileName.includes(employee.lastName)) {
-        isMatched = true;
-      }
-    });
 
-    if (!isMatched) {
+  payslipFileNames.forEach((fileName, index) => {
+    if (!employees.some((employee) => fileName.toLowerCase().includes(employee.lastName.toLowerCase()))) {
       indexes.push(index);
     }
   });
