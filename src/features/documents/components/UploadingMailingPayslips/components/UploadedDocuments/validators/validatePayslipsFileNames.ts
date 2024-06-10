@@ -8,5 +8,19 @@ export function validatePayslipsFileNames({
     lastName: string
   }[],
 }): number[] {
-  return [];
+  const indexes: number[] = [];
+  payslipFileNames.forEach((fileName, index) => {
+    let isMatched = false;
+    employees.forEach((employee) => {
+      if (fileName.includes(employee.lastName)) {
+        isMatched = true;
+      }
+    });
+
+    if (!isMatched) {
+      indexes.push(index);
+    }
+  });
+
+  return indexes;
 }
