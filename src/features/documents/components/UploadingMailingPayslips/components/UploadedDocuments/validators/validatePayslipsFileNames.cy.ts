@@ -1,3 +1,5 @@
+import { validatePayslipsFileNames } from './validatePayslipsFileNames';
+
 describe('validatePayslipsFileNames', () => {
   it(`
   GIVEN single file 
