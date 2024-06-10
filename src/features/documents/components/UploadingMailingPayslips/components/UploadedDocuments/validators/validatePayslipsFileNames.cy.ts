@@ -18,4 +18,22 @@ describe('validatePayslipsFileNames', () => {
       ],
     }).length).eq(0);
   });
+
+  it(`
+  GIVEN single file 
+  AND no employee with this last name
+  WHEN last name matched 
+  THEN returns one validation error for index 0
+  `, () => {
+    expect(validatePayslipsFileNames({
+      payslipFileNames: [
+        'Расчетный листок за ноябрь Иванов 2023.pdf',
+      ],
+      employees: [
+        {
+          lastName: 'Петров',
+        },
+      ],
+    })).to.deep.equal([0]);
+  });
 });
