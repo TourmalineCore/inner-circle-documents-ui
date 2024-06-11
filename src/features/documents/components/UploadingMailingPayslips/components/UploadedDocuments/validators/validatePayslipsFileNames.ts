@@ -7,11 +7,13 @@ export function validatePayslipsFileNames({
   employees: {
     lastName: string
   }[],
-}): number[] {
+}) {
   const indexes: number[] = [];
 
   payslipFileNames.forEach((fileName, index) => {
-    if (!employees.some((employee) => fileName.toLowerCase().includes(employee.lastName.toLowerCase()))) {
+    const noEmployeeWithMatchingName = employees.every((employee) => !fileName.toLowerCase().includes(employee.lastName.toLowerCase()));
+
+    if (noEmployeeWithMatchingName) {
       indexes.push(index);
     }
   });
