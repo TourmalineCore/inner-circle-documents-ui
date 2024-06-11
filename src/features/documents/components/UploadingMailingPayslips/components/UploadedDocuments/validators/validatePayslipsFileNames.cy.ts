@@ -3,6 +3,19 @@ import { validatePayslipsFileNames } from './validatePayslipsFileNames';
 describe('validatePayslipsFileNames', () => {
   it(`
   GIVEN single file 
+  WHEN no employees
+  THEN invalid file
+  `, () => {
+    expect(validatePayslipsFileNames({
+      payslipFileNames: [
+        'Расчетный листок за ноябрь Иванов 2023.pdf',
+      ],
+      employees: [],
+    })).to.deep.equal([0]);
+  });
+
+  it(`
+  GIVEN single file 
   AND single employee
   WHEN last name matched 
   THEN no validation errors
