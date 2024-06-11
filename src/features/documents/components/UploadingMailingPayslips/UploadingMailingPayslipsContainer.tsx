@@ -3,11 +3,11 @@ import { toast } from 'react-toastify';
 import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsContent';
 import { api } from '../../../../common/api';
 import { LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config';
-import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
+import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
 import { objectToFormData } from '../../../../common/utils/objectToFormData';
 
 export function UploadingMailingPayslipsContainer() {
-  const documentsState = useContext(AllDocumentsStateContext);
+  const documentsState = useContext(DocumentsStateContext);
 
   return (
     <UploadingMailingPayslipsContent onSubmit={sendMailingPayslipsAsync} />

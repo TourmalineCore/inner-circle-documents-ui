@@ -1,8 +1,8 @@
 import { ChangeEvent, useContext } from 'react';
-import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
+import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
 
 export function UploaderDocuments() {
-  const documentsState = useContext(AllDocumentsStateContext);
+  const documentsState = useContext(DocumentsStateContext);
   return (
     <label
       className="uploader-documents"

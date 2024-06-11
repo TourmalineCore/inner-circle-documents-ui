@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
 import { ToastContainer } from 'react-toastify';
-import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
+import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
 import { UploadedDocument } from './components/UploadedDocuments/UploadedDocuments';
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
 import Preloader from '../../../../components/Preloader/Preloader';
@@ -13,7 +13,7 @@ export const UploadingMailingPayslipsContent = observer(({
 }: {
   onSubmit?: () => void
 }) => {
-  const documentsState = useContext(AllDocumentsStateContext);
+  const documentsState = useContext(DocumentsStateContext);
 
   const uploadedDocumentsIsEmpty = documentsState.allUploadedDocuments.length === 0;
   const notValidDocumentsIsEmpty = documentsState.allNotValidDocuments.length === 0;

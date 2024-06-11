@@ -2,7 +2,7 @@ import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { useContext } from 'react';
 import IconDelet from '../../../../../../../../assets/icons/icon-delete.svg';
-import { AllDocumentsStateContext } from '../../../../../AllDocumentsState/AllDocumentsStateContext';
+import { DocumentsStateContext } from '../../../../../DocumentsState/DocumentsStateContext';
 import InfoTip from '../../../../../../../../components/InfoTip/InfoTip';
 import IconQuestionMark from '../../../../../../../../assets/icons/question-mark-circle.svg';
 
@@ -19,7 +19,7 @@ export function UploadedDocumentCard({
   name: string;
   error: boolean;
 }) {
-  const documentsState = useContext(AllDocumentsStateContext);
+  const documentsState = useContext(DocumentsStateContext);
   const lastName = name.split(' ')[2];
 
   return (

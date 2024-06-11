@@ -1,8 +1,8 @@
-import { AllDocumentsState } from './AllDocumentsState';
+import { DocumentsState } from './DocumentsState';
 
-const allDocumentsState = new AllDocumentsState();
+const documentsState = new DocumentsState();
 
-describe('AllDocumentsState', () => {
+describe('DocumentsState', () => {
   it(`
   GIVEN one uploaded documents
   WHEN upload documents
@@ -10,9 +10,9 @@ describe('AllDocumentsState', () => {
   `, () => {
     const testFile = new File([''], 'filename.pdf', { type: 'application/pdf' });
 
-    allDocumentsState.addUploadedDocuments([testFile]);
+    documentsState.addUploadedDocuments([testFile]);
 
-    expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(1);
+    expect(documentsState.allUploadedDocuments).to.has.lengthOf(1);
   });
 
   it(`
@@ -20,16 +20,16 @@ describe('AllDocumentsState', () => {
   WHEN upload documents
   THEN return array with two uploaded documents
   `, () => {
-    allDocumentsState.initialize({
+    documentsState.initialize({
       uploadedDocuments: [],
     });
 
     const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
     const secondTestFile = new File([''], 'SecondFile.pdf', { type: 'application/pdf' });
 
-    allDocumentsState.addUploadedDocuments([firstTestFile, secondTestFile]);
+    documentsState.addUploadedDocuments([firstTestFile, secondTestFile]);
 
-    expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(2);
+    expect(documentsState.allUploadedDocuments).to.has.lengthOf(2);
   });
 
   it(`
@@ -42,18 +42,18 @@ describe('AllDocumentsState', () => {
       file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
     };
 
-    allDocumentsState.initialize({
+    documentsState.initialize({
       uploadedDocuments: [testFile],
       notValidDocumentsIds: [1],
     });
 
-    expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(1);
+    expect(documentsState.allUploadedDocuments).to.has.lengthOf(1);
 
-    allDocumentsState.deleteUploadedDocument(testFile.id);
+    documentsState.deleteUploadedDocument(testFile.id);
 
-    expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(0);
+    expect(documentsState.allUploadedDocuments).to.has.lengthOf(0);
 
-    expect(allDocumentsState.allNotValidDocuments).to.has.lengthOf(0);
+    expect(documentsState.allNotValidDocuments).to.has.lengthOf(0);
   });
 
   it(`
@@ -63,9 +63,9 @@ describe('AllDocumentsState', () => {
   `, () => {
     const testId = 1;
 
-    allDocumentsState.addNotValidDocumentsId(testId);
+    documentsState.addNotValidDocumentsId(testId);
 
-    expect(allDocumentsState.allNotValidDocuments).to.has.lengthOf(1);
+    expect(documentsState.allNotValidDocuments).to.has.lengthOf(1);
   });
 
   it(`
@@ -78,13 +78,13 @@ describe('AllDocumentsState', () => {
       file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
     };
 
-    allDocumentsState.initialize({
+    documentsState.initialize({
       uploadedDocuments: [testFile],
     });
 
-    allDocumentsState.clearUploadedDocuments();
+    documentsState.clearUploadedDocuments();
 
-    expect(allDocumentsState.allUploadedDocuments).to.has.lengthOf(0);
+    expect(documentsState.allUploadedDocuments).to.has.lengthOf(0);
   });
 
   it(`
@@ -92,8 +92,8 @@ describe('AllDocumentsState', () => {
   WHEN use method 'setIsSent'
   THEN value 'isSent' changed
   `, () => {
-    allDocumentsState.setIsSent(true);
+    documentsState.setIsSent(true);
 
-    expect(allDocumentsState.isSent).to.eq(true);
+    expect(documentsState.isSent).to.eq(true);
   });
 });

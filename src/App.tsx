@@ -9,8 +9,8 @@ import { withPrivateRoute } from './common/withPrivateRoute';
 import Template from './template/Template';
 import AccessBasedOnPemissionsState from './routes/state/AccessBasedOnPemissionsState';
 import AccessBasedOnPemissionsStateContext from './routes/state/AccessBasedOnPemissionsStateContext';
-import { AllDocumentsState } from './features/documents/components/AllDocumentsState/AllDocumentsState';
-import { AllDocumentsStateContext } from './features/documents/components/AllDocumentsState/AllDocumentsStateContext';
+import { DocumentsState } from './features/documents/components/DocumentsState/DocumentsState';
+import { DocumentsStateContext } from './features/documents/components/DocumentsState/DocumentsStateContext';
 
 const WithPrivateRoute = withPrivateRoute(Template);
 
@@ -21,13 +21,13 @@ export default function App() {
   );
 
   const documentsState = useMemo(
-    () => new AllDocumentsState(),
+    () => new DocumentsState(),
     [],
   );
 
   return (
     <AccessBasedOnPemissionsStateContext.Provider value={routesState}>
-      <AllDocumentsStateContext.Provider value={documentsState}>
+      <DocumentsStateContext.Provider value={documentsState}>
         <BrowserRouter>
           <Routes>
             <Route
@@ -36,7 +36,7 @@ export default function App() {
             />
           </Routes>
         </BrowserRouter>
-      </AllDocumentsStateContext.Provider>
+      </DocumentsStateContext.Provider>
     </AccessBasedOnPemissionsStateContext.Provider>
   );
 }

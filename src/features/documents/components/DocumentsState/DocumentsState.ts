@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { UploadedDocumentsProps } from '../types';
 
-export class AllDocumentsState {
+export class DocumentsState {
   private _uploadedDocuments: UploadedDocumentsProps = [];
 
   private _notValidDocumentsIds: number[] = [];
@@ -10,6 +10,17 @@ export class AllDocumentsState {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  initialize({
+    uploadedDocuments = [],
+    notValidDocumentsIds = [],
+  }: {
+    uploadedDocuments?: UploadedDocumentsProps
+    notValidDocumentsIds?: number[]
+  }) {
+    this._uploadedDocuments = uploadedDocuments;
+    this._notValidDocumentsIds = notValidDocumentsIds;
   }
 
   get allUploadedDocuments() {
@@ -43,16 +54,5 @@ export class AllDocumentsState {
 
   setIsSent(value: boolean) {
     this._isSent = value;
-  }
-
-  initialize({
-    uploadedDocuments = [],
-    notValidDocumentsIds = [],
-  }: {
-    uploadedDocuments?: UploadedDocumentsProps
-    notValidDocumentsIds?: number[]
-  }) {
-    this._uploadedDocuments = uploadedDocuments;
-    this._notValidDocumentsIds = notValidDocumentsIds;
   }
 }

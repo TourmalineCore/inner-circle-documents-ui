@@ -1,6 +1,6 @@
 import { API_ROOT, LINK_TO_DOCUMENTS_SERVICE } from '../../../../../common/config/config';
-import { AllDocumentsState } from '../../AllDocumentsState/AllDocumentsState';
-import { AllDocumentsStateContext } from '../../AllDocumentsState/AllDocumentsStateContext';
+import { DocumentsState } from '../../DocumentsState/DocumentsState';
+import { DocumentsStateContext } from '../../DocumentsState/DocumentsStateContext';
 import { UploadingMailingPayslipsContainer } from '../UploadingMailingPayslipsContainer';
 
 describe('UploadingMailingPayslipsContent', () => {
@@ -54,11 +54,11 @@ describe('UploadingMailingPayslipsContent', () => {
 
 function mountComponent() {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const documentsState = new AllDocumentsState();
+  const documentsState = new DocumentsState();
 
   cy.mount(
-    <AllDocumentsStateContext.Provider value={documentsState}>
+    <DocumentsStateContext.Provider value={documentsState}>
       <UploadingMailingPayslipsContainer />
-    </AllDocumentsStateContext.Provider>,
+    </DocumentsStateContext.Provider>,
   );
 }
