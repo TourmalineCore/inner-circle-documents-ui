@@ -1,22 +1,27 @@
-// returns array of indexes of payslipFileNames for which we found no employees
+/** returns array of ids of uploadedPayslipDocuments for which we found no employees */
 export function validatePayslipsFileNames({
-  payslipFileNames,
+  uploadedPayslipDocuments,
   employees,
 }: {
-  payslipFileNames: string[],
+  uploadedPayslipDocuments: {
+    id: string,
+    file: {
+      name: string
+    }
+  }[],
   employees: {
     lastName: string
   }[],
 }) {
-  const indexes: number[] = [];
+  const ids: string[] = [];
 
-  payslipFileNames.forEach((fileName, index) => {
-    const noEmployeeWithMatchingName = employees.every((employee) => !fileName.toLowerCase().includes(employee.lastName.toLowerCase()));
+  uploadedPayslipDocuments.forEach((document) => {
+    const noEmployeeWithMatchingName = employees.every((employee) => !document.file.name.toLowerCase().includes(employee.lastName.toLowerCase()));
 
     if (noEmployeeWithMatchingName) {
-      indexes.push(index);
+      ids.push(document.id);
     }
   });
 
-  return indexes;
+  return ids;
 }
