@@ -1,5 +1,5 @@
-import { AllDocumentsState } from '../AllDocumentsState/AllDocumentsState';
-import { AllDocumentsStateContext } from '../AllDocumentsState/AllDocumentsStateContext';
+import { DocumentsState } from '../DocumentsState/DocumentsState';
+import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
 import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsContent';
 
 describe('UploadingMailingPayslipsContent', () => {
@@ -159,15 +159,49 @@ describe('UploadingMailingPayslipsContent', () => {
     cy.getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
+
+  it.only(`
+  GIVEN three payslips for three employees
+  WHEN one of employees doesn't exist
+  AND one of employees has no payslip
+  THEN only two last names are valid for existing employees
+  `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      'cypress/fixtures/Расчетный листок Ильиных за апрель 2023.pdf',
+      'cypress/fixtures/Расчетный листок Петров за март 2024.pdf',
+    ], {
+      force: true,
+    });
+
+    cy.getByData('uploaded-document-card-error')
+      .should('have.length', 1);
+  });
 });
 
 function mountComponent() {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const documentsState = new AllDocumentsState();
+  const documentsState = new DocumentsState();
+
+  documentsState.initialize({
+    employees: [
+      {
+        lastName: 'Иванов',
+      },
+      {
+        lastName: 'Петров',
+      },
+      {
+        lastName: 'Сидоров',
+      },
+    ],
+  });
 
   cy.mount(
-    <AllDocumentsStateContext.Provider value={documentsState}>
+    <DocumentsStateContext.Provider value={documentsState}>
       <UploadingMailingPayslipsContent />
-    </AllDocumentsStateContext.Provider>,
+    </DocumentsStateContext.Provider>,
   );
 }
