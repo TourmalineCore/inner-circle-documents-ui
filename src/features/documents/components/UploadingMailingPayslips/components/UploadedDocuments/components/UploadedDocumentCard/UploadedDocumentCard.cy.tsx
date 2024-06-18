@@ -9,9 +9,9 @@ describe('UploadedDocumentCard', () => {
   THEN render uploaded document card without error
   `, () => {
     mountComponent({
-      fileId: 1,
+      fileId: 'abc1',
       name: 'Расчетный листок Иванов за ноябрь 2023',
-      error: false,
+      errorMessage: '',
     });
 
     cy.getByData('uploaded-document-card')
@@ -45,9 +45,9 @@ describe('UploadedDocumentCard', () => {
   THEN render uploaded document card with error
   `, () => {
     mountComponent({
-      fileId: 1,
+      fileId: 'abc1',
       name: 'Расчетный листок Иванов за ноябрь 2023',
-      error: true,
+      errorMessage: 'The lastName in the file doesn\'t match the file name',
     });
 
     cy.getByData('uploaded-document-card-name')
@@ -63,9 +63,9 @@ describe('UploadedDocumentCard', () => {
   THEN render info tip text
   `, () => {
     mountComponent({
-      fileId: 1,
+      fileId: 'abc1',
       name: 'Расчетный листок Иванов за ноябрь 2023',
-      error: true,
+      errorMessage: 'The lastName in the file doesn\'t match the file name',
     });
 
     cy.get('.info-tip')
@@ -78,18 +78,18 @@ describe('UploadedDocumentCard', () => {
 function mountComponent({
   fileId,
   name,
-  error,
+  errorMessage,
 }: {
-  fileId: number;
+  fileId: string;
   name: string;
-  error: boolean
+  errorMessage: string
 }) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const documentsState = new DocumentsState();
 
   cy.mount(
     <DocumentsStateContext.Provider value={documentsState}>
-      <UploadedDocumentCard fileId={fileId} name={name} error={error} />
+      <UploadedDocumentCard fileId={fileId} name={name} errorMessage={errorMessage} />
     </DocumentsStateContext.Provider>,
   );
 }

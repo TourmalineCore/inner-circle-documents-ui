@@ -7,6 +7,6 @@ export type DocumentsProps = {
 }[];
 
 export type UploadedDocumentsProps = {
-  id: number;
+  id: string;
   file: File;
 }[];

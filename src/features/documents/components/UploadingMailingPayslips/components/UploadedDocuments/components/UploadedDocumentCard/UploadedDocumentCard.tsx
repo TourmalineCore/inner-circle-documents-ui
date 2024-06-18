@@ -13,7 +13,7 @@ export function UploadedDocumentCard({
   name,
   errorMessage,
 }: {
-  fileId: number,
+  fileId: string,
   name: string;
   errorMessage: string;
 }) {

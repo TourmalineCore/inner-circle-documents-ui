@@ -16,7 +16,7 @@ export function UploadedDocument({
   file,
   addNotValidDocuments,
 }: {
-  fileId: number
+  fileId: string
   file: File;
   addNotValidDocuments: () => void
 }) {
