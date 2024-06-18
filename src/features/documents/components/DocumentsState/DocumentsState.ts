@@ -1,11 +1,12 @@
 import { makeAutoObservable } from 'mobx';
+import { v4 as uuidv4 } from 'uuid';
 import { UploadedDocumentsProps } from '../types';
 import { validatePayslipsFileNames } from '../UploadingMailingPayslips/components/UploadedDocuments/validators/validatePayslipsFileNames';
 
 export class DocumentsState {
   private _uploadedDocuments: UploadedDocumentsProps = [];
 
-  private _notValidDocumentsIds: number[] = [];
+  private _notValidDocumentsIds: string[] = [];
 
   private _employees: {
     lastName: string
@@ -40,26 +41,27 @@ export class DocumentsState {
   }
 
   get documentIdsWithNonExistingEmployeeInFileName() {
-    const notValidDocumentIndexes = validatePayslipsFileNames({
-      payslipFileNames: this
-        ._uploadedDocuments
-        .map((uploadedDocument) => uploadedDocument.file.name),
+    return validatePayslipsFileNames({
+      uploadedPayslipDocuments: this._uploadedDocuments,
       employees: this._employees,
     });
-
-    return notValidDocumentIndexes.map((notValidDocumentIndex) => this._uploadedDocuments[notValidDocumentIndex].id);
   }
 
   addUploadedDocuments(files: File[]) {
-    this._uploadedDocuments.push(...files.map((file, index) => ({ id: this._uploadedDocuments.length + index, file })));
+    this
+      ._uploadedDocuments
+      .push(...files.map((file) => ({
+        id: uuidv4(),
+        file,
+      })));
   }
 
-  deleteUploadedDocument(fileId: number) {
+  deleteUploadedDocument(fileId: string) {
     this._uploadedDocuments = this._uploadedDocuments.filter(({ id }) => id !== fileId);
     this._notValidDocumentsIds = this._notValidDocumentsIds.filter((id) => id !== fileId);
   }
 
-  addNotValidDocumentsId(fileId: number) {
+  addNotValidDocumentsId(fileId: string) {
     this._notValidDocumentsIds.push(fileId);
   }
 
