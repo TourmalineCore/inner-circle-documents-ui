@@ -7,11 +7,16 @@ describe('validatePayslipsFileNames', () => {
   THEN invalid file
   `, () => {
     expect(validatePayslipsFileNames({
-      payslipFileNames: [
-        'Расчетный листок за ноябрь Иванов 2023.pdf',
+      uploadedPayslipDocuments: [
+        {
+          id: 'abc1',
+          file: {
+            name: 'Расчетный листок за ноябрь Иванов 2023.pdf',
+          },
+        },
       ],
       employees: [],
-    })).to.deep.equal([0]);
+    })).to.deep.equal(['abc1']);
   });
 
   it(`
@@ -21,8 +26,13 @@ describe('validatePayslipsFileNames', () => {
   THEN no validation errors
   `, () => {
     expect(validatePayslipsFileNames({
-      payslipFileNames: [
-        'Расчетный листок за ноябрь Иванов 2023.pdf',
+      uploadedPayslipDocuments: [
+        {
+          id: 'abc1',
+          file: {
+            name: 'Расчетный листок за ноябрь Иванов 2023.pdf',
+          },
+        },
       ],
       employees: [
         {
@@ -39,15 +49,20 @@ describe('validatePayslipsFileNames', () => {
   THEN returns one validation error for index 0
   `, () => {
     expect(validatePayslipsFileNames({
-      payslipFileNames: [
-        'Расчетный листок за ноябрь Иванов 2023.pdf',
+      uploadedPayslipDocuments: [
+        {
+          id: 'abc1',
+          file: {
+            name: 'Расчетный листок за ноябрь Иванов 2023.pdf',
+          },
+        },
       ],
       employees: [
         {
           lastName: 'Петров',
         },
       ],
-    })).to.deep.equal([0]);
+    })).to.deep.equal(['abc1']);
   });
 
   it(`
@@ -57,9 +72,19 @@ describe('validatePayslipsFileNames', () => {
   THEN no validation errors
   `, () => {
     expect(validatePayslipsFileNames({
-      payslipFileNames: [
-        'Расчетный листок за ноябрь ПЕТРОВ 2023.pdf',
-        'Расчетный листок за ноябрь иванов 2023.pdf',
+      uploadedPayslipDocuments: [
+        {
+          id: 'abc1',
+          file: {
+            name: 'Расчетный листок за ноябрь ПЕТРОВ 2023.pdf',
+          },
+        },
+        {
+          id: 'abc2',
+          file: {
+            name: 'Расчетный листок за ноябрь иванов 2023.pdf',
+          },
+        },
       ],
       employees: [
         {
