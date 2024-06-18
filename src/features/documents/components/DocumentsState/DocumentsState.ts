@@ -1,10 +1,15 @@
 import { makeAutoObservable } from 'mobx';
 import { UploadedDocumentsProps } from '../types';
+import { validatePayslipsFileNames } from '../UploadingMailingPayslips/components/UploadedDocuments/validators/validatePayslipsFileNames';
 
 export class DocumentsState {
   private _uploadedDocuments: UploadedDocumentsProps = [];
 
   private _notValidDocumentsIds: number[] = [];
+
+  private _employees: {
+    lastName: string
+  }[] = [];
 
   private _isSent: boolean = false;
 
@@ -13,14 +18,13 @@ export class DocumentsState {
   }
 
   initialize({
-    uploadedDocuments = [],
-    notValidDocumentsIds = [],
+    employees,
   }: {
-    uploadedDocuments?: UploadedDocumentsProps
-    notValidDocumentsIds?: number[]
+    employees: {
+      lastName: string
+    }[],
   }) {
-    this._uploadedDocuments = uploadedDocuments;
-    this._notValidDocumentsIds = notValidDocumentsIds;
+    this._employees = employees;
   }
 
   get allUploadedDocuments() {
@@ -33,6 +37,17 @@ export class DocumentsState {
 
   get isSent() {
     return this._isSent;
+  }
+
+  get documentIdsWithNonExistingEmployeeInFileName() {
+    const notValidDocumentIndexes = validatePayslipsFileNames({
+      payslipFileNames: this
+        ._uploadedDocuments
+        .map((uploadedDocument) => uploadedDocument.file.name),
+      employees: this._employees,
+    });
+
+    return notValidDocumentIndexes.map((notValidDocumentIndex) => this._uploadedDocuments[notValidDocumentIndex].id);
   }
 
   addUploadedDocuments(files: File[]) {

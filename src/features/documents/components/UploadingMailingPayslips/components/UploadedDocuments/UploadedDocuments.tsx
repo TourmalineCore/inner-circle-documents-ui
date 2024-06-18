@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Document, Page, pdfjs,
 } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { UploadedDocumentCard } from './components/UploadedDocumentCard/UploadedDocumentCard';
+import { DocumentsStateContext } from '../../../DocumentsState/DocumentsStateContext';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+const NON_EXISTING_EMPLOYEE_IN_FILE_NAME_ERROR_MESSAGE = 'This file name doesn\'t contain an existing employee last name';
+const ERROR_TEXT = 'The lastName in the file doesn\'t match the file name';
 
 export function UploadedDocument({
   fileId,
@@ -16,41 +20,62 @@ export function UploadedDocument({
   file: File;
   addNotValidDocuments: () => void
 }) {
-  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [validationFinish, setValidationFinish] = useState(false);
+
+  const documentsState = useContext(DocumentsStateContext);
+
+  const nonExistingEmployeeInFileName = documentsState
+    .documentIdsWithNonExistingEmployeeInFileName
+    .includes(fileId);
 
   return (
     <>
-      <div style={{ display: 'none' }}>
-        <Document file={file}>
-          <Page
-            pageNumber={1}
-            renderAnnotationLayer={false}
-            onGetTextSuccess={(text) => validationTextDocument(text)}
+      {
+        !nonExistingEmployeeInFileName && (
+          <div style={{ display: 'none' }}>
+            <Document file={file}>
+              <Page
+                pageNumber={1}
+                renderAnnotationLayer={false}
+                onGetTextSuccess={(text) => validationTextDocument(text)}
+              />
+            </Document>
+          </div>
+        )
+      }
+      {
+        nonExistingEmployeeInFileName && (
+          <UploadedDocumentCard
+            fileId={fileId}
+            name={file.name}
+            errorMessage={NON_EXISTING_EMPLOYEE_IN_FILE_NAME_ERROR_MESSAGE}
           />
-        </Document>
-      </div>
-      {validationFinish && (
-        <UploadedDocumentCard
-          fileId={fileId}
-          name={file.name}
-          error={error}
-        />
-      )}
+        )
+      }
+      {
+        validationFinish && (
+          <UploadedDocumentCard
+            fileId={fileId}
+            name={file.name}
+            errorMessage={errorMessage}
+          />
+        )
+      }
     </>
   );
 
   function validationTextDocument(texts: any) {
-    const lastName = file.name.split(' ')[2];
+    // const lastName = file.name.split(' ')[2];
 
-    for (const item of texts.items) {
-      if (item.str.includes(lastName)) {
-        setValidationFinish(true);
-        return;
-      }
-    }
-    addNotValidDocuments();
-    setError(true);
+    // for (const item of texts.items) {
+    //   if (item.str.includes(lastName)) {
+    //     setValidationFinish(true);
+    //     return;
+    //   }
+    // }
+    // addNotValidDocuments();
+    // setErrorMessage(ERROR_TEXT);
     setValidationFinish(true);
   }
 }

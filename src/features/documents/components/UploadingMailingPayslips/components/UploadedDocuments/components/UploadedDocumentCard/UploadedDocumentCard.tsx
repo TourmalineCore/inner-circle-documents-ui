@@ -8,16 +8,14 @@ import IconQuestionMark from '../../../../../../../../assets/icons/question-mark
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const ERROR_TEXT = 'The lastName in the file doesn\'t match the file name';
-
 export function UploadedDocumentCard({
   fileId,
   name,
-  error,
+  errorMessage,
 }: {
   fileId: number,
   name: string;
-  error: boolean;
+  errorMessage: string;
 }) {
   const documentsState = useContext(DocumentsStateContext);
   const lastName = name.split(' ')[2];
@@ -71,14 +69,16 @@ export function UploadedDocumentCard({
             </button>
           </div>
         </div>
-        {error && (
-          <span
-            className="uploaded-document-card__error"
-            data-cy="uploaded-document-card-error"
-          >
-            {ERROR_TEXT}
-          </span>
-        )}
+        {
+          errorMessage && (
+            <span
+              className="uploaded-document-card__error"
+              data-cy="uploaded-document-card-error"
+            >
+              {errorMessage}
+            </span>
+          )
+        }
       </div>
     </div>
   );
