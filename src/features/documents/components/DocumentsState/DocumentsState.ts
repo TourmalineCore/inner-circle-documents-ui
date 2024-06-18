@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { v4 as uuidv4 } from 'uuid';
 import { UploadedDocumentsProps } from '../types';
-import { validatePayslipsFileNames } from '../UploadingMailingPayslips/components/UploadedDocuments/validators/validatePayslipsFileNames';
+import { validatePayslipsFileNames } from './validators/validatePayslipsFileNames';
 
 export class DocumentsState {
   private _uploadedDocuments: UploadedDocumentsProps = [];
