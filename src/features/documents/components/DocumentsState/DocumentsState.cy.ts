@@ -1,13 +1,13 @@
 import { DocumentsState } from './DocumentsState';
 
-const documentsState = new DocumentsState();
-
 describe('DocumentsState', () => {
   it(`
   GIVEN one uploaded documents
   WHEN upload documents
   THEN return array with one uploaded document
   `, () => {
+    const documentsState = new DocumentsState();
+
     const testFile = new File([''], 'filename.pdf', { type: 'application/pdf' });
 
     documentsState.addUploadedDocuments([testFile]);
@@ -20,9 +20,7 @@ describe('DocumentsState', () => {
   WHEN upload documents
   THEN return array with two uploaded documents
   `, () => {
-    documentsState.initialize({
-      uploadedDocuments: [],
-    });
+    const documentsState = new DocumentsState();
 
     const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
     const secondTestFile = new File([''], 'SecondFile.pdf', { type: 'application/pdf' });
@@ -37,19 +35,13 @@ describe('DocumentsState', () => {
   WHEN delete uploaded documents
   THEN uploaded and not valid document is empty
   `, () => {
-    const testFile = {
-      id: 1,
-      file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
-    };
+    const documentsState = new DocumentsState();
 
-    documentsState.initialize({
-      uploadedDocuments: [testFile],
-      notValidDocumentsIds: [1],
-    });
+    documentsState.addUploadedDocuments([new File([''], 'testFile.pdf', { type: 'application/pdf' })]);
 
     expect(documentsState.allUploadedDocuments).to.has.lengthOf(1);
 
-    documentsState.deleteUploadedDocument(testFile.id);
+    documentsState.deleteUploadedDocument(documentsState.allUploadedDocuments[0].id);
 
     expect(documentsState.allUploadedDocuments).to.has.lengthOf(0);
 
@@ -61,7 +53,9 @@ describe('DocumentsState', () => {
   WHEN uploaded not valid documents
   THEN return array with one not valid document
   `, () => {
-    const testId = 1;
+    const documentsState = new DocumentsState();
+
+    const testId = 'abc1';
 
     documentsState.addNotValidDocumentsId(testId);
 
@@ -73,14 +67,14 @@ describe('DocumentsState', () => {
   WHEN clear uploaded documents
   THEN return empty uploaded documents array
   `, () => {
+    const documentsState = new DocumentsState();
+
     const testFile = {
       id: 1,
       file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
     };
 
-    documentsState.initialize({
-      uploadedDocuments: [testFile],
-    });
+    documentsState.addUploadedDocuments([testFile.file]);
 
     documentsState.clearUploadedDocuments();
 
@@ -92,6 +86,8 @@ describe('DocumentsState', () => {
   WHEN use method 'setIsSent'
   THEN value 'isSent' changed
   `, () => {
+    const documentsState = new DocumentsState();
+
     documentsState.setIsSent(true);
 
     expect(documentsState.isSent).to.eq(true);
