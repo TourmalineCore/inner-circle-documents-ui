@@ -3,6 +3,7 @@ import {
   Document, Page, pdfjs,
 } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
+import { TextContent } from 'pdfjs-dist/types/src/display/api';
 import { UploadedDocumentCard } from './components/UploadedDocumentCard/UploadedDocumentCard';
 import { DocumentsStateContext } from '../../../DocumentsState/DocumentsStateContext';
 
@@ -14,11 +15,9 @@ const NO_EMPLOYEE_LAST_NAME_IN_FILE_ERROR_MESSAGE = 'This file doesn\'t contain 
 export function UploadedDocument({
   fileId,
   file,
-  addNotValidDocuments,
 }: {
   fileId: string
   file: File;
-  addNotValidDocuments: () => void
 }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [validationFinish, setValidationFinish] = useState(false);
@@ -38,7 +37,7 @@ export function UploadedDocument({
               <Page
                 pageNumber={1}
                 renderAnnotationLayer={false}
-                onGetTextSuccess={(text) => validationTextDocument(text)}
+                onGetTextSuccess={validationTextDocument}
               />
             </Document>
           </div>
@@ -65,17 +64,21 @@ export function UploadedDocument({
     </>
   );
 
-  function validationTextDocument(texts: any) {
-    const lastName = file.name.split(' ')[2];
+  function validationTextDocument(text: TextContent) {
+    const {
+      lastName,
+    } = documentsState.documentIdsEmployeeMap[fileId];
 
-    for (const item of texts.items) {
-      if (item.str.includes(lastName)) {
-        setValidationFinish(true);
-        return;
-      }
+    const doesNotContainLastNameInFileText = text
+      .items
+      // @ts-ignore
+      .every((item) => !item.str.includes(lastName));
+
+    if (doesNotContainLastNameInFileText) {
+      documentsState.addNotValidDocumentsId(fileId);
+      setErrorMessage(NO_EMPLOYEE_LAST_NAME_IN_FILE_ERROR_MESSAGE);
     }
-    addNotValidDocuments();
-    setErrorMessage(NO_EMPLOYEE_LAST_NAME_IN_FILE_ERROR_MESSAGE);
+
     setValidationFinish(true);
   }
 }
