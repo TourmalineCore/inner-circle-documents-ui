@@ -179,6 +179,24 @@ describe('UploadingMailingPayslipsContent', () => {
     cy.getByData('uploaded-document-card-error')
       .should('have.length', 1);
   });
+
+  // testing UploadedDocument.tsx because there is a file transfer problem
+  it(`
+    GIVEN one document for one existing employee
+    WHEN document doesn't contain employee last name
+    THEN render error about it
+    `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Расчетный листок Иванов за март 2024 внутри не он.pdf',
+    ], {
+      force: true,
+    });
+
+    cy.getByData('uploaded-document-card-error')
+      .should('have.text', 'This file doesn\'t contain the same employee last name as in its file name');
+  });
 });
 
 function mountComponent() {
