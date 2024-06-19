@@ -1,9 +1,11 @@
-/** returns array of ids of uploadedPayslipDocuments for which we found no employees */
+import { matchDocumentsWithEmployees } from './matchDocumentsWithEmployees';
+
+/** returns array of ids of payslipDocuments for which we found no employees */
 export function validatePayslipsFileNames({
-  uploadedPayslipDocuments,
+  payslipDocuments,
   employees,
-}: {
-  uploadedPayslipDocuments: {
+} : {
+  payslipDocuments: {
     id: string,
     file: {
       name: string
@@ -13,15 +15,12 @@ export function validatePayslipsFileNames({
     lastName: string
   }[],
 }) {
-  const ids: string[] = [];
-
-  uploadedPayslipDocuments.forEach((document) => {
-    const noEmployeeWithMatchingName = employees.every((employee) => !document.file.name.toLowerCase().includes(employee.lastName.toLowerCase()));
-
-    if (noEmployeeWithMatchingName) {
-      ids.push(document.id);
-    }
+  const matchedDocumentEmployeeMap = matchDocumentsWithEmployees({
+    payslipDocuments,
+    employees,
   });
 
-  return ids;
+  return payslipDocuments
+    .filter((payslipDocument) => !matchedDocumentEmployeeMap[payslipDocument.id])
+    .map((payslipDocument) => payslipDocument.id);
 }
