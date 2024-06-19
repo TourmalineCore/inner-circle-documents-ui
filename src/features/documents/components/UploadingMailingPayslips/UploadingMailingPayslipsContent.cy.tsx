@@ -160,7 +160,7 @@ describe('UploadingMailingPayslipsContent', () => {
       .should('be.disabled');
   });
 
-  it.only(`
+  it(`
   GIVEN three payslips for three employees
   WHEN one of employees doesn't exist
   AND one of employees has no payslip
