@@ -13,5 +13,21 @@ export function matchDocumentsWithEmployees({
     lastName: string
   }[],
 }) {
-  return {};
+  const result: {
+    [documentId: string]: {
+      lastName: string;
+    };
+  } = {};
+
+  payslipDocuments.forEach((document) => {
+    const matchingEmployee = employees.find((employee) => document.file.name.includes(employee.lastName));
+
+    if (matchingEmployee) {
+      result[document.id] = {
+        lastName: matchingEmployee.lastName,
+      };
+    }
+  });
+
+  return result;
 }
