@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { v4 as uuidv4 } from 'uuid';
 import { UploadedDocumentsProps } from '../types';
 import { validatePayslipsFileNames } from './validators/validatePayslipsFileNames';
+import { matchDocumentsWithEmployees } from './validators/matchDocumentsWithEmployees';
 
 export class DocumentsState {
   private _uploadedDocuments: UploadedDocumentsProps = [];
@@ -42,7 +43,14 @@ export class DocumentsState {
 
   get documentIdsWithNonExistingEmployeeInFileName() {
     return validatePayslipsFileNames({
-      uploadedPayslipDocuments: this._uploadedDocuments,
+      payslipDocuments: this._uploadedDocuments,
+      employees: this._employees,
+    });
+  }
+
+  get documentIdsEmployeeMap() {
+    return matchDocumentsWithEmployees({
+      payslipDocuments: this._uploadedDocuments,
       employees: this._employees,
     });
   }
