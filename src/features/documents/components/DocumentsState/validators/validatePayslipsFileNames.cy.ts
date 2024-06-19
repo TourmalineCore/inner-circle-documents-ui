@@ -7,7 +7,7 @@ describe('validatePayslipsFileNames', () => {
   THEN invalid file
   `, () => {
     expect(validatePayslipsFileNames({
-      uploadedPayslipDocuments: [
+      payslipDocuments: [
         {
           id: 'abc1',
           file: {
@@ -26,7 +26,7 @@ describe('validatePayslipsFileNames', () => {
   THEN no validation errors
   `, () => {
     expect(validatePayslipsFileNames({
-      uploadedPayslipDocuments: [
+      payslipDocuments: [
         {
           id: 'abc1',
           file: {
@@ -49,7 +49,7 @@ describe('validatePayslipsFileNames', () => {
   THEN returns one validation error for index 0
   `, () => {
     expect(validatePayslipsFileNames({
-      uploadedPayslipDocuments: [
+      payslipDocuments: [
         {
           id: 'abc1',
           file: {
@@ -72,7 +72,7 @@ describe('validatePayslipsFileNames', () => {
   THEN no validation errors
   `, () => {
     expect(validatePayslipsFileNames({
-      uploadedPayslipDocuments: [
+      payslipDocuments: [
         {
           id: 'abc1',
           file: {
