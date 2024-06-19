@@ -9,7 +9,7 @@ import { DocumentsStateContext } from '../../../DocumentsState/DocumentsStateCon
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const NON_EXISTING_EMPLOYEE_IN_FILE_NAME_ERROR_MESSAGE = 'This file name doesn\'t contain an existing employee last name';
-const ERROR_TEXT = 'The lastName in the file doesn\'t match the file name';
+const NO_EMPLOYEE_LAST_NAME_IN_FILE_ERROR_MESSAGE = 'This file doesn\'t contain the same employee last name as in its file name';
 
 export function UploadedDocument({
   fileId,
@@ -66,16 +66,16 @@ export function UploadedDocument({
   );
 
   function validationTextDocument(texts: any) {
-    // const lastName = file.name.split(' ')[2];
+    const lastName = file.name.split(' ')[2];
 
-    // for (const item of texts.items) {
-    //   if (item.str.includes(lastName)) {
-    //     setValidationFinish(true);
-    //     return;
-    //   }
-    // }
-    // addNotValidDocuments();
-    // setErrorMessage(ERROR_TEXT);
+    for (const item of texts.items) {
+      if (item.str.includes(lastName)) {
+        setValidationFinish(true);
+        return;
+      }
+    }
+    addNotValidDocuments();
+    setErrorMessage(NO_EMPLOYEE_LAST_NAME_IN_FILE_ERROR_MESSAGE);
     setValidationFinish(true);
   }
 }
