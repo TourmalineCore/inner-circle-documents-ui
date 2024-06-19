@@ -181,6 +181,7 @@ describe('UploadingMailingPayslipsContent', () => {
   });
 
   // testing UploadedDocument.tsx because there is a file transfer problem
+  // we cannot easily read a pdf file and create File class instance for UploadedDocument component
   it(`
     GIVEN one document for one existing employee
     WHEN document doesn't contain employee last name
@@ -196,6 +197,26 @@ describe('UploadingMailingPayslipsContent', () => {
 
     cy.getByData('uploaded-document-card-error')
       .should('have.text', 'This file doesn\'t contain the same employee last name as in its file name');
+  });
+
+  it(`
+    GIVEN one document for one existing employee
+    WHEN document starts with employee last name
+    THEN no error
+    `, () => {
+    mountComponent();
+
+    cy.get('input[type=file]').selectFile([
+      'cypress/fixtures/Петров Расчетный NON_EXISTING_TEXT март 2024.pdf',
+    ], {
+      force: true,
+    });
+
+    // ToDo refactor the code without the file upload
+    cy.wait(5000);
+
+    cy.getByData('uploaded-document-card-error')
+      .should('not.exist');
   });
 });
 
