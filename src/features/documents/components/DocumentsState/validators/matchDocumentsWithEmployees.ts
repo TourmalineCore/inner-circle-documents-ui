@@ -20,7 +20,7 @@ export function matchDocumentsWithEmployees({
   } = {};
 
   payslipDocuments.forEach((document) => {
-    const matchingEmployee = employees.find((employee) => document.file.name.includes(employee.lastName));
+    const matchingEmployee = employees.find((employee) => document.file.name.toLowerCase().includes(employee.lastName.toLowerCase()));
 
     if (matchingEmployee) {
       result[document.id] = {
