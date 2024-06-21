@@ -110,4 +110,25 @@ describe('DocumentsState', () => {
     expect(documentsState.allUploadedDocuments[1].file.name).to.eq(secondTestFile.name);
     expect(documentsState.allUploadedDocuments[2].file.name).to.eq(thirdTestFile.name);
   });
+
+  it(`
+    GIVEN two uploaded documents
+    WHEN upload this two documents
+    AND after upload another one document
+    THEN return array with this uploaded documents in asc order
+    `, () => {
+    const documentsState = new DocumentsState();
+
+    const firstTestFile = new File([''], 'aFile.pdf', { type: 'application/pdf' });
+    const secondTestFile = new File([''], 'bFile.pdf', { type: 'application/pdf' });
+    const thirdTestFile = new File([''], 'cFile.pdf', { type: 'application/pdf' });
+
+    documentsState.addUploadedDocuments([thirdTestFile, secondTestFile]);
+
+    documentsState.addUploadedDocuments([firstTestFile]);
+
+    expect(documentsState.allUploadedDocuments[0].file.name).to.eq(firstTestFile.name);
+    expect(documentsState.allUploadedDocuments[1].file.name).to.eq(secondTestFile.name);
+    expect(documentsState.allUploadedDocuments[2].file.name).to.eq(thirdTestFile.name);
+  });
 });
