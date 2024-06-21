@@ -73,6 +73,21 @@ describe('UploadedDocumentCard', () => {
 
     cy.contains('Расчетный листок Иванов за ноябрь 2023');
   });
+
+  it(`
+    GIVEN uploaded document card
+    WHEN upload document that starts with employee last name
+    THEN render corect last name
+    `, () => {
+    mountComponent({
+      fileId: 'abc1',
+      name: 'Иванов Расчетный листок за ноябрь 2023',
+      errorMessage: '',
+    });
+
+    cy.getByData('uploaded-document-card-name')
+      .should('have.text', 'Иванов');
+  });
 });
 
 function mountComponent({
@@ -89,7 +104,11 @@ function mountComponent({
 
   cy.mount(
     <DocumentsStateContext.Provider value={documentsState}>
-      <UploadedDocumentCard fileId={fileId} name={name} errorMessage={errorMessage} />
+      <UploadedDocumentCard
+        fileId={fileId}
+        name={name}
+        errorMessage={errorMessage}
+      />
     </DocumentsStateContext.Provider>,
   );
 }
