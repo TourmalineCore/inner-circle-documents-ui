@@ -28,6 +28,10 @@ export function UploadedDocument({
     .documentIdsWithNonExistingEmployeeInFileName
     .includes(fileId);
 
+  const {
+    lastName,
+  } = documentsState.documentIdsEmployeeMap[fileId];
+
   return (
     <>
       {
@@ -49,6 +53,7 @@ export function UploadedDocument({
             fileId={fileId}
             name={file.name}
             errorMessage={NON_EXISTING_EMPLOYEE_IN_FILE_NAME_ERROR_MESSAGE}
+            lastName={lastName}
           />
         )
       }
@@ -58,6 +63,7 @@ export function UploadedDocument({
             fileId={fileId}
             name={file.name}
             errorMessage={errorMessage}
+            lastName={lastName}
           />
         )
       }
@@ -65,10 +71,6 @@ export function UploadedDocument({
   );
 
   function validationTextDocument(text: TextContent) {
-    const {
-      lastName,
-    } = documentsState.documentIdsEmployeeMap[fileId];
-
     const doesNotContainLastNameInFileText = text
       .items
       // @ts-ignore

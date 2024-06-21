@@ -12,13 +12,14 @@ export function UploadedDocumentCard({
   fileId,
   name,
   errorMessage,
+  lastName,
 }: {
   fileId: string,
   name: string;
   errorMessage: string;
+  lastName: string;
 }) {
   const documentsState = useContext(DocumentsStateContext);
-  const lastName = name.split(' ')[2];
 
   return (
     <div

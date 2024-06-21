@@ -77,7 +77,7 @@ describe('UploadedDocumentCard', () => {
   it(`
     GIVEN uploaded document card
     WHEN upload document that starts with employee last name
-    THEN render corect last name
+    THEN render correct last name
     `, () => {
     mountComponent({
       fileId: 'abc1',
@@ -94,10 +94,12 @@ function mountComponent({
   fileId,
   name,
   errorMessage,
+  lastName = 'Иванов',
 }: {
   fileId: string;
   name: string;
-  errorMessage: string
+  errorMessage: string;
+  lastName?: string;
 }) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const documentsState = new DocumentsState();
@@ -108,6 +110,7 @@ function mountComponent({
         fileId={fileId}
         name={name}
         errorMessage={errorMessage}
+        lastName={lastName}
       />
     </DocumentsStateContext.Provider>,
   );
