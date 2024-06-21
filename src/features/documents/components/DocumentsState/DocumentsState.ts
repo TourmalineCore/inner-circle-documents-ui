@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-import { v4 as uuidv4 } from 'uuid';
 import { validatePayslipsFileNames } from './validators/validatePayslipsFileNames';
 import { matchDocumentsWithEmployees } from './validators/matchDocumentsWithEmployees';
 
@@ -61,7 +60,7 @@ export class DocumentsState {
     this
       ._uploadedDocuments
       .push(...files.map((file) => ({
-        id: uuidv4(),
+        id: crypto.randomUUID(),
         file,
       })));
   }
