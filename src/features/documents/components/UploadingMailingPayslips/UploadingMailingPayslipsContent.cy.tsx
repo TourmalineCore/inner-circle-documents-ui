@@ -212,9 +212,6 @@ describe('UploadingMailingPayslipsContent', () => {
       force: true,
     });
 
-    // ToDo refactor the code without the file upload
-    cy.wait(5000);
-
     cy.getByData('uploaded-document-card-error')
       .should('not.exist');
   });
