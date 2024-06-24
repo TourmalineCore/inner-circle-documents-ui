@@ -10,19 +10,28 @@ describe('UploadingMailingPayslipsContent', () => {
   THEN call request to send mailing payslips
   `, () => {
     mountComponent();
-    cy.intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, {})
+
+    cy
+      .intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, {})
       .as('sendMailingPayslips');
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .click();
 
-    cy.wait('@sendMailingPayslips');
+    cy
+      .wait('@sendMailingPayslips');
 
-    cy.getByData('uploading-payslips-content-list')
+    cy
+      .getByData('uploading-payslips-content-list')
       .should('not.exist');
   });
 
@@ -32,22 +41,32 @@ describe('UploadingMailingPayslipsContent', () => {
   THEN render toasify with error message
   `, () => {
     mountComponent();
-    cy.intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, { forceNetworkError: true })
+
+    cy
+      .intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, { forceNetworkError: true })
       .as('sendMailingPayslips');
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .click();
 
-    cy.wait('@sendMailingPayslips');
+    cy
+      .wait('@sendMailingPayslips');
 
-    cy.get('.Toastify__toast')
+    cy
+      .get('.Toastify__toast')
       .should('exist');
 
-    cy.contains('Network Error')
+    cy
+      .contains('Network Error')
       .should('exist');
   });
 });

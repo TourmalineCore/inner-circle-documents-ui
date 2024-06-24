@@ -14,28 +14,36 @@ describe('UploadedDocumentCard', () => {
       errorMessage: '',
     });
 
-    cy.getByData('uploaded-document-card')
+    cy
+      .getByData('uploaded-document-card')
       .should('exist');
 
-    cy.getByData('uploaded-document-card-inner')
+    cy
+      .getByData('uploaded-document-card-inner')
       .should('exist');
 
-    cy.getByData('uploaded-document-card-header')
+    cy
+      .getByData('uploaded-document-card-header')
       .should('exist');
 
-    cy.getByData('uploaded-document-card-name')
+    cy
+      .getByData('uploaded-document-card-name')
       .should('exist');
 
-    cy.getByData('uploaded-document-card-delete')
+    cy
+      .getByData('uploaded-document-card-delete')
       .should('exist');
 
-    cy.getByData('uploaded-document-card-delete-icon')
+    cy
+      .getByData('uploaded-document-card-delete-icon')
       .should('exist');
 
-    cy.getByData('uploaded-document-card-name')
+    cy
+      .getByData('uploaded-document-card-name')
       .should('have.text', 'Иванов');
 
-    cy.getByData('uploaded-document-card-error')
+    cy
+      .getByData('uploaded-document-card-error')
       .should('not.exist');
   });
 
@@ -50,10 +58,12 @@ describe('UploadedDocumentCard', () => {
       errorMessage: 'The lastName in the file doesn\'t match the file name',
     });
 
-    cy.getByData('uploaded-document-card-name')
+    cy
+      .getByData('uploaded-document-card-name')
       .should('have.text', 'Иванов');
 
-    cy.getByData('uploaded-document-card-error')
+    cy
+      .getByData('uploaded-document-card-error')
       .should('have.text', 'The lastName in the file doesn\'t match the file name');
   });
 
@@ -68,7 +78,8 @@ describe('UploadedDocumentCard', () => {
       errorMessage: 'The lastName in the file doesn\'t match the file name',
     });
 
-    cy.get('.info-tip')
+    cy
+      .get('.info-tip')
       .trigger('mouseover');
 
     cy.contains('Расчетный листок Иванов за ноябрь 2023');
@@ -85,7 +96,8 @@ describe('UploadedDocumentCard', () => {
       errorMessage: '',
     });
 
-    cy.getByData('uploaded-document-card-name')
+    cy
+      .getByData('uploaded-document-card-name')
       .should('have.text', 'Иванов');
   });
 });

@@ -10,13 +10,16 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-payslips-content')
+    cy
+      .getByData('uploading-payslips-content')
       .should('exist');
 
-    cy.getByData('uploading-payslips-content-header')
+    cy
+      .getByData('uploading-payslips-content-header')
       .should('exist');
 
-    cy.getByData('uploader-documents')
+    cy
+      .getByData('uploader-documents')
       .should('exist');
   });
 
@@ -27,10 +30,12 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .should('exist');
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
 
@@ -41,7 +46,8 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-payslips-content-list')
+    cy
+      .getByData('uploading-payslips-content-list')
       .should('not.exist');
   });
 
@@ -52,18 +58,25 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploading-payslips-content-list')
+    cy
+      .getByData('uploading-payslips-content-list')
       .should('exist');
 
-    cy.getByData('uploading-payslips-content-item')
+    cy
+      .getByData('uploading-payslips-content-item')
       .should('have.length', 2);
 
-    cy.getByData('uploaded-document-card')
+    cy
+      .getByData('uploaded-document-card')
       .should('have.length', 2);
   });
 
@@ -74,17 +87,24 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploading-payslips-content-list')
+    cy
+      .getByData('uploading-payslips-content-list')
       .should('exist');
 
-    cy.getByData('uploading-payslips-content-item')
+    cy
+      .getByData('uploading-payslips-content-item')
       .should('have.length', 1);
 
-    cy.getByData('uploaded-document-card')
+    cy
+      .getByData('uploaded-document-card')
       .should('have.length', 1);
   });
 
@@ -95,32 +115,44 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploading-payslips-content-list')
+    cy
+      .getByData('uploading-payslips-content-list')
       .should('exist');
 
-    cy.getByData('uploading-payslips-content-item')
+    cy
+      .getByData('uploading-payslips-content-item')
       .should('have.length', 1);
 
-    cy.getByData('uploaded-document-card')
+    cy
+      .getByData('uploaded-document-card')
       .should('have.length', 1);
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .should('not.be.disabled');
 
-    cy.getByData('uploaded-document-card-delete')
+    cy
+      .getByData('uploaded-document-card-delete')
       .click();
 
-    cy.getByData('uploading-payslips-content-item')
+    cy
+      .getByData('uploading-payslips-content-item')
       .should('not.exist');
 
-    cy.getByData('uploaded-document-card')
+    cy
+      .getByData('uploaded-document-card')
       .should('not.exist');
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
 
@@ -131,14 +163,20 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .should('be.disabled');
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .should('not.be.disabled');
   });
 
@@ -149,14 +187,20 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-    ], { force: true });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploaded-document-card-delete')
+    cy
+      .getByData('uploaded-document-card-delete')
       .click();
 
-    cy.getByData('uploading-payslips-content-button')
+    cy
+      .getByData('uploading-payslips-content-button')
       .should('be.disabled');
   });
 
@@ -168,15 +212,18 @@ describe('UploadingMailingPayslipsContent', () => {
   `, () => {
     mountComponent();
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-      'cypress/fixtures/Расчетный листок Ильиных за апрель 2023.pdf',
-      'cypress/fixtures/Расчетный листок Петров за март 2024.pdf',
-    ], {
-      force: true,
-    });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Расчетный листок Ильиных за апрель 2023.pdf',
+        'cypress/fixtures/Расчетный листок Петров за март 2024.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploaded-document-card-error')
+    cy
+      .getByData('uploaded-document-card-error')
       .should('have.length', 1);
   });
 
@@ -189,13 +236,16 @@ describe('UploadingMailingPayslipsContent', () => {
     `, () => {
     mountComponent();
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Расчетный листок Иванов за март 2024 внутри не он.pdf',
-    ], {
-      force: true,
-    });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Иванов за март 2024 внутри не он.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploaded-document-card-error')
+    cy
+      .getByData('uploaded-document-card-error')
       .should('have.text', 'This file doesn\'t contain the same employee last name as in its file name');
   });
 
@@ -206,13 +256,16 @@ describe('UploadingMailingPayslipsContent', () => {
     `, () => {
     mountComponent();
 
-    cy.get('input[type=file]').selectFile([
-      'cypress/fixtures/Петров Расчетный NON_EXISTING_TEXT март 2024.pdf',
-    ], {
-      force: true,
-    });
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Петров Расчетный NON_EXISTING_TEXT март 2024.pdf',
+      ], {
+        force: true,
+      });
 
-    cy.getByData('uploaded-document-card-error')
+    cy
+      .getByData('uploaded-document-card-error')
       .should('not.exist');
   });
 });

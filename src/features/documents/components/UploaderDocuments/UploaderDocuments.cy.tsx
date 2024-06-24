@@ -8,7 +8,8 @@ describe('UploadedDocumentCard', () => {
     `, () => {
     mountComponent();
 
-    cy.getByData('uploader-documents')
+    cy
+      .getByData('uploader-documents')
       .should('exist');
   });
 
@@ -19,7 +20,8 @@ describe('UploadedDocumentCard', () => {
     `, () => {
     mountComponent();
 
-    cy.getByData('uploader-documents-text')
+    cy
+      .getByData('uploader-documents-text')
       .should('have.text', 'Upload payslips');
   });
 });
