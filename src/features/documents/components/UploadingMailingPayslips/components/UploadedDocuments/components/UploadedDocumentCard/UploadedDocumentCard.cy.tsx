@@ -55,7 +55,7 @@ describe('UploadedDocumentCard', () => {
     mountComponent({
       fileId: 'abc1',
       name: 'Расчетный листок Иванов за ноябрь 2023',
-      errorMessage: 'The lastName in the file doesn\'t match the file name',
+      errorMessage: 'This file doesn\'t contain the same employee last name as in its file name',
     });
 
     cy
@@ -64,7 +64,7 @@ describe('UploadedDocumentCard', () => {
 
     cy
       .getByData('uploaded-document-card-error')
-      .should('have.text', 'The lastName in the file doesn\'t match the file name');
+      .should('have.text', 'This file doesn\'t contain the same employee last name as in its file name');
   });
 
   it(`
@@ -75,7 +75,7 @@ describe('UploadedDocumentCard', () => {
     mountComponent({
       fileId: 'abc1',
       name: 'Расчетный листок Иванов за ноябрь 2023',
-      errorMessage: 'The lastName in the file doesn\'t match the file name',
+      errorMessage: '',
     });
 
     cy
