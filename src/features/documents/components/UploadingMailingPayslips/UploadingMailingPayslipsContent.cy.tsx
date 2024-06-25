@@ -268,6 +268,26 @@ describe('UploadingMailingPayslipsContent', () => {
       .getByData('uploaded-document-card-error')
       .should('not.exist');
   });
+
+  it(`
+    GIVEN one payslip
+    WHEN employee doesn't exist
+    THEN nothing is displayed in the card name
+    `, () => {
+    mountComponent();
+
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Расчетный листок Ильиных за апрель 2023.pdf',
+      ], {
+        force: true,
+      });
+
+    cy
+      .getByData('uploaded-document-card-name')
+      .should('have.text', '');
+  });
 });
 
 function mountComponent() {
