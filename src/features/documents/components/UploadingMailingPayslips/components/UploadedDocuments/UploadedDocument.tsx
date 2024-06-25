@@ -11,7 +11,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 const NON_EXISTING_EMPLOYEE_IN_FILE_NAME_ERROR_MESSAGE = 'This file name doesn\'t contain an existing employee last name';
 const NO_EMPLOYEE_LAST_NAME_IN_FILE_ERROR_MESSAGE = 'This file doesn\'t contain the same employee last name as in its file name';
-const UNDEFINED_EMPLOYEE = 'Undefined';
 
 export function UploadedDocument({
   fileId,
@@ -31,7 +30,7 @@ export function UploadedDocument({
 
   const lastName = !nonExistingEmployeeInFileName
     ? documentsState.documentIdsEmployeeMap[fileId].lastName
-    : UNDEFINED_EMPLOYEE;
+    : '';
 
   return (
     <>
