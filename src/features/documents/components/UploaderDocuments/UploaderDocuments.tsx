@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext } from 'react';
 import { observer } from 'mobx-react-lite';
-import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
+import { DocumentsStateContext } from '../state/DocumentsStateContext';
 
 export const UploaderDocuments = observer(({
   onUploadDocuments,

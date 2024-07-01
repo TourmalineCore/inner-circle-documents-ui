@@ -1,7 +1,7 @@
-import { API_ROOT, LINK_TO_DOCUMENTS_SERVICE } from '../../../../../common/config/config';
-import { DocumentsState } from '../../DocumentsState/DocumentsState';
-import { DocumentsStateContext } from '../../DocumentsState/DocumentsStateContext';
-import { UploadingMailingPayslipsContainer } from '../UploadingMailingPayslipsContainer';
+import { API_ROOT, LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config';
+import { DocumentsState } from '../state/DocumentsState';
+import { DocumentsStateContext } from '../state/DocumentsStateContext';
+import { UploadingMailingPayslipsContainer } from './UploadingMailingPayslipsContainer';
 
 describe('UploadingMailingPayslipsContent', () => {
   it(`

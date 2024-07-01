@@ -5,7 +5,7 @@ import {
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { TextContent } from 'pdfjs-dist/types/src/display/api';
 import { UploadedDocumentCard } from './components/UploadedDocumentCard/UploadedDocumentCard';
-import { DocumentsStateContext } from '../../../DocumentsState/DocumentsStateContext';
+import { DocumentsStateContext } from '../../../state/DocumentsStateContext';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 

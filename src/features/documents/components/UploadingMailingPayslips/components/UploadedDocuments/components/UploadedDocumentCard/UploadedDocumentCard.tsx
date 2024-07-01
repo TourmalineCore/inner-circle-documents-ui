@@ -2,7 +2,7 @@ import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { useContext } from 'react';
 import IconDelet from '../../../../../../../../assets/icons/icon-delete.svg';
-import { DocumentsStateContext } from '../../../../../DocumentsState/DocumentsStateContext';
+import { DocumentsStateContext } from '../../../../../state/DocumentsStateContext';
 import InfoTip from '../../../../../../../../components/InfoTip/InfoTip';
 import IconQuestionMark from '../../../../../../../../assets/icons/question-mark-circle.svg';
 

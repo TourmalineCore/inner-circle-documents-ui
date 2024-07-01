@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { UploadingMailingPayslipsContainer } from './components/UploadingMailingPayslips/UploadingMailingPayslipsContainer';
-import { DocumentsState } from './components/DocumentsState/DocumentsState';
-import { DocumentsStateContext } from './components/DocumentsState/DocumentsStateContext';
+import { DocumentsState } from './components/state/DocumentsState';
+import { DocumentsStateContext } from './components/state/DocumentsStateContext';
 
 export function UploadingMailingPayslipsPage() {
   const documentsState = useMemo(

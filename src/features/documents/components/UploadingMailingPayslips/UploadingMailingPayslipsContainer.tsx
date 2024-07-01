@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsContent';
 import { api } from '../../../../common/api';
 import { LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config';
-import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
+import { DocumentsStateContext } from '../state/DocumentsStateContext';
 import { objectToFormData } from '../../../../common/utils/objectToFormData';
 
 export const UploadingMailingPayslipsContainer = observer(() => {

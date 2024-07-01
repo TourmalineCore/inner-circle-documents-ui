@@ -9,8 +9,8 @@ import { withPrivateRoute } from './common/withPrivateRoute';
 import Template from './template/Template';
 import AccessBasedOnPemissionsState from './routes/state/AccessBasedOnPemissionsState';
 import AccessBasedOnPemissionsStateContext from './routes/state/AccessBasedOnPemissionsStateContext';
-import { DocumentsState } from './features/documents/components/DocumentsState/DocumentsState';
-import { DocumentsStateContext } from './features/documents/components/DocumentsState/DocumentsStateContext';
+import { DocumentsState } from './features/documents/components/state/DocumentsState';
+import { DocumentsStateContext } from './features/documents/components/state/DocumentsStateContext';
 
 const WithPrivateRoute = withPrivateRoute(Template);
 

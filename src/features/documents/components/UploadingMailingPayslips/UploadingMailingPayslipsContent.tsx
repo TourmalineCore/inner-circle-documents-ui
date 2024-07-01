@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
 import { ToastContainer } from 'react-toastify';
-import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
+import { DocumentsStateContext } from '../state/DocumentsStateContext';
 import { UploadedDocument } from './components/UploadedDocuments/UploadedDocument';
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
 import Preloader from '../../../../components/Preloader/Preloader';

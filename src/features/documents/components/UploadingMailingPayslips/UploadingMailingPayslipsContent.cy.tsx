@@ -1,5 +1,5 @@
-import { DocumentsState } from '../DocumentsState/DocumentsState';
-import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
+import { DocumentsState } from '../state/DocumentsState';
+import { DocumentsStateContext } from '../state/DocumentsStateContext';
 import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsContent';
 
 describe('UploadingMailingPayslipsContent', () => {
