@@ -1,11 +1,11 @@
-import { matchDocumentsWithEmployees } from './matchDocumentsWithEmployees';
+import { matchPayslipsWithEmployees } from './matchPayslipsWithEmployees';
 
-/** returns array of ids of payslipDocuments for which we found no employees */
+/** returns array of ids of payslips for which we found no employees */
 export function validatePayslipsFileNames({
-  payslipDocuments,
+  payslips,
   employees,
 } : {
-  payslipDocuments: {
+  payslips: {
     id: string,
     file: {
       name: string
@@ -15,12 +15,12 @@ export function validatePayslipsFileNames({
     lastName: string
   }[],
 }) {
-  const matchedDocumentEmployeeMap = matchDocumentsWithEmployees({
-    payslipDocuments,
+  const matchedDocumentEmployeeMap = matchPayslipsWithEmployees({
+    payslips,
     employees,
   });
 
-  return payslipDocuments
+  return payslips
     .filter((payslipDocument) => !matchedDocumentEmployeeMap[payslipDocument.id])
     .map((payslipDocument) => payslipDocument.id);
 }

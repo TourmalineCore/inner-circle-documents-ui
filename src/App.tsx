@@ -9,8 +9,8 @@ import { withPrivateRoute } from './common/withPrivateRoute';
 import Template from './template/Template';
 import AccessBasedOnPemissionsState from './routes/state/AccessBasedOnPemissionsState';
 import AccessBasedOnPemissionsStateContext from './routes/state/AccessBasedOnPemissionsStateContext';
-import { DocumentsState } from './features/documents/sections/state/DocumentsState';
-import { DocumentsStateContext } from './features/documents/sections/state/DocumentsStateContext';
+import { PayslipsState } from './features/documents/sections/state/PayslipsState';
+import { PayslipsStateContext } from './features/documents/sections/state/PayslipsStateContext';
 
 const WithPrivateRoute = withPrivateRoute(Template);
 
@@ -20,14 +20,14 @@ export default function App() {
     [],
   );
 
-  const documentsState = useMemo(
-    () => new DocumentsState(),
+  const payslipsState = useMemo(
+    () => new PayslipsState(),
     [],
   );
 
   return (
     <AccessBasedOnPemissionsStateContext.Provider value={routesState}>
-      <DocumentsStateContext.Provider value={documentsState}>
+      <PayslipsStateContext.Provider value={payslipsState}>
         <BrowserRouter>
           <Routes>
             <Route
@@ -36,7 +36,7 @@ export default function App() {
             />
           </Routes>
         </BrowserRouter>
-      </DocumentsStateContext.Provider>
+      </PayslipsStateContext.Provider>
     </AccessBasedOnPemissionsStateContext.Provider>
   );
 }

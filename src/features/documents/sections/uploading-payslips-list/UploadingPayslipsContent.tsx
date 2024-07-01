@@ -2,23 +2,23 @@ import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
 import { ToastContainer } from 'react-toastify';
-import { DocumentsStateContext } from '../state/DocumentsStateContext';
-import { UploadedDocument } from './components/uploaded-document/UploadedDocument';
-import { UploaderDocuments } from '../uploader/UploaderDocuments';
+import { PayslipsStateContext } from '../state/PayslipsStateContext';
+import { UploaderPayslips } from '../uploader/UploaderPayslips';
 import Preloader from '../../../../components/Preloader/Preloader';
 import 'react-toastify/dist/ReactToastify.css';
+import { UploadedPayslip } from './components/uploaded-payslip/UploadedPayslip';
 
-export const UploadingMailingPayslipsContent = observer(({
+export const UploadingPayslipsContent = observer(({
   onSubmit = () => {},
-  onUploadDocuments,
+  onUploadPayslips,
 }: {
   onSubmit?: () => void,
-  onUploadDocuments: () => unknown,
+  onUploadPayslips: () => unknown,
 }) => {
-  const documentsState = useContext(DocumentsStateContext);
+  const payslipsState = useContext(PayslipsStateContext);
 
-  const uploadedDocumentsIsEmpty = documentsState.allUploadedDocuments.length === 0;
-  const notValidDocumentsIsEmpty = documentsState.allNotValidDocuments.length === 0;
+  const uploadedPayslipsIsEmpty = payslipsState.allUploadedPayslips.length === 0;
+  const notValidDocumentsIsEmpty = payslipsState.allNotValidPayslips.length === 0;
 
   return (
     <>
@@ -33,22 +33,27 @@ export const UploadingMailingPayslipsContent = observer(({
           <Button
             className="uploading-payslips-content__button"
             data-cy="uploading-payslips-content-button"
-            disabled={!notValidDocumentsIsEmpty || documentsState.isSent ? true : uploadedDocumentsIsEmpty}
+            disabled={
+              !notValidDocumentsIsEmpty
+              || payslipsState.isSent
+                ? true
+                : uploadedPayslipsIsEmpty
+            }
             onClick={() => onSubmit()}
           >
             Send
           </Button>
-          <UploaderDocuments onUploadDocuments={onUploadDocuments} />
+          <UploaderPayslips onUploadPayslips={onUploadPayslips} />
         </div>
-        {!uploadedDocumentsIsEmpty
+        {!uploadedPayslipsIsEmpty
        && (
          <ul
            className="uploading-payslips-content__list"
            data-cy="uploading-payslips-content-list"
          >
            {
-             documentsState
-               .allUploadedDocuments
+             payslipsState
+               .allUploadedPayslips
                .map(({
                  id,
                  file,
@@ -58,7 +63,7 @@ export const UploadingMailingPayslipsContent = observer(({
                    className="uploading-payslips-content__item"
                    data-cy="uploading-payslips-content-item"
                  >
-                   <UploadedDocument
+                   <UploadedPayslip
                      fileId={id}
                      file={file}
                    />
@@ -69,7 +74,7 @@ export const UploadingMailingPayslipsContent = observer(({
        )}
       </section>
       <ToastContainer position="top-center" />
-      {documentsState.isSent && <Preloader />}
+      {payslipsState.isSent && <Preloader />}
     </>
   );
 });

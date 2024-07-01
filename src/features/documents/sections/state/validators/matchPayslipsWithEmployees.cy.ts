@@ -1,13 +1,13 @@
-import { matchDocumentsWithEmployees } from './matchDocumentsWithEmployees';
+import { matchPayslipsWithEmployees } from './matchPayslipsWithEmployees';
 
-describe('matchDocumentsWithEmployees', () => {
+describe('matchPayslipsWithEmployees', () => {
   it(`
   GIVEN single file 
   WHEN no employees
   THEN map contains no relations
   `, () => {
-    expect(matchDocumentsWithEmployees({
-      payslipDocuments: [
+    expect(matchPayslipsWithEmployees({
+      payslips: [
         {
           id: 'abc1',
           file: {
@@ -25,8 +25,8 @@ describe('matchDocumentsWithEmployees', () => {
   WHEN last name matched 
   THEN map contains one id-employee relation
   `, () => {
-    expect(matchDocumentsWithEmployees({
-      payslipDocuments: [
+    expect(matchPayslipsWithEmployees({
+      payslips: [
         {
           id: 'abc1',
           file: {
@@ -52,8 +52,8 @@ describe('matchDocumentsWithEmployees', () => {
     WHEN last name matched
     THEN map contains two id-employee relation
     `, () => {
-    expect(matchDocumentsWithEmployees({
-      payslipDocuments: [
+    expect(matchPayslipsWithEmployees({
+      payslips: [
         {
           id: 'abc1',
           file: {

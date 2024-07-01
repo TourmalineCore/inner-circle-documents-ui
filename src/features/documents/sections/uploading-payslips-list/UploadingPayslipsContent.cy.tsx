@@ -1,12 +1,12 @@
-import { DocumentsState } from '../state/DocumentsState';
-import { DocumentsStateContext } from '../state/DocumentsStateContext';
-import { UploadingMailingPayslipsContent } from './UploadingMailingPayslipsContent';
+import { PayslipsState } from '../state/PayslipsState';
+import { PayslipsStateContext } from '../state/PayslipsStateContext';
+import { UploadingPayslipsContent } from './UploadingPayslipsContent';
 
-describe('UploadingMailingPayslipsContent', () => {
+describe('UploadingPayslipsContent', () => {
   it(`
-  GIVEN uploading mailing payslips page
-  WHEN visit uploading mailingPayslips
-  THEN render content uploading document
+  GIVEN uploading payslips page
+  WHEN visit uploading payslips
+  THEN render content uploading payslip
   `, () => {
     mountComponent();
 
@@ -19,7 +19,7 @@ describe('UploadingMailingPayslipsContent', () => {
       .should('exist');
 
     cy
-      .getByData('uploader-documents')
+      .getByData('uploader-payslips')
       .should('exist');
   });
 
@@ -40,9 +40,9 @@ describe('UploadingMailingPayslipsContent', () => {
   });
 
   it(`
-  GIVEN not render uploading document list
+  GIVEN not render uploading payslip list
   WHEN visit uploading payslips
-  THEN not render uploading document list
+  THEN not render uploading payslip list
   `, () => {
     mountComponent();
 
@@ -52,7 +52,7 @@ describe('UploadingMailingPayslipsContent', () => {
   });
 
   it(`
-  GIVEN two uploaded document card
+  GIVEN two uploaded payslip card
   WHEN upload file
   THEN correct upload file
   `, () => {
@@ -76,12 +76,12 @@ describe('UploadingMailingPayslipsContent', () => {
       .should('have.length', 2);
 
     cy
-      .getByData('uploaded-document-card')
+      .getByData('uploaded-payslip-card')
       .should('have.length', 2);
   });
 
   it(`
-  GIVEN one uploaded document card
+  GIVEN one uploaded payslip card
   WHEN upload file
   THEN correct upload file
   `, () => {
@@ -104,14 +104,14 @@ describe('UploadingMailingPayslipsContent', () => {
       .should('have.length', 1);
 
     cy
-      .getByData('uploaded-document-card')
+      .getByData('uploaded-payslip-card')
       .should('have.length', 1);
   });
 
   it(`
-  GIVEN uploading mailing payslips page
-  WHEN click delete button on the document card
-  THEN deleted document
+  GIVEN uploading payslips page
+  WHEN click delete button on the payslip card
+  THEN deleted payslip
   `, () => {
     mountComponent();
 
@@ -132,7 +132,7 @@ describe('UploadingMailingPayslipsContent', () => {
       .should('have.length', 1);
 
     cy
-      .getByData('uploaded-document-card')
+      .getByData('uploaded-payslip-card')
       .should('have.length', 1);
 
     cy
@@ -140,7 +140,7 @@ describe('UploadingMailingPayslipsContent', () => {
       .should('not.be.disabled');
 
     cy
-      .getByData('uploaded-document-card-delete')
+      .getByData('uploaded-payslip-card-delete')
       .click();
 
     cy
@@ -148,7 +148,7 @@ describe('UploadingMailingPayslipsContent', () => {
       .should('not.exist');
 
     cy
-      .getByData('uploaded-document-card')
+      .getByData('uploaded-payslip-card')
       .should('not.exist');
 
     cy
@@ -158,7 +158,7 @@ describe('UploadingMailingPayslipsContent', () => {
 
   it(`
   GIVEN not disabled send button
-  WHEN upload document
+  WHEN upload payslip
   THEN send button not be disabled
   `, () => {
     mountComponent();
@@ -182,7 +182,7 @@ describe('UploadingMailingPayslipsContent', () => {
 
   it(`
   GIVEN disabled send button
-  WHEN delete last uploaded document
+  WHEN delete last uploaded payslip
   THEN send button be disabled
   `, () => {
     mountComponent();
@@ -196,7 +196,7 @@ describe('UploadingMailingPayslipsContent', () => {
       });
 
     cy
-      .getByData('uploaded-document-card-delete')
+      .getByData('uploaded-payslip-card-delete')
       .click();
 
     cy
@@ -223,15 +223,15 @@ describe('UploadingMailingPayslipsContent', () => {
       });
 
     cy
-      .getByData('uploaded-document-card-error')
+      .getByData('uploaded-payslip-card-error')
       .should('have.length', 1);
   });
 
-  // testing UploadedDocument.tsx because there is a file transfer problem
-  // we cannot easily read a pdf file and create File class instance for UploadedDocument component
+  // testing UploadedPayslip.tsx because there is a file transfer problem
+  // we cannot easily read a pdf file and create File class instance for UploadedPayslip component
   it(`
-    GIVEN one document for one existing employee
-    WHEN document doesn't contain employee last name
+    GIVEN one payslip for one existing employee
+    WHEN payslip doesn't contain employee last name
     THEN render error about it
     `, () => {
     mountComponent();
@@ -245,13 +245,13 @@ describe('UploadingMailingPayslipsContent', () => {
       });
 
     cy
-      .getByData('uploaded-document-card-error')
+      .getByData('uploaded-payslip-card-error')
       .should('have.text', 'This file doesn\'t contain the same employee last name as in its file name');
   });
 
   it(`
-    GIVEN one document for one existing employee
-    WHEN document starts with employee last name
+    GIVEN one payslip for one existing employee
+    WHEN payslip starts with employee last name
     THEN no error
     `, () => {
     mountComponent();
@@ -265,7 +265,7 @@ describe('UploadingMailingPayslipsContent', () => {
       });
 
     cy
-      .getByData('uploaded-document-card-error')
+      .getByData('uploaded-payslip-card-error')
       .should('not.exist');
   });
 
@@ -285,20 +285,20 @@ describe('UploadingMailingPayslipsContent', () => {
       });
 
     cy
-      .getByData('uploaded-document-card-name')
+      .getByData('uploaded-payslip-card-name')
       .should('have.text', '');
   });
 });
 
 function mountComponent({
-  onUploadDocuments = () => {},
+  onUploadPayslips = () => {},
 }: {
-  onUploadDocuments?: () => unknown,
+  onUploadPayslips?: () => unknown,
 } = {}) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const documentsState = new DocumentsState();
+  const payslipsState = new PayslipsState();
 
-  documentsState.initialize({
+  payslipsState.initialize({
     employees: [
       {
         lastName: 'Иванов',
@@ -313,8 +313,8 @@ function mountComponent({
   });
 
   cy.mount(
-    <DocumentsStateContext.Provider value={documentsState}>
-      <UploadingMailingPayslipsContent onUploadDocuments={(onUploadDocuments)} />
-    </DocumentsStateContext.Provider>,
+    <PayslipsStateContext.Provider value={payslipsState}>
+      <UploadingPayslipsContent onUploadPayslips={(onUploadPayslips)} />
+    </PayslipsStateContext.Provider>,
   );
 }

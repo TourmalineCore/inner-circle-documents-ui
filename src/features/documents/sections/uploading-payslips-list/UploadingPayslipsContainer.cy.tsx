@@ -1,19 +1,19 @@
 import { API_ROOT, LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config';
-import { DocumentsState } from '../state/DocumentsState';
-import { DocumentsStateContext } from '../state/DocumentsStateContext';
-import { UploadingMailingPayslipsContainer } from './UploadingMailingPayslipsContainer';
+import { PayslipsState } from '../state/PayslipsState';
+import { PayslipsStateContext } from '../state/PayslipsStateContext';
+import { UploadingPayslipsContainer } from './UploadingPayslipsContainer';
 
-describe('UploadingMailingPayslipsContent', () => {
+describe('UploadingPayslipsContainer', () => {
   it(`
-  GIVEN send mailing payslips
+  GIVEN send payslips
   WHEN click on the send button 
-  THEN call request to send mailing payslips
+  THEN call request to send payslips
   `, () => {
     mountComponent();
 
     cy
       .intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, {})
-      .as('sendMailingPayslips');
+      .as('sendPayslips');
 
     cy
       .get('input[type=file]')
@@ -28,7 +28,7 @@ describe('UploadingMailingPayslipsContent', () => {
       .click();
 
     cy
-      .wait('@sendMailingPayslips');
+      .wait('@sendPayslips');
 
     cy
       .getByData('uploading-payslips-content-list')
@@ -37,14 +37,14 @@ describe('UploadingMailingPayslipsContent', () => {
 
   it(`
   GIVEN error message 
-  WHEN call request to send mailing payslips 
+  WHEN call request to send payslips 
   THEN render toasify with error message
   `, () => {
     mountComponent();
 
     cy
       .intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, { forceNetworkError: true })
-      .as('sendMailingPayslips');
+      .as('sendPayslips');
 
     cy
       .get('input[type=file]')
@@ -59,7 +59,7 @@ describe('UploadingMailingPayslipsContent', () => {
       .click();
 
     cy
-      .wait('@sendMailingPayslips');
+      .wait('@sendPayslips');
 
     cy
       .get('.Toastify__toast')
@@ -71,8 +71,8 @@ describe('UploadingMailingPayslipsContent', () => {
   });
 
   it(`
-  GIVEN upload documents
-  WHEN upload new documents
+  GIVEN upload payslips
+  WHEN upload new payslips
   THEN call request to get employees and trigger validation
   AND render no errors 
   `, () => {
@@ -95,18 +95,18 @@ describe('UploadingMailingPayslipsContent', () => {
       .wait('@get-employees');
 
     cy
-      .getByData('uploaded-document-card-error')
+      .getByData('uploaded-payslip-card-error')
       .should('not.exist');
   });
 });
 
 function mountComponent() {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const documentsState = new DocumentsState();
+  const payslipsState = new PayslipsState();
 
   cy.mount(
-    <DocumentsStateContext.Provider value={documentsState}>
-      <UploadingMailingPayslipsContainer />
-    </DocumentsStateContext.Provider>,
+    <PayslipsStateContext.Provider value={payslipsState}>
+      <UploadingPayslipsContainer />
+    </PayslipsStateContext.Provider>,
   );
 }

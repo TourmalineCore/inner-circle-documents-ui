@@ -1,12 +1,12 @@
-import { DocumentsState } from '../../../../../state/DocumentsState';
-import { DocumentsStateContext } from '../../../../../state/DocumentsStateContext';
-import { UploadedDocumentCard } from './UploadedDocumentCard';
+import { PayslipsState } from '../../../../../state/PayslipsState';
+import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext';
+import { UploadedPayslipCard } from './UploadedPayslipCard';
 
-describe('UploadedDocumentCard', () => {
+describe('UploadedPayslipCard', () => {
   it(`
-  GIVEN uploaded document card
-  WHEN upload correct document
-  THEN render uploaded document card without error
+  GIVEN uploaded payslip card
+  WHEN upload correct payslip
+  THEN render uploaded payslip card without error
   `, () => {
     mountComponent({
       fileId: 'abc1',
@@ -15,42 +15,42 @@ describe('UploadedDocumentCard', () => {
     });
 
     cy
-      .getByData('uploaded-document-card')
+      .getByData('uploaded-payslip-card')
       .should('exist');
 
     cy
-      .getByData('uploaded-document-card-inner')
+      .getByData('uploaded-payslip-card-inner')
       .should('exist');
 
     cy
-      .getByData('uploaded-document-card-header')
+      .getByData('uploaded-payslip-card-header')
       .should('exist');
 
     cy
-      .getByData('uploaded-document-card-name')
+      .getByData('uploaded-payslip-card-name')
       .should('exist');
 
     cy
-      .getByData('uploaded-document-card-delete')
+      .getByData('uploaded-payslip-card-delete')
       .should('exist');
 
     cy
-      .getByData('uploaded-document-card-delete-icon')
+      .getByData('uploaded-payslip-card-delete-icon')
       .should('exist');
 
     cy
-      .getByData('uploaded-document-card-name')
+      .getByData('uploaded-payslip-card-name')
       .should('have.text', 'Иванов');
 
     cy
-      .getByData('uploaded-document-card-error')
+      .getByData('uploaded-payslip-card-error')
       .should('not.exist');
   });
 
   it(`
-  GIVEN uploaded document card
-  WHEN upload incorrect document 
-  THEN render uploaded document card with error
+  GIVEN uploaded payslip card
+  WHEN upload incorrect payslip 
+  THEN render uploaded payslip card with error
   `, () => {
     mountComponent({
       fileId: 'abc1',
@@ -59,11 +59,11 @@ describe('UploadedDocumentCard', () => {
     });
 
     cy
-      .getByData('uploaded-document-card-name')
+      .getByData('uploaded-payslip-card-name')
       .should('have.text', 'Иванов');
 
     cy
-      .getByData('uploaded-document-card-error')
+      .getByData('uploaded-payslip-card-error')
       .should('have.text', 'This file doesn\'t contain the same employee last name as in its file name');
   });
 
@@ -86,8 +86,8 @@ describe('UploadedDocumentCard', () => {
   });
 
   it(`
-    GIVEN uploaded document card
-    WHEN upload document that starts with employee last name
+    GIVEN uploaded payslip card
+    WHEN upload payslip that starts with employee last name
     THEN render correct last name
     `, () => {
     mountComponent({
@@ -97,7 +97,7 @@ describe('UploadedDocumentCard', () => {
     });
 
     cy
-      .getByData('uploaded-document-card-name')
+      .getByData('uploaded-payslip-card-name')
       .should('have.text', 'Иванов');
   });
 });
@@ -114,16 +114,16 @@ function mountComponent({
   lastName?: string;
 }) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const documentsState = new DocumentsState();
+  const payslipsState = new PayslipsState();
 
   cy.mount(
-    <DocumentsStateContext.Provider value={documentsState}>
-      <UploadedDocumentCard
+    <PayslipsStateContext.Provider value={payslipsState}>
+      <UploadedPayslipCard
         fileId={fileId}
         name={name}
         errorMessage={errorMessage}
         lastName={lastName}
       />
-    </DocumentsStateContext.Provider>,
+    </PayslipsStateContext.Provider>,
   );
 }

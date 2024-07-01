@@ -2,13 +2,13 @@ import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { useContext } from 'react';
 import IconDelet from '../../../../../../../../assets/icons/icon-delete.svg';
-import { DocumentsStateContext } from '../../../../../state/DocumentsStateContext';
+import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext';
 import InfoTip from '../../../../../../../../components/InfoTip/InfoTip';
 import IconQuestionMark from '../../../../../../../../assets/icons/question-mark-circle.svg';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export function UploadedDocumentCard({
+export function UploadedPayslipCard({
   fileId,
   name,
   errorMessage,
@@ -19,28 +19,28 @@ export function UploadedDocumentCard({
   errorMessage: string;
   lastName: string;
 }) {
-  const documentsState = useContext(DocumentsStateContext);
+  const payslipsState = useContext(PayslipsStateContext);
 
   return (
     <div
-      className="uploaded-document-card"
-      data-cy="uploaded-document-card"
+      className="uploaded-payslip-card"
+      data-cy="uploaded-payslip-card"
     >
       <div
-        className="uploaded-document-card__inner"
-        data-cy="uploaded-document-card-inner"
+        className="uploaded-payslip-card__inner"
+        data-cy="uploaded-payslip-card-inner"
       >
         <div
-          className="uploaded-document-card__header"
-          data-cy="uploaded-document-card-header"
+          className="uploaded-payslip-card__header"
+          data-cy="uploaded-payslip-card-header"
         >
           <span
-            className="uploaded-document-card__name"
-            data-cy="uploaded-document-card-name"
+            className="uploaded-payslip-card__name"
+            data-cy="uploaded-payslip-card-name"
           >
             {lastName}
           </span>
-          <div className="uploaded-document-card__actions">
+          <div className="uploaded-payslip-card__actions">
             <InfoTip
               icon={(
                 <img
@@ -54,14 +54,14 @@ export function UploadedDocumentCard({
             />
             <button
               type="button"
-              className="uploaded-document-card__delete"
-              data-cy="uploaded-document-card-delete"
-              disabled={documentsState.isSent}
-              onClick={() => documentsState.deleteUploadedDocument(fileId)}
+              className="uploaded-payslip-card__delete"
+              data-cy="uploaded-payslip-card-delete"
+              disabled={payslipsState.isSent}
+              onClick={() => payslipsState.deleteUploadedPayslip(fileId)}
             >
               <img
-                className="uploaded-document-card__delete-icon"
-                data-cy="uploaded-document-card-delete-icon"
+                className="uploaded-payslip-card__delete-icon"
+                data-cy="uploaded-payslip-card-delete-icon"
                 src={IconDelet}
                 width="18"
                 height="18"
@@ -73,8 +73,8 @@ export function UploadedDocumentCard({
         {
           errorMessage && (
             <span
-              className="uploaded-document-card__error"
-              data-cy="uploaded-document-card-error"
+              className="uploaded-payslip-card__error"
+              data-cy="uploaded-payslip-card-error"
             >
               {errorMessage}
             </span>
