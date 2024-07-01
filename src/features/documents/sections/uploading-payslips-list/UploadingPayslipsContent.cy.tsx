@@ -296,6 +296,27 @@ describe('UploadingPayslipsContent', () => {
       .getByData('uploaded-payslip-card-name')
       .should('have.text', '');
   });
+
+  it(`
+  GIVEN two payslips
+  WHEN employee's last name in lowercase and uppercase into file text
+  THEN no error
+  `, () => {
+    mountComponent();
+
+    cy
+      .get('input[type=file]')
+      .selectFile([
+        'cypress/fixtures/Payslip for Ivanov for November 2023, uppercase.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023, lowercase.pdf',
+      ], {
+        force: true,
+      });
+
+    cy
+      .getByData('uploaded-payslip-card-error')
+      .should('not.exist');
+  });
 });
 
 function mountComponent({
