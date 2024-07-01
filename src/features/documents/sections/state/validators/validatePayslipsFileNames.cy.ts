@@ -11,7 +11,7 @@ describe('validatePayslipsFileNames', () => {
         {
           id: 'abc1',
           file: {
-            name: 'Расчетный листок за ноябрь Иванов 2023.pdf',
+            name: 'Payslip for November Ivanov 2023.pdf',
           },
         },
       ],
@@ -30,13 +30,13 @@ describe('validatePayslipsFileNames', () => {
         {
           id: 'abc1',
           file: {
-            name: 'Расчетный листок за ноябрь Иванов 2023.pdf',
+            name: 'Payslip for November Ivanov 2023.pdf',
           },
         },
       ],
       employees: [
         {
-          lastName: 'Иванов',
+          lastName: 'Ivanov',
         },
       ],
     }).length).eq(0);
@@ -53,13 +53,13 @@ describe('validatePayslipsFileNames', () => {
         {
           id: 'abc1',
           file: {
-            name: 'Расчетный листок за ноябрь Иванов 2023.pdf',
+            name: 'Payslip for November Ivanov 2023.pdf',
           },
         },
       ],
       employees: [
         {
-          lastName: 'Петров',
+          lastName: 'Petrov',
         },
       ],
     })).to.deep.equal(['abc1']);
@@ -76,22 +76,22 @@ describe('validatePayslipsFileNames', () => {
         {
           id: 'abc1',
           file: {
-            name: 'Расчетный листок за ноябрь ПЕТРОВ 2023.pdf',
+            name: 'Payslip for November for PETROV 2023.pdf',
           },
         },
         {
           id: 'abc2',
           file: {
-            name: 'Расчетный листок за ноябрь иванов 2023.pdf',
+            name: 'Payslip for November for ivanov 2023.pdf',
           },
         },
       ],
       employees: [
         {
-          lastName: 'Иванов',
+          lastName: 'Ivanov',
         },
         {
-          lastName: 'Петров',
+          lastName: 'Petrov',
         },
       ],
     }).length).eq(0);

@@ -61,8 +61,8 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
       ], {
         force: true,
       });
@@ -90,7 +90,7 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
       ], {
         force: true,
       });
@@ -118,7 +118,7 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
       ], {
         force: true,
       });
@@ -170,7 +170,7 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
       ], {
         force: true,
       });
@@ -190,7 +190,7 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
       ], {
         force: true,
       });
@@ -215,9 +215,9 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-        'cypress/fixtures/Расчетный листок Ильиных за апрель 2023.pdf',
-        'cypress/fixtures/Расчетный листок Петров за март 2024.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
+        'cypress/fixtures/Payslip for Ilyins for April 2023.pdf',
+        'cypress/fixtures/Payslip for Petrov for March 2024.pdf',
       ], {
         force: true,
       });
@@ -239,7 +239,7 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за март 2024 внутри не он.pdf',
+        'cypress/fixtures/Payslip for Ivanov for March 2024, he is not inside.pdf',
       ], {
         force: true,
       });
@@ -259,7 +259,7 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Петров Расчетный NON_EXISTING_TEXT март 2024.pdf',
+        'cypress/fixtures/Petrov payslip NON_EXISTING_TEXT for March 2024.pdf',
       ], {
         force: true,
       });
@@ -279,7 +279,7 @@ describe('UploadingPayslipsContent', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Ильиных за апрель 2023.pdf',
+        'cypress/fixtures/Payslip for Ilyins for April 2023.pdf',
       ], {
         force: true,
       });
@@ -301,13 +301,13 @@ function mountComponent({
   payslipsState.initialize({
     employees: [
       {
-        lastName: 'Иванов',
+        lastName: 'Ivanov',
       },
       {
-        lastName: 'Петров',
+        lastName: 'Petrov',
       },
       {
-        lastName: 'Сидоров',
+        lastName: 'Sidorov',
       },
     ],
   });

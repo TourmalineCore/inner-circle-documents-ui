@@ -18,7 +18,7 @@ describe('UploadingPayslipsContainer', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
       ], {
         force: true,
       });
@@ -49,7 +49,7 @@ describe('UploadingPayslipsContainer', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
       ], {
         force: true,
       });
@@ -85,8 +85,8 @@ describe('UploadingPayslipsContainer', () => {
     cy
       .get('input[type=file]')
       .selectFile([
-        'cypress/fixtures/Расчетный листок Иванов за ноябрь 2023.pdf',
-        'cypress/fixtures/Петров Расчетный NON_EXISTING_TEXT март 2024.pdf',
+        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
+        'cypress/fixtures/Petrov payslip NON_EXISTING_TEXT for March 2024.pdf',
       ], {
         force: true,
       });

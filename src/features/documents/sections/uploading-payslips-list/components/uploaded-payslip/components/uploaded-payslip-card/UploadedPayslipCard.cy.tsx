@@ -10,7 +10,7 @@ describe('UploadedPayslipCard', () => {
   `, () => {
     mountComponent({
       fileId: 'abc1',
-      name: 'Расчетный листок Иванов за ноябрь 2023',
+      name: 'Payslip for Ivanov for November 2023',
       errorMessage: '',
     });
 
@@ -40,7 +40,7 @@ describe('UploadedPayslipCard', () => {
 
     cy
       .getByData('uploaded-payslip-card-name')
-      .should('have.text', 'Иванов');
+      .should('have.text', 'Ivanov');
 
     cy
       .getByData('uploaded-payslip-card-error')
@@ -54,13 +54,13 @@ describe('UploadedPayslipCard', () => {
   `, () => {
     mountComponent({
       fileId: 'abc1',
-      name: 'Расчетный листок Иванов за ноябрь 2023',
+      name: 'Payslip for Ivanov for November 2023',
       errorMessage: 'This file doesn\'t contain the same employee last name as in its file name',
     });
 
     cy
       .getByData('uploaded-payslip-card-name')
-      .should('have.text', 'Иванов');
+      .should('have.text', 'Ivanov');
 
     cy
       .getByData('uploaded-payslip-card-error')
@@ -74,7 +74,7 @@ describe('UploadedPayslipCard', () => {
   `, () => {
     mountComponent({
       fileId: 'abc1',
-      name: 'Расчетный листок Иванов за ноябрь 2023',
+      name: 'Payslip for Ivanov for November 2023',
       errorMessage: '',
     });
 
@@ -82,7 +82,7 @@ describe('UploadedPayslipCard', () => {
       .get('.info-tip')
       .trigger('mouseover');
 
-    cy.contains('Расчетный листок Иванов за ноябрь 2023');
+    cy.contains('Payslip for Ivanov for November 2023');
   });
 
   it(`
@@ -92,13 +92,13 @@ describe('UploadedPayslipCard', () => {
     `, () => {
     mountComponent({
       fileId: 'abc1',
-      name: 'Иванов Расчетный листок за ноябрь 2023',
+      name: 'Ivanov Payslip for November 2023',
       errorMessage: '',
     });
 
     cy
       .getByData('uploaded-payslip-card-name')
-      .should('have.text', 'Иванов');
+      .should('have.text', 'Ivanov');
   });
 });
 
@@ -106,7 +106,7 @@ function mountComponent({
   fileId,
   name,
   errorMessage,
-  lastName = 'Иванов',
+  lastName = 'Ivanov',
 }: {
   fileId: string;
   name: string;
