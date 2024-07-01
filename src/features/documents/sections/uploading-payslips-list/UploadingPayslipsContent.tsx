@@ -18,7 +18,6 @@ export const UploadingPayslipsContent = observer(({
   const payslipsState = useContext(PayslipsStateContext);
 
   const uploadedPayslipsIsEmpty = payslipsState.allUploadedPayslips.length === 0;
-  const notValidDocumentsIsEmpty = payslipsState.allNotValidPayslips.length === 0;
 
   return (
     <>
@@ -33,12 +32,7 @@ export const UploadingPayslipsContent = observer(({
           <Button
             className="uploading-payslips-content__button"
             data-cy="uploading-payslips-content-button"
-            disabled={
-              !notValidDocumentsIsEmpty
-              || payslipsState.isSent
-                ? true
-                : uploadedPayslipsIsEmpty
-            }
+            disabled={payslipsState.isSendButtonDisabled}
             onClick={() => onSubmit()}
           >
             Send

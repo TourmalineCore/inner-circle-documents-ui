@@ -16,8 +16,6 @@ export class PayslipsState {
 
   private _isSent: boolean = false;
 
-  private _isSendButtonDisabled: boolean = true;
-
   constructor() {
     makeAutoObservable(this);
   }
@@ -59,7 +57,13 @@ export class PayslipsState {
   }
 
   get isSendButtonDisabled() {
-    return this._isSendButtonDisabled;
+    const uploadedPayslipsIsEmpty = this.allUploadedPayslips.length === 0;
+    const notValidDocumentsIsEmpty = this.allNotValidPayslips.length === 0;
+
+    return !notValidDocumentsIsEmpty
+    || this.isSent
+      ? true
+      : uploadedPayslipsIsEmpty;
   }
 
   addUploadedPayslips(files: File[]) {
