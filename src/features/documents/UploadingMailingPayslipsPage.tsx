@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { UploadingMailingPayslipsContainer } from './sections/list/UploadingMailingPayslipsContainer';
+import { UploadingMailingPayslipsContainer } from './sections/uploading-mailing-payslips/UploadingMailingPayslipsContainer';
 import { DocumentsState } from './sections/state/DocumentsState';
 import { DocumentsStateContext } from './sections/state/DocumentsStateContext';
 
