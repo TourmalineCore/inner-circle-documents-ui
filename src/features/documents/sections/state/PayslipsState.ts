@@ -16,6 +16,8 @@ export class PayslipsState {
 
   private _isSent: boolean = false;
 
+  private _isSendButtonDisabled: boolean = true;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -54,6 +56,10 @@ export class PayslipsState {
       payslips: this._uploadedPayslips,
       employees: this._employees,
     });
+  }
+
+  get isSendButtonDisabled() {
+    return this._isSendButtonDisabled;
   }
 
   addUploadedPayslips(files: File[]) {
