@@ -78,6 +78,10 @@ describe('UploadingPayslipsContent', () => {
     cy
       .getByData('uploaded-payslip-card')
       .should('have.length', 2);
+
+    cy
+      .getByData('uploaded-payslip-card-error')
+      .should('not.exist');
   });
 
   it(`
@@ -106,6 +110,10 @@ describe('UploadingPayslipsContent', () => {
     cy
       .getByData('uploaded-payslip-card')
       .should('have.length', 1);
+
+    cy
+      .getByData('uploaded-payslip-card-error')
+      .should('not.exist');
   });
 
   it(`
