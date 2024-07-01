@@ -3,15 +3,17 @@ import { useContext } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
 import { ToastContainer } from 'react-toastify';
 import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
-import { UploadedDocument } from './components/UploadedDocuments/UploadedDocuments';
+import { UploadedDocument } from './components/UploadedDocuments/UploadedDocument';
 import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
 import Preloader from '../../../../components/Preloader/Preloader';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const UploadingMailingPayslipsContent = observer(({
   onSubmit = () => {},
+  onUploadDocuments,
 }: {
-  onSubmit?: () => void
+  onSubmit?: () => void,
+  onUploadDocuments: () => unknown,
 }) => {
   const documentsState = useContext(DocumentsStateContext);
 
@@ -36,7 +38,7 @@ export const UploadingMailingPayslipsContent = observer(({
           >
             Send
           </Button>
-          <UploaderDocuments />
+          <UploaderDocuments onUploadDocuments={onUploadDocuments} />
         </div>
         {!uploadedDocumentsIsEmpty
        && (
@@ -44,19 +46,25 @@ export const UploadingMailingPayslipsContent = observer(({
            className="uploading-payslips-content__list"
            data-cy="uploading-payslips-content-list"
          >
-           {documentsState.allUploadedDocuments.map(({ id, file }) => (
-             <li
-               key={id}
-               className="uploading-payslips-content__item"
-               data-cy="uploading-payslips-content-item"
-             >
-               <UploadedDocument
-                 fileId={id}
-                 file={file}
-                 addNotValidDocuments={() => documentsState.addNotValidDocumentsId(id)}
-               />
-             </li>
-           ))}
+           {
+             documentsState
+               .allUploadedDocuments
+               .map(({
+                 id,
+                 file,
+               }) => (
+                 <li
+                   key={id}
+                   className="uploading-payslips-content__item"
+                   data-cy="uploading-payslips-content-item"
+                 >
+                   <UploadedDocument
+                     fileId={id}
+                     file={file}
+                   />
+                 </li>
+               ))
+           }
          </ul>
        )}
       </section>

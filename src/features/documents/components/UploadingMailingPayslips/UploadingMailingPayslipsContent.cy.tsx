@@ -290,7 +290,11 @@ describe('UploadingMailingPayslipsContent', () => {
   });
 });
 
-function mountComponent() {
+function mountComponent({
+  onUploadDocuments = () => {},
+}: {
+  onUploadDocuments?: () => unknown,
+} = {}) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const documentsState = new DocumentsState();
 
@@ -310,7 +314,7 @@ function mountComponent() {
 
   cy.mount(
     <DocumentsStateContext.Provider value={documentsState}>
-      <UploadingMailingPayslipsContent />
+      <UploadingMailingPayslipsContent onUploadDocuments={(onUploadDocuments)} />
     </DocumentsStateContext.Provider>,
   );
 }

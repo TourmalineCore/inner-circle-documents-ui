@@ -1,7 +1,12 @@
 import { ChangeEvent, useContext } from 'react';
+import { observer } from 'mobx-react-lite';
 import { DocumentsStateContext } from '../DocumentsState/DocumentsStateContext';
 
-export function UploaderDocuments() {
+export const UploaderDocuments = observer(({
+  onUploadDocuments,
+}:{
+  onUploadDocuments: () => unknown,
+}) => {
   const documentsState = useContext(DocumentsStateContext);
   return (
     <label
@@ -23,11 +28,12 @@ export function UploaderDocuments() {
         Upload payslips
       </span>
     </label>
-
   );
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const fileList: File[] = Object.values(event.target.files!);
     documentsState.addUploadedDocuments(fileList);
+
+    onUploadDocuments();
   }
-}
+});

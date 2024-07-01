@@ -28,6 +28,8 @@ describe('UploadedDocumentCard', () => {
 
 function mountComponent() {
   cy.mount(
-    <UploaderDocuments />,
+    <UploaderDocuments
+      onUploadDocuments={() => {}}
+    />,
   );
 }
