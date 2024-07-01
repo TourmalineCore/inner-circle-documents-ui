@@ -4,5 +4,5 @@ export function isNotContainLastNameInFileText(text: TextContent, lastName: stri
   return text
     .items
     // @ts-ignore
-    .every((item) => !item.str.includes(lastName));
+    .every((item) => !item.str.toLowerCase().includes(lastName.toLowerCase()));
 }
