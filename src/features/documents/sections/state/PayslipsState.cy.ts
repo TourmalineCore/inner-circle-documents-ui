@@ -149,4 +149,22 @@ describe('PayslipsState', () => {
 
     expect(payslipsState.isSendButtonDisabled).to.eq(true);
   });
+
+  it(`
+  GIVEN one uploaded payslip
+  WHEN upload this payslip
+  AND it is invalid
+  THEN return disable send button
+  `, () => {
+    const payslipsState = new PayslipsState();
+
+    const testFile = {
+      id: 'abc1',
+      file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
+    };
+
+    payslipsState.addUploadedPayslips([testFile.file]);
+
+    expect(payslipsState.isSendButtonDisabled).to.eq(false);
+  });
 });
