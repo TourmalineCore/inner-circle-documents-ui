@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
 import { ToastContainer } from 'react-toastify';
 import { DocumentsStateContext } from '../state/DocumentsStateContext';
-import { UploadedDocument } from './components/UploadedDocuments/UploadedDocument';
-import { UploaderDocuments } from '../UploaderDocuments/UploaderDocuments';
+import { UploadedDocument } from './components/uploaded-document/UploadedDocument';
+import { UploaderDocuments } from '../uploader/UploaderDocuments';
 import Preloader from '../../../../components/Preloader/Preloader';
 import 'react-toastify/dist/ReactToastify.css';
 
