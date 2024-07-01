@@ -6,6 +6,7 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { TextContent } from 'pdfjs-dist/types/src/display/api';
 import { UploadedDocumentCard } from './components/uploaded-document-card/UploadedDocumentCard';
 import { DocumentsStateContext } from '../../../state/DocumentsStateContext';
+import { isNotContainLastNameInFileText } from './isNotContainLastNameInFileText';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -71,12 +72,7 @@ export function UploadedDocument({
   );
 
   function validationTextDocument(text: TextContent) {
-    const doesNotContainLastNameInFileText = text
-      .items
-      // @ts-ignore
-      .every((item) => !item.str.includes(lastName));
-
-    if (doesNotContainLastNameInFileText) {
+    if (isNotContainLastNameInFileText(text, lastName)) {
       documentsState.addNotValidDocumentsId(fileId);
       setErrorMessage(NO_EMPLOYEE_LAST_NAME_IN_FILE_ERROR_MESSAGE);
     }
