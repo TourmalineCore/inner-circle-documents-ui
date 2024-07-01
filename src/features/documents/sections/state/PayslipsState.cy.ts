@@ -94,10 +94,10 @@ describe('PayslipsState', () => {
   });
 
   it(`
-    GIVEN three uploaded payslips
-    WHEN upload payslips
-    THEN return array with this uploaded payslips in asc order
-    `, () => {
+  GIVEN three uploaded payslips
+  WHEN upload payslips
+  THEN return array with this uploaded payslips in asc order
+  `, () => {
     const payslipsState = new PayslipsState();
 
     const firstTestFile = new File([''], 'aFile.pdf', { type: 'application/pdf' });
@@ -112,11 +112,11 @@ describe('PayslipsState', () => {
   });
 
   it(`
-    GIVEN two uploaded payslips
-    WHEN upload this two payslips
-    AND after upload another one payslip
-    THEN return array with this uploaded payslips in asc order
-    `, () => {
+  GIVEN two uploaded payslips
+  WHEN upload this two payslips
+  AND after upload another one payslip
+  THEN return array with this uploaded payslips in asc order
+  `, () => {
     const payslipsState = new PayslipsState();
 
     const firstTestFile = new File([''], 'aFile.pdf', { type: 'application/pdf' });

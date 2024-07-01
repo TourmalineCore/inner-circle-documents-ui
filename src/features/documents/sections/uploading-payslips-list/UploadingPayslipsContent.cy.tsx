@@ -238,10 +238,10 @@ describe('UploadingPayslipsContent', () => {
   // testing UploadedPayslip.tsx because there is a file transfer problem
   // we cannot easily read a pdf file and create File class instance for UploadedPayslip component
   it(`
-    GIVEN one payslip for one existing employee
-    WHEN payslip doesn't contain employee last name
-    THEN render error about it
-    `, () => {
+  GIVEN one payslip for one existing employee
+  WHEN payslip doesn't contain employee last name
+  THEN render error about it
+  `, () => {
     mountComponent();
 
     cy
@@ -258,10 +258,10 @@ describe('UploadingPayslipsContent', () => {
   });
 
   it(`
-    GIVEN one payslip for one existing employee
-    WHEN payslip starts with employee last name
-    THEN no error
-    `, () => {
+  GIVEN one payslip for one existing employee
+  WHEN payslip starts with employee last name
+  THEN no error
+  `, () => {
     mountComponent();
 
     cy
@@ -278,10 +278,10 @@ describe('UploadingPayslipsContent', () => {
   });
 
   it(`
-    GIVEN one payslip
-    WHEN employee doesn't exist
-    THEN nothing is displayed in the card name
-    `, () => {
+  GIVEN one payslip
+  WHEN employee doesn't exist
+  THEN nothing is displayed in the card name
+  `, () => {
     mountComponent();
 
     cy

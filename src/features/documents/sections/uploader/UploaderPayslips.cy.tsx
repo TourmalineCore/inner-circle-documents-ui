@@ -2,10 +2,10 @@ import { UploaderPayslips } from './UploaderPayslips';
 
 describe('UploaderPayslips', () => {
   it(`
-    GIVEN uploader payslips
-    WHEN visit uploading payslips page
-    THEN render uploader payslip
-    `, () => {
+  GIVEN uploader payslips
+  WHEN visit uploading payslips page
+  THEN render uploader payslip
+  `, () => {
     mountComponent();
 
     cy
@@ -14,10 +14,10 @@ describe('UploaderPayslips', () => {
   });
 
   it(`
-    GIVEN uploader payslips
-    WHEN visit uploading payslips page
-    THEN have correct text
-    `, () => {
+  GIVEN uploader payslips
+  WHEN visit uploading payslips page
+  THEN have correct text
+  `, () => {
     mountComponent();
 
     cy

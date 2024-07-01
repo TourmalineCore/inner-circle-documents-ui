@@ -86,10 +86,10 @@ describe('UploadedPayslipCard', () => {
   });
 
   it(`
-    GIVEN uploaded payslip card
-    WHEN upload payslip that starts with employee last name
-    THEN render correct last name
-    `, () => {
+  GIVEN uploaded payslip card
+  WHEN upload payslip that starts with employee last name
+  THEN render correct last name
+  `, () => {
     mountComponent({
       fileId: 'abc1',
       name: 'Ivanov Payslip for November 2023',
