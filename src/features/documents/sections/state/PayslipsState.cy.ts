@@ -153,8 +153,8 @@ describe('PayslipsState', () => {
   it(`
   GIVEN one uploaded payslip
   WHEN upload this payslip
-  AND it is invalid
-  THEN return disable send button
+  AND it is not invalid
+  THEN return not disable send button
   `, () => {
     const payslipsState = new PayslipsState();
 
