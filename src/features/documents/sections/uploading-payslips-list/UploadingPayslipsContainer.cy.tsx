@@ -12,7 +12,11 @@ describe('UploadingPayslipsContainer', () => {
     mountComponent();
 
     cy
-      .intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, {})
+      .intercept(
+        'POST',
+        `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`,
+        {},
+      )
       .as('sendPayslips');
 
     cy
@@ -43,7 +47,13 @@ describe('UploadingPayslipsContainer', () => {
     mountComponent();
 
     cy
-      .intercept('POST', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, { forceNetworkError: true })
+      .intercept(
+        'POST',
+        `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`,
+        {
+          forceNetworkError: true,
+        },
+      )
       .as('sendPayslips');
 
     cy
@@ -79,7 +89,11 @@ describe('UploadingPayslipsContainer', () => {
     mountComponent();
 
     cy
-      .intercept('GET', `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}getEmployees`, {})
+      .intercept(
+        'GET',
+        `${API_ROOT}${LINK_TO_DOCUMENTS_SERVICE}getEmployees`,
+        {},
+      )
       .as('get-employees');
 
     cy

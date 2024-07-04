@@ -47,11 +47,11 @@ describe('matchPayslipsWithEmployees', () => {
   });
 
   it(`
-    GIVEN two employees
-    AND two files with employee's last name in lowercase and uppercase in filename
-    WHEN last name matched
-    THEN map contains two id-employee relation
-    `, () => {
+  GIVEN two employees
+  AND two files with employee's last name in lowercase and uppercase in filename
+  WHEN last name matched
+  THEN map contains two id-employee relation
+  `, () => {
     expect(matchPayslipsWithEmployees({
       payslips: [
         {

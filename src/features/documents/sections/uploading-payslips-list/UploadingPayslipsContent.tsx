@@ -68,7 +68,9 @@ export const UploadingPayslipsContent = observer(({
        )}
       </section>
       <ToastContainer position="top-center" />
-      {payslipsState.isSent && <Preloader />}
+      {
+        payslipsState.isSent && <Preloader />
+      }
     </>
   );
 });

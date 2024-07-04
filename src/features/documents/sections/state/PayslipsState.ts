@@ -31,7 +31,10 @@ export class PayslipsState {
   }
 
   get allUploadedPayslips() {
-    return [...this._uploadedPayslips].sort((a, b) => (a.file.name < b.file.name ? -1 : 1));
+    return [...this._uploadedPayslips].sort((a, b) => (
+      a.file.name < b.file.name
+        ? -1
+        : 1));
   }
 
   get allNotValidPayslips() {

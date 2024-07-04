@@ -1,5 +1,12 @@
 import { validatePayslipsFileNames } from './validatePayslipsFileNames';
 
+const PAYSLIP = {
+  id: 'abc1',
+  file: {
+    name: 'Payslip for November Ivanov 2023.pdf',
+  },
+};
+
 describe('validatePayslipsFileNames', () => {
   it(`
   GIVEN single file 
@@ -8,12 +15,7 @@ describe('validatePayslipsFileNames', () => {
   `, () => {
     expect(validatePayslipsFileNames({
       payslips: [
-        {
-          id: 'abc1',
-          file: {
-            name: 'Payslip for November Ivanov 2023.pdf',
-          },
-        },
+        PAYSLIP,
       ],
       employees: [],
     })).to.deep.equal(['abc1']);
@@ -27,12 +29,7 @@ describe('validatePayslipsFileNames', () => {
   `, () => {
     expect(validatePayslipsFileNames({
       payslips: [
-        {
-          id: 'abc1',
-          file: {
-            name: 'Payslip for November Ivanov 2023.pdf',
-          },
-        },
+        PAYSLIP,
       ],
       employees: [
         {
@@ -50,12 +47,7 @@ describe('validatePayslipsFileNames', () => {
   `, () => {
     expect(validatePayslipsFileNames({
       payslips: [
-        {
-          id: 'abc1',
-          file: {
-            name: 'Payslip for November Ivanov 2023.pdf',
-          },
-        },
+        PAYSLIP,
       ],
       employees: [
         {

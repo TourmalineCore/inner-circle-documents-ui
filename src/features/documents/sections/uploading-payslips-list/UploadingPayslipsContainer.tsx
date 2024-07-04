@@ -23,11 +23,16 @@ export const UploadingPayslipsContainer = observer(() => {
       LastName: uploadedPayslip.file.name.split(' ')[2],
     }));
 
-    const formData = objectToFormData({ payslips: data });
+    const formData = objectToFormData({
+      payslips: data,
+    });
 
     try {
       payslipsState.setIsSent(true);
-      await api.post(`${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`, formData);
+      await api.post(
+        `${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`,
+        formData,
+      );
       payslipsState.clearUploadedPayslips();
     } catch (e: any) {
       toast.error(e.message);

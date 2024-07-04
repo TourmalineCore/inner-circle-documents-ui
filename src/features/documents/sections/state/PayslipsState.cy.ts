@@ -1,16 +1,47 @@
 import { PayslipsState } from './PayslipsState';
 
+const FIRST_FILE = new File(
+  [''],
+  'afile.pdf',
+  {
+    type: 'application/pdf',
+  },
+);
+
+const SECOND_FILE = new File(
+  [''],
+  'bFile.pdf',
+  {
+    type: 'application/pdf',
+  },
+);
+
+const THIRD_FILE = new File(
+  [''],
+  'cFile.pdf',
+  {
+    type: 'application/pdf',
+  },
+);
+
+const TEST_FILE = {
+  id: 'abc1',
+  file: FIRST_FILE,
+};
+
 describe('PayslipsState', () => {
+  let payslipsState: PayslipsState;
+
+  beforeEach(() => {
+    payslipsState = new PayslipsState();
+  });
+
   it(`
   GIVEN one uploaded payslip
   WHEN upload payslip
   THEN return array with one uploaded payslip
   `, () => {
-    const payslipsState = new PayslipsState();
-
-    const testFile = new File([''], 'filename.pdf', { type: 'application/pdf' });
-
-    payslipsState.addUploadedPayslips([testFile]);
+    payslipsState.addUploadedPayslips([FIRST_FILE]);
 
     expect(payslipsState.allUploadedPayslips).to.has.lengthOf(1);
   });
@@ -20,12 +51,7 @@ describe('PayslipsState', () => {
   WHEN upload payslips
   THEN return array with two uploaded payslips
   `, () => {
-    const payslipsState = new PayslipsState();
-
-    const firstTestFile = new File([''], 'FirstFile.pdf', { type: 'application/pdf' });
-    const secondTestFile = new File([''], 'SecondFile.pdf', { type: 'application/pdf' });
-
-    payslipsState.addUploadedPayslips([firstTestFile, secondTestFile]);
+    payslipsState.addUploadedPayslips([FIRST_FILE, SECOND_FILE]);
 
     expect(payslipsState.allUploadedPayslips).to.has.lengthOf(2);
   });
@@ -35,9 +61,7 @@ describe('PayslipsState', () => {
   WHEN delete uploaded payslip
   THEN uploaded and not valid payslip is empty
   `, () => {
-    const payslipsState = new PayslipsState();
-
-    payslipsState.addUploadedPayslips([new File([''], 'testFile.pdf', { type: 'application/pdf' })]);
+    payslipsState.addUploadedPayslips([FIRST_FILE]);
 
     expect(payslipsState.allUploadedPayslips).to.has.lengthOf(1);
 
@@ -53,11 +77,7 @@ describe('PayslipsState', () => {
   WHEN uploaded not valid payslip
   THEN return array with one not valid payslip
   `, () => {
-    const payslipsState = new PayslipsState();
-
-    const testId = 'abc1';
-
-    payslipsState.addNotValidPayslipsId(testId);
+    payslipsState.addNotValidPayslipsId(TEST_FILE.id);
 
     expect(payslipsState.allNotValidPayslips).to.has.lengthOf(1);
   });
@@ -67,14 +87,7 @@ describe('PayslipsState', () => {
   WHEN clear uploaded payslips
   THEN return empty uploaded payslips array
   `, () => {
-    const payslipsState = new PayslipsState();
-
-    const testFile = {
-      id: 'abc1',
-      file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
-    };
-
-    payslipsState.addUploadedPayslips([testFile.file]);
+    payslipsState.addUploadedPayslips([TEST_FILE.file]);
 
     payslipsState.clearUploadedPayslips();
 
@@ -86,8 +99,6 @@ describe('PayslipsState', () => {
   WHEN use method 'setIsSent'
   THEN value 'isSent' changed
   `, () => {
-    const payslipsState = new PayslipsState();
-
     payslipsState.setIsSent(true);
 
     expect(payslipsState.isSent).to.eq(true);
@@ -98,17 +109,11 @@ describe('PayslipsState', () => {
   WHEN upload payslips
   THEN return array with this uploaded payslips in asc order
   `, () => {
-    const payslipsState = new PayslipsState();
+    payslipsState.addUploadedPayslips([THIRD_FILE, FIRST_FILE, SECOND_FILE]);
 
-    const firstTestFile = new File([''], 'aFile.pdf', { type: 'application/pdf' });
-    const secondTestFile = new File([''], 'bFile.pdf', { type: 'application/pdf' });
-    const thirdTestFile = new File([''], 'cFile.pdf', { type: 'application/pdf' });
-
-    payslipsState.addUploadedPayslips([thirdTestFile, firstTestFile, secondTestFile]);
-
-    expect(payslipsState.allUploadedPayslips[0].file.name).to.eq(firstTestFile.name);
-    expect(payslipsState.allUploadedPayslips[1].file.name).to.eq(secondTestFile.name);
-    expect(payslipsState.allUploadedPayslips[2].file.name).to.eq(thirdTestFile.name);
+    expect(payslipsState.allUploadedPayslips[0].file.name).to.eq(FIRST_FILE.name);
+    expect(payslipsState.allUploadedPayslips[1].file.name).to.eq(SECOND_FILE.name);
+    expect(payslipsState.allUploadedPayslips[2].file.name).to.eq(THIRD_FILE.name);
   });
 
   it(`
@@ -117,19 +122,12 @@ describe('PayslipsState', () => {
   AND after upload another one payslip
   THEN return array with this uploaded payslips in asc order
   `, () => {
-    const payslipsState = new PayslipsState();
+    payslipsState.addUploadedPayslips([THIRD_FILE, SECOND_FILE]);
+    payslipsState.addUploadedPayslips([FIRST_FILE]);
 
-    const firstTestFile = new File([''], 'aFile.pdf', { type: 'application/pdf' });
-    const secondTestFile = new File([''], 'bFile.pdf', { type: 'application/pdf' });
-    const thirdTestFile = new File([''], 'cFile.pdf', { type: 'application/pdf' });
-
-    payslipsState.addUploadedPayslips([thirdTestFile, secondTestFile]);
-
-    payslipsState.addUploadedPayslips([firstTestFile]);
-
-    expect(payslipsState.allUploadedPayslips[0].file.name).to.eq(firstTestFile.name);
-    expect(payslipsState.allUploadedPayslips[1].file.name).to.eq(secondTestFile.name);
-    expect(payslipsState.allUploadedPayslips[2].file.name).to.eq(thirdTestFile.name);
+    expect(payslipsState.allUploadedPayslips[0].file.name).to.eq(FIRST_FILE.name);
+    expect(payslipsState.allUploadedPayslips[1].file.name).to.eq(SECOND_FILE.name);
+    expect(payslipsState.allUploadedPayslips[2].file.name).to.eq(THIRD_FILE.name);
   });
 
   it(`
@@ -138,14 +136,7 @@ describe('PayslipsState', () => {
   AND it is invalid
   THEN return disable send button
   `, () => {
-    const payslipsState = new PayslipsState();
-
-    const testFile = {
-      id: 'abc1',
-      file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
-    };
-
-    payslipsState.addNotValidPayslipsId(testFile.id);
+    payslipsState.addNotValidPayslipsId(TEST_FILE.id);
 
     expect(payslipsState.isSendButtonDisabled).to.eq(true);
   });
@@ -156,14 +147,7 @@ describe('PayslipsState', () => {
   AND it is not invalid
   THEN return not disable send button
   `, () => {
-    const payslipsState = new PayslipsState();
-
-    const testFile = {
-      id: 'abc1',
-      file: new File([''], 'testFile.pdf', { type: 'application/pdf' }),
-    };
-
-    payslipsState.addUploadedPayslips([testFile.file]);
+    payslipsState.addUploadedPayslips([TEST_FILE.file]);
 
     expect(payslipsState.isSendButtonDisabled).to.eq(false);
   });

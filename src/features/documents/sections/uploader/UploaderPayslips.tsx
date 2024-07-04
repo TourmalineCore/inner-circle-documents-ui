@@ -4,7 +4,7 @@ import { PayslipsStateContext } from '../state/PayslipsStateContext';
 
 export const UploaderPayslips = observer(({
   onUploadPayslips,
-}:{
+} : {
   onUploadPayslips: () => unknown,
 }) => {
   const payslipsState = useContext(PayslipsStateContext);
