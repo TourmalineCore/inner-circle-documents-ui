@@ -1,6 +1,7 @@
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { useContext } from 'react';
+import { observer } from 'mobx-react-lite';
 import IconDelet from '../../../../../../../../assets/icons/icon-delete.svg';
 import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext';
 import InfoTip from '../../../../../../../../components/InfoTip/InfoTip';
@@ -8,7 +9,7 @@ import IconQuestionMark from '../../../../../../../../assets/icons/question-mark
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export function UploadedPayslipCard({
+export const UploadedPayslipCard = observer(({
   fileId,
   name,
   errorMessage,
@@ -18,7 +19,7 @@ export function UploadedPayslipCard({
   name: string;
   errorMessage: string;
   lastName: string;
-}) {
+}) => {
   const payslipsState = useContext(PayslipsStateContext);
 
   return (
@@ -83,4 +84,4 @@ export function UploadedPayslipCard({
       </div>
     </div>
   );
-}
+});
