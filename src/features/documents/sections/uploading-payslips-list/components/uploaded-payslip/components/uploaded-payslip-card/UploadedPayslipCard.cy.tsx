@@ -8,11 +8,7 @@ describe('UploadedPayslipCard', () => {
   WHEN upload correct payslip
   THEN render uploaded payslip card without error
   `, () => {
-    mountComponent({
-      fileId: 'abc1',
-      name: 'Payslip for Ivanov for November 2023',
-      errorMessage: '',
-    });
+    mountComponent();
 
     cy
       .getByData('uploaded-payslip-card')
@@ -53,8 +49,6 @@ describe('UploadedPayslipCard', () => {
   THEN render uploaded payslip card with error
   `, () => {
     mountComponent({
-      fileId: 'abc1',
-      name: 'Payslip for Ivanov for November 2023',
       errorMessage: 'This file doesn\'t contain the same employee last name as in its file name',
     });
 
@@ -72,11 +66,7 @@ describe('UploadedPayslipCard', () => {
   WHEN hover the mouse over the icon
   THEN render info tip text
   `, () => {
-    mountComponent({
-      fileId: 'abc1',
-      name: 'Payslip for Ivanov for November 2023',
-      errorMessage: '',
-    });
+    mountComponent();
 
     cy
       .get('.info-tip')
@@ -91,9 +81,7 @@ describe('UploadedPayslipCard', () => {
   THEN render correct last name
   `, () => {
     mountComponent({
-      fileId: 'abc1',
       name: 'Ivanov Payslip for November 2023',
-      errorMessage: '',
     });
 
     cy
@@ -108,9 +96,7 @@ describe('UploadedPayslipCard', () => {
   THEN button shound be disabled
   `, () => {
     mountComponent({
-      fileId: 'abc1',
       name: 'Ivanov Payslip for November 2023',
-      errorMessage: '',
     });
 
     cy.getByData('uploaded-payslip-card-delete')
@@ -128,16 +114,16 @@ describe('UploadedPayslipCard', () => {
 });
 
 function mountComponent({
-  fileId,
-  name,
-  errorMessage,
+  fileId = 'abc1',
+  name = 'Payslip for Ivanov for November 2023',
+  errorMessage = '',
   lastName = 'Ivanov',
 }: {
-  fileId: string;
-  name: string;
-  errorMessage: string;
+  fileId?: string;
+  name?: string;
+  errorMessage?: string;
   lastName?: string;
-}) {
+} = {}) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const payslipsState = new PayslipsState();
 
