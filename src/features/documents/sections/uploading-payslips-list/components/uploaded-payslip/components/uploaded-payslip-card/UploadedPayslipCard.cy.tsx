@@ -100,6 +100,31 @@ describe('UploadedPayslipCard', () => {
       .getByData('uploaded-payslip-card-name')
       .should('have.text', 'Ivanov');
   });
+
+  it(`
+  GIVEN uploaded payslip card
+  WHEN button not disabled
+  AND change IsSent flag
+  THEN button shound be disabled
+  `, () => {
+    mountComponent({
+      fileId: 'abc1',
+      name: 'Ivanov Payslip for November 2023',
+      errorMessage: '',
+    });
+
+    cy.getByData('uploaded-payslip-card-delete')
+      .should('not.be.disabled');
+
+    cy
+      .get<PayslipsState>('@payslipsState')
+      .then((payslipsState) => {
+        payslipsState.setIsSent(true);
+      });
+
+    cy.getByData('uploaded-payslip-card-delete')
+      .should('be.disabled');
+  });
 });
 
 function mountComponent({
@@ -115,6 +140,10 @@ function mountComponent({
 }) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const payslipsState = new PayslipsState();
+
+  cy
+    .wrap(payslipsState)
+    .as('payslipsState');
 
   cy.mount(
     <PayslipsStateContext.Provider value={payslipsState}>
