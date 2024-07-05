@@ -18,10 +18,11 @@ export const UploadingPayslipsContainer = observer(() => {
   );
 
   async function sendPayslipsAsync() {
-    const data = payslipsState.allUploadedPayslips.map((uploadedPayslip) => ({
-      File: uploadedPayslip.file,
-      LastName: uploadedPayslip.file.name.split(' ')[2],
-    }));
+    const data = payslipsState.allUploadedPayslips
+      .map((uploadedPayslip) => ({
+        File: uploadedPayslip.file,
+        LastName: payslipsState.payslipIdsEmployeeMap[uploadedPayslip.id].lastName,
+      }));
 
     const formData = objectToFormData({
       payslips: data,
