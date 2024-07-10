@@ -4,6 +4,7 @@ import {
 } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { TextContent } from 'pdfjs-dist/types/src/display/api';
+import { observer } from 'mobx-react-lite';
 import { PayslipsStateContext } from '../../../state/PayslipsStateContext';
 import { isNotContainLastNameInFileText } from './isNotContainLastNameInFileText';
 import { UploadedPayslipCard } from './components/uploaded-payslip-card/UploadedPayslipCard';
@@ -13,13 +14,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 const NON_EXISTING_EMPLOYEE_IN_FILE_NAME_ERROR_MESSAGE = 'This file name doesn\'t contain an existing employee last name';
 const NO_EMPLOYEE_LAST_NAME_IN_FILE_ERROR_MESSAGE = 'This file doesn\'t contain the same employee last name as in its file name';
 
-export function UploadedPayslip({
+export const UploadedPayslip = observer(({
   fileId,
   file,
 }: {
   fileId: string
   file: File;
-}) {
+}) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [validationFinish, setValidationFinish] = useState(false);
 
@@ -79,4 +80,4 @@ export function UploadedPayslip({
 
     setValidationFinish(true);
   }
-}
+});
