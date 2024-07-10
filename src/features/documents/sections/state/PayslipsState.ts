@@ -22,7 +22,7 @@ export class PayslipsState {
 
   initialize({
     employees,
-  }: {
+  } : {
     employees: {
       lastName: string
     }[],
