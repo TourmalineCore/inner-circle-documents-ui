@@ -44,7 +44,9 @@ export const UploadingPayslipsContainer = observer(() => {
 
   async function getEmployeesForValidationAsync() {
     const {
-      data: employees,
+      data: {
+        employees,
+      },
     } = await api.get(`${LINK_TO_DOCUMENTS_SERVICE}getEmployees`);
 
     payslipsState.initialize({
