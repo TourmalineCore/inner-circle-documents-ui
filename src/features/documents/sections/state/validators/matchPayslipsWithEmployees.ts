@@ -25,12 +25,12 @@ export function matchPayslipsWithEmployees({
   payslips.forEach((payslip) => {
     const matchingEmployee = employees.find((employee) => payslip.file.name.toLowerCase().includes(employee.lastName.toLowerCase()));
 
-    //const matchingEmployee = employees.find(
-    //    (employee) => payslip.file.name.toLowerCase()
-    //        .normalize('NFD').replace(/\p{Diacritic}/gu, '')
-    //        .includes(employee.lastName.toLowerCase()
-    //            .normalize('NFD').replace(/\p{Diacritic}/gu, '')),
-    //);
+    //  const matchingEmployee = employees.find(
+    //      (employee) => payslip.file.name.toLowerCase()
+    //          .normalize('NFD').replace(/\p{Diacritic}/gu, '')
+    //          .includes(employee.lastName.toLowerCase()
+    //              .normalize('NFD').replace(/\p{Diacritic}/gu, '')),
+    //  );
 
     if (matchingEmployee) {
       result[payslip.id] = {
