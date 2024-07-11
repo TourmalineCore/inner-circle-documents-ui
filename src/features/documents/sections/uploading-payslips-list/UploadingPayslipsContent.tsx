@@ -69,7 +69,14 @@ export const UploadingPayslipsContent = observer(({
       </section>
       <ToastContainer position="top-center" />
       {
-        payslipsState.isSent && <Preloader />
+        payslipsState.isSent
+        && (
+          <div
+            data-cy="uploading-payslips-content-preloader"
+          >
+            <Preloader />
+          </div>
+        )
       }
     </>
   );
