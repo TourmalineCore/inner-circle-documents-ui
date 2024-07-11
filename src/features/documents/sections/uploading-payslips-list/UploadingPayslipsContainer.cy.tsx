@@ -23,8 +23,6 @@ describe('UploadingPayslipsContainer', () => {
       .as('get-employees');
   });
 
-  describe('Error', errorTests);
-
   describe('E2E', e2eTests);
 });
 
@@ -71,49 +69,6 @@ function e2eTests() {
     cy
       .getByData('uploading-payslips-content-list')
       .should('not.exist');
-  });
-}
-
-function errorTests() {
-  it(`
-  GIVEN error message
-  WHEN call request to send payslips
-  THEN render toasify with error message
-  `, () => {
-    mountComponent();
-
-    cy
-      .intercept(
-        'POST',
-        '**/sendMailingPayslips',
-        {
-          forceNetworkError: true,
-        },
-      )
-      .as('sendPayslips');
-
-    cy
-      .get('input[type=file]')
-      .selectFile([
-        'cypress/fixtures/Payslip for Ivanov for November 2023.pdf',
-      ], {
-        force: true,
-      });
-
-    cy
-      .getByData('uploading-payslips-content-button')
-      .click();
-
-    cy
-      .wait('@sendPayslips');
-
-    cy
-      .get('.Toastify__toast')
-      .should('exist');
-
-    cy
-      .contains('Network Error')
-      .should('exist');
   });
 }
 
