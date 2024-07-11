@@ -317,6 +317,34 @@ describe('UploadingPayslipsContent', () => {
       .getByData('uploaded-payslip-card-error')
       .should('not.exist');
   });
+
+  it(`
+  GIVEN preloader 
+  WHEN isSend flag is true 
+  THEN render preloader
+  `, () => {
+    mountComponent();
+
+    cy
+      .get<PayslipsState>('@payslipsState')
+      .then((payslipsState) => {
+        payslipsState.setIsSent(false);
+      });
+
+    cy
+      .getByData('uploading-payslips-content-preloader')
+      .should('not.exist');
+
+    cy
+      .get<PayslipsState>('@payslipsState')
+      .then((payslipsState) => {
+        payslipsState.setIsSent(true);
+      });
+
+    cy
+      .getByData('uploading-payslips-content-preloader')
+      .should('exist');
+  });
 });
 
 function mountComponent({
@@ -326,6 +354,10 @@ function mountComponent({
 } = {}) {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const payslipsState = new PayslipsState();
+
+  cy
+    .wrap(payslipsState)
+    .as('payslipsState');
 
   payslipsState.initialize({
     employees: [
