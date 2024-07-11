@@ -1,13 +1,13 @@
 import { ReactComponent as IconDocuments } from '../../assets/icons/icon-documents.svg';
 import { ReactComponent as IconDocumentsActive } from '../../assets/icons/icon-documents-active.svg';
-import { UploadingMailingPayslipsPage } from './UploadingMailingPayslipsPage';
+import { UploadingPayslipsPage } from './UploadingPayslipsPage';
 
 // TODO figure out how to make custom breadcrumbs for nested routers
 export const documentsRoutes = [
   {
     path: '/',
-    breadcrumb: 'Mailing Payslips',
-    Component: UploadingMailingPayslipsPage,
+    breadcrumb: 'Payslips',
+    Component: UploadingPayslipsPage,
   },
 ];
 

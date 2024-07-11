@@ -16,9 +16,9 @@
 @import "../components/Preloader/Preloader";
 
 // Features
-@import "../features/documents/components/UploadingMailingPayslips/UploadingMailingPayslipsContent.scss";
-@import "../features/documents/components/UploadingMailingPayslips/components/UploadedDocuments/components/UploadedDocumentCard/UploadedDocumentCard";
-@import "../features/documents/components/UploaderDocuments/UploaderDocuments";
+@import "../features/documents/sections/uploading-payslips-list/UploadingPayslipsContent";
+@import "../features/documents/sections/uploading-payslips-list/components/uploaded-payslip/components/uploaded-payslip-card/UploadedPayslipCard";
+@import "../features/documents/sections/uploader/UploaderPayslips";
 
 // Template
 @import "../template/components/Breadcrumbs/Breadcrumbs";
