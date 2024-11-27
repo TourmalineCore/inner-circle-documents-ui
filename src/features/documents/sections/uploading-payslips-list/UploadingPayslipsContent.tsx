@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
-import { Button } from '@tourmalinecore/react-tc-ui-kit';
 import { ToastContainer } from 'react-toastify';
 import { PayslipsStateContext } from '../state/PayslipsStateContext';
 import { UploaderPayslips } from '../uploader/UploaderPayslips';
@@ -29,14 +28,15 @@ export const UploadingPayslipsContent = observer(({
           className="uploading-payslips-content__header"
           data-cy="uploading-payslips-content-header"
         >
-          <Button
+          <button
             className="uploading-payslips-content__button"
             data-cy="uploading-payslips-content-button"
+            type="button"
             disabled={payslipsState.isSendButtonDisabled}
             onClick={() => onSubmit()}
           >
             Send
-          </Button>
+          </button>
           <UploaderPayslips onUploadPayslips={onUploadPayslips} />
         </div>
         {!uploadedPayslipsIsEmpty
