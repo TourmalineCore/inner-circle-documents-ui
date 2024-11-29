@@ -8,6 +8,7 @@ import clsx from 'clsx';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import SidebarTooltip from './components/SidebarTooltip/SidebarTooltip';
 import { SidebarProps } from '../../../../types/Template';
@@ -122,7 +123,7 @@ function SidebarItem({
           {hasNestedElements && (
             <FontAwesomeIcon
               fixedWidth
-              icon={nestedBlockCollapsed ? faChevronDown : faChevronUp}
+              icon={nestedBlockCollapsed ? faChevronDown as IconProp : faChevronUp as IconProp}
               className="sidebar-item__drop-arrow"
             />
           )}

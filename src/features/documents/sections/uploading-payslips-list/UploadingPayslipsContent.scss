@@ -12,4 +12,20 @@
     gap: 16px;
     grid-template-columns: repeat(auto-fill, minmax(142px, 1fr));
   }
+
+  &__button {
+    border: 1px solid var(--comp-color-gray);
+    border-radius: 12px;
+    padding: 8px 32px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.15;
+    background-color: var(--color-white);
+    cursor: pointer;
+  }
+
+  &__button:disabled {
+    cursor: not-allowed;
+  }
 }

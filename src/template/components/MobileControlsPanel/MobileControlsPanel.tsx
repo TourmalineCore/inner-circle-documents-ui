@@ -1,8 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faArrowLeft,
-} from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { ReactComponent as IconAnalytics } from '../../../assets/icons/icon-analytics.svg';
 import { ReactComponent as IconAnalyticsActive } from '../../../assets/icons/icon-analytics-active.svg';
 import { ReactComponent as IconBurger } from '../../../assets/icons/icon-burger.svg';
@@ -27,7 +26,7 @@ function MobileControlsPanel({
     <div className="mobile-controls-panel">
       {prevPath ? (
         <Link to={prevPath} className="mobile-controls-panel__item">
-          <FontAwesomeIcon className="mobile-controls-panel__item-icon" icon={faArrowLeft} />
+          <FontAwesomeIcon className="mobile-controls-panel__item-icon" icon={faArrowLeft as IconProp} />
         </Link>
       ) : (
         <div className="mobile-controls-panel__item" />
