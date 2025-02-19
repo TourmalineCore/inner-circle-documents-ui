@@ -25,7 +25,7 @@ export const UploaderPayslips = observer(({
         className="uploader-payslips__text"
         data-cy="uploader-payslips-text"
       >
-        Upload payslips
+        Upload payslips!
       </span>
     </label>
   );
