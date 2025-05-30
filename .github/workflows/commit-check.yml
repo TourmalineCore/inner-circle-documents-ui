@@ -79,7 +79,6 @@ jobs:
           component: true
           start: npm start
           browser: chrome
-          record: true
           parallel: true
           group: "Chrome component"
         env: 

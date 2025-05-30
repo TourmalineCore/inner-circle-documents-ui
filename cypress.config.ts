@@ -6,10 +6,10 @@ export default defineConfig({
   e2e: {
     viewportWidth: 1200,
     viewportHeight: 660,
+    specPattern: 'cypress/e2e/**/*.cy.js',
     baseUrl: 'https://tourmalinecore.github.io/React-Admin-Template',
-    specPattern: `cypress/e2e/**/*.cy.ts`,
-    video: true,
-    screenshotOnRunFailure: true,
+    video: false,
+    setupNodeEvents(on, config) {},
   },
   component: {
     video: false,
