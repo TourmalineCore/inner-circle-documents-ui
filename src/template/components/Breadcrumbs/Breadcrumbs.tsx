@@ -4,7 +4,7 @@ import {
 } from 'react';
 import { Link } from 'react-router-dom';
 import { BreadcrumbData } from 'use-react-router-breadcrumbs';
-import { ReactComponent as IconBreadcrumbs } from '../../../assets/icons/icon-arrow-breadcrumbs.svg';
+import IconBreadcrumbs from '../../../assets/icons/icon-arrow-breadcrumbs.svg?react';
 
 function Breadcrumbs({
   list = [],

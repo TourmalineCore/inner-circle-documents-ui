@@ -2,10 +2,10 @@ import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
-import IconDelet from '../../../../../../../../assets/icons/icon-delete.svg';
+import IconDelete from '../../../../../../../../assets/icons/icon-delete.svg?react';
 import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext';
 import InfoTip from '../../../../../../../../components/InfoTip/InfoTip';
-import IconQuestionMark from '../../../../../../../../assets/icons/question-mark-circle.svg';
+import IconQuestionMark from '../../../../../../../../assets/icons/question-mark-circle.svg?react';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -44,11 +44,9 @@ export const UploadedPayslipCard = observer(({
           <div className="uploaded-payslip-card__actions">
             <InfoTip
               icon={(
-                <img
-                  src={IconQuestionMark}
-                  width="18"
-                  height="18"
-                  alt="QestionMarkIcon"
+                <IconQuestionMark
+                  width={18}
+                  height={18}
                 />
               )}
               content={name}
@@ -60,13 +58,10 @@ export const UploadedPayslipCard = observer(({
               disabled={payslipsState.isSent}
               onClick={() => payslipsState.deleteUploadedPayslip(fileId)}
             >
-              <img
-                className="uploaded-payslip-card__delete-icon"
+              <IconDelete
+                width={18}
+                height={18}
                 data-cy="uploaded-payslip-card-delete-icon"
-                src={IconDelet}
-                width="18"
-                height="18"
-                alt="DeleteIcon"
               />
             </button>
           </div>

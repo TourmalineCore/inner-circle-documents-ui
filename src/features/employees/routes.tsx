@@ -1,5 +1,5 @@
-import { ReactComponent as IconEmployees } from '../../assets/icons/icon-employees.svg';
-import { ReactComponent as IconEmployeesActive } from '../../assets/icons/icon-employees-active.svg';
+import IconEmployees from '../../assets/icons/icon-employees.svg?react';
+import IconEmployeesActive from '../../assets/icons/icon-employees-active.svg?react';
 
 export const employeesSidebarRoutes = [
   {

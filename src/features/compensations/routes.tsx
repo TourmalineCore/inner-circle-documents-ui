@@ -1,5 +1,5 @@
-import { ReactComponent as IconCompensations } from '../../assets/icons/icon-compensations.svg';
-import { ReactComponent as IconCompensationsActive } from '../../assets/icons/icon-compensations-active.svg';
+import IconCompensations from '../../assets/icons/icon-compensations.svg?react';
+import IconCompensationsActive from '../../assets/icons/icon-compensations-active.svg?react';
 
 export function getRouteForCompensations(permission: string) {
   if (permission === 'CanRequestCompensations') {
