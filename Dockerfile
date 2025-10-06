@@ -1,4 +1,4 @@
-FROM node:20.19-alpine3.21 AS build
+FROM node:22.18-alpine3.21 AS build
 
 ARG VITE_BASE_URL
 ENV VITE_BASE_URL=$VITE_BASE_URL
