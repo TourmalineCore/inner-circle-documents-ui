@@ -1,3 +1,5 @@
+import './UploaderPayslips.scss'
+
 import { ChangeEvent, useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 import { PayslipsStateContext } from '../state/PayslipsStateContext'

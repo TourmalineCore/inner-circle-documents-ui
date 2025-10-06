@@ -1,16 +1,5 @@
 @import "media";
 @import "globals";
-@import "variables";
-@import "typography";
-
-// Components
-@import "../components/InfoTip/InfoTip";
-@import "../components/Preloader/Preloader";
-
-// Features
-@import "../pages/uploading-payslips/sections/uploading-payslips-list/UploadingPayslipsContent";
-@import "../pages/uploading-payslips/sections/uploading-payslips-list/components/uploaded-payslip/components/uploaded-payslip-card/UploadedPayslipCard";
-@import "../pages/uploading-payslips/sections/uploader/UploaderPayslips";
 
 // Theme
 @import "../theme/themeVariables";

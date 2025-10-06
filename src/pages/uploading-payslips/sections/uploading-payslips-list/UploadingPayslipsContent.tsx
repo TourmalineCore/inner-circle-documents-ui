@@ -1,3 +1,5 @@
+import './UploadingPayslipsContent.scss'
+
 import { observer } from 'mobx-react-lite'
 import { useContext } from 'react'
 import { ToastContainer } from 'react-toastify'

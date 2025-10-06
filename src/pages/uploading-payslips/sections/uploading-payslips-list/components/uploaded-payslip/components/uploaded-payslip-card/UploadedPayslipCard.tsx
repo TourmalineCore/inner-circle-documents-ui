@@ -1,3 +1,5 @@
+import './UploadedPayslipCard.scss'
+
 import { pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import { useContext } from 'react'
