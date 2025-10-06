@@ -1,8 +1,4 @@
 /** @jsxRuntime classic */
-import 'react-app-polyfill/ie11'
-import 'react-app-polyfill/stable'
-// above code required for ie11 support
-  
 import './styles/index.scss'
 
 import React from 'react'
