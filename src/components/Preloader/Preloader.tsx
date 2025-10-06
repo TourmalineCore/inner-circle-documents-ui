@@ -1,9 +1,9 @@
-import PreloaderIcon from '../../assets/icons/preloader.svg?react';
+import PreloaderIcon from '../../assets/icons/preloader.svg?react'
 
-export default function Preloader() {
+export function Preloader() {
   return (
     <div className="preloader">
       <PreloaderIcon />
     </div>
-  );
-}
+  )
+} 

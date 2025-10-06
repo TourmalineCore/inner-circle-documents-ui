@@ -1,4 +1,4 @@
-import { serialize } from 'object-to-formdata';
+import { serialize } from 'object-to-formdata'
 
 export function objectToFormData(object: object): FormData {
   return serialize(
@@ -7,5 +7,5 @@ export function objectToFormData(object: object): FormData {
       dotsForObjectNotation: true,
       indices: true,
     },
-  );
-}
+  )
+} 

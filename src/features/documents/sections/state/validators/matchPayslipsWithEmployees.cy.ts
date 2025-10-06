@@ -1,6 +1,6 @@
-import { matchPayslipsWithEmployees } from './matchPayslipsWithEmployees';
+import { matchPayslipsWithEmployees } from './matchPayslipsWithEmployees'
 
-describe('matchPayslipsWithEmployees', () => {
+describe(`matchPayslipsWithEmployees`, () => {
   it(`
   GIVEN single file 
   WHEN no employees
@@ -9,15 +9,15 @@ describe('matchPayslipsWithEmployees', () => {
     expect(matchPayslipsWithEmployees({
       payslips: [
         {
-          id: 'abc1',
+          id: `abc1`,
           file: {
-            name: 'Payslip for November Ivanov 2023.pdf',
+            name: `Payslip for November Ivanov 2023.pdf`,
           },
         },
       ],
       employees: [],
-    })).to.deep.equal({});
-  });
+    })).to.deep.equal({})
+  })
 
   it(`
   GIVEN single file 
@@ -28,23 +28,23 @@ describe('matchPayslipsWithEmployees', () => {
     expect(matchPayslipsWithEmployees({
       payslips: [
         {
-          id: 'abc1',
+          id: `abc1`,
           file: {
-            name: 'Payslip for November Ivanov 2023.pdf',
+            name: `Payslip for November Ivanov 2023.pdf`,
           },
         },
       ],
       employees: [
         {
-          lastName: 'Ivanov',
+          lastName: `Ivanov`,
         },
       ],
     })).to.deep.equal({
       abc1: {
-        lastName: 'Ivanov',
+        lastName: `Ivanov`,
       },
-    });
-  });
+    })
+  })
 
   it(`
   GIVEN two employees
@@ -55,33 +55,33 @@ describe('matchPayslipsWithEmployees', () => {
     expect(matchPayslipsWithEmployees({
       payslips: [
         {
-          id: 'abc1',
+          id: `abc1`,
           file: {
-            name: 'Payslip for November for PETROV 2023.pdf',
+            name: `Payslip for November for PETROV 2023.pdf`,
           },
         },
         {
-          id: 'abc2',
+          id: `abc2`,
           file: {
-            name: 'Payslip for November for ivanov 2023.pdf',
+            name: `Payslip for November for ivanov 2023.pdf`,
           },
         },
       ],
       employees: [
         {
-          lastName: 'Ivanov',
+          lastName: `Ivanov`,
         },
         {
-          lastName: 'Petrov',
+          lastName: `Petrov`,
         },
       ],
     })).to.deep.equal({
       abc1: {
-        lastName: 'Petrov',
+        lastName: `Petrov`,
       },
       abc2: {
-        lastName: 'Ivanov',
+        lastName: `Ivanov`,
       },
-    });
-  });
-});
+    })
+  })
+}) 

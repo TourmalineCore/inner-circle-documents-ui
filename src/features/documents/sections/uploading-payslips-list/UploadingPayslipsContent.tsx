@@ -1,22 +1,22 @@
-import { observer } from 'mobx-react-lite';
-import { useContext } from 'react';
-import { ToastContainer } from 'react-toastify';
-import { PayslipsStateContext } from '../state/PayslipsStateContext';
-import { UploaderPayslips } from '../uploader/UploaderPayslips';
-import Preloader from '../../../../components/Preloader/Preloader';
-import 'react-toastify/dist/ReactToastify.css';
-import { UploadedPayslip } from './components/uploaded-payslip/UploadedPayslip';
-
+import { observer } from 'mobx-react-lite'
+import { useContext } from 'react'
+import { ToastContainer } from 'react-toastify'
+import { PayslipsStateContext } from '../state/PayslipsStateContext'
+import { UploaderPayslips } from '../uploader/UploaderPayslips'
+import { Preloader } from '../../../../components/Preloader/Preloader'
+import 'react-toastify/dist/ReactToastify.css'
+import { UploadedPayslip } from './components/uploaded-payslip/UploadedPayslip'
+  
 export const UploadingPayslipsContent = observer(({
-  onSubmit = () => {},
+  onSubmit = () => {},  
   onUploadPayslips,
 }: {
   onSubmit?: () => void,
   onUploadPayslips: () => unknown,
 }) => {
-  const payslipsState = useContext(PayslipsStateContext);
+  const payslipsState = useContext(PayslipsStateContext)
 
-  const uploadedPayslipsIsEmpty = payslipsState.allUploadedPayslips.length === 0;
+  const uploadedPayslipsIsEmpty = payslipsState.allUploadedPayslips.length === 0
 
   return (
     <>
@@ -79,5 +79,5 @@ export const UploadingPayslipsContent = observer(({
         )
       }
     </>
-  );
-});
+  )  
+})

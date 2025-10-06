@@ -1,14 +1,14 @@
-import { pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
-import { useContext } from 'react';
-import { observer } from 'mobx-react-lite';
-import IconDelete from '../../../../../../../../assets/icons/icon-delete.svg?react';
-import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext';
-import InfoTip from '../../../../../../../../components/InfoTip/InfoTip';
-import IconQuestionMark from '../../../../../../../../assets/icons/question-mark-circle.svg?react';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
+import { pdfjs } from 'react-pdf'
+import 'react-pdf/dist/esm/Page/TextLayer.css'
+import { useContext } from 'react'
+import { observer } from 'mobx-react-lite'
+import IconDelete from '../../../../../../../../assets/icons/icon-delete.svg?react'
+import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext'
+import { InfoTip } from '../../../../../../../../components/InfoTip/InfoTip'
+import IconQuestionMark from '../../../../../../../../assets/icons/question-mark-circle.svg?react'
+  
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+  
 export const UploadedPayslipCard = observer(({
   fileId,
   name,
@@ -16,11 +16,11 @@ export const UploadedPayslipCard = observer(({
   lastName,
 }: {
   fileId: string,
-  name: string;
-  errorMessage: string;
-  lastName: string;
+  name: string,
+  errorMessage: string,
+  lastName: string,
 }) => {
-  const payslipsState = useContext(PayslipsStateContext);
+  const payslipsState = useContext(PayslipsStateContext)
 
   return (
     <div
@@ -78,5 +78,5 @@ export const UploadedPayslipCard = observer(({
         }
       </div>
     </div>
-  );
-});
+  )
+})

@@ -1,44 +1,46 @@
-import { useContext } from 'react';
-import { toast } from 'react-toastify';
-import { observer } from 'mobx-react-lite';
-import { UploadingPayslipsContent } from './UploadingPayslipsContent';
-import { api } from '../../../../common/api';
-import { LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config';
-import { PayslipsStateContext } from '../state/PayslipsStateContext';
-import { objectToFormData } from '../../../../common/utils/objectToFormData';
+import { useContext } from 'react'
+import { toast } from 'react-toastify'
+import { observer } from 'mobx-react-lite'
+import { UploadingPayslipsContent } from './UploadingPayslipsContent'
+import { api } from '../../../../common/api'
+import { LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config'
+import { PayslipsStateContext } from '../state/PayslipsStateContext'
+import { objectToFormData } from '../../../../common/utils/objectToFormData'
 
 export const UploadingPayslipsContainer = observer(() => {
-  const payslipsState = useContext(PayslipsStateContext);
-
+  const payslipsState = useContext(PayslipsStateContext)
+  
   return (
     <UploadingPayslipsContent
       onSubmit={sendPayslipsAsync}
       onUploadPayslips={getEmployeesForValidationAsync}
     />
-  );
+  )
 
   async function sendPayslipsAsync() {
     const data = payslipsState.allUploadedPayslips
       .map((uploadedPayslip) => ({
         File: uploadedPayslip.file,
         LastName: payslipsState.payslipIdsEmployeeMap[uploadedPayslip.id].lastName,
-      }));
+      }))
 
     const formData = objectToFormData({
       payslips: data,
-    });
+    })
 
     try {
-      payslipsState.setIsSent(true);
+      payslipsState.setIsSent(true)
       await api.post(
         `${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`,
         formData,
-      );
-      payslipsState.clearUploadedPayslips();
-    } catch (e: any) {
-      toast.error(e.message);
-    } finally {
-      payslipsState.setIsSent(false);
+      )
+      payslipsState.clearUploadedPayslips()
+    }
+    catch (e: any) {
+      toast.error(e.message)
+    }
+    finally {
+      payslipsState.setIsSent(false)
     }
   }
 
@@ -47,10 +49,10 @@ export const UploadingPayslipsContainer = observer(() => {
       data: {
         employees,
       },
-    } = await api.get(`${LINK_TO_DOCUMENTS_SERVICE}getEmployees`);
+    } = await api.get(`${LINK_TO_DOCUMENTS_SERVICE}getEmployees`)
 
     payslipsState.initialize({
       employees,
-    });
+    })
   }
-});
+})

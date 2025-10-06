@@ -1,13 +1,13 @@
-import { validatePayslipsFileNames } from './validatePayslipsFileNames';
+import { validatePayslipsFileNames } from './validatePayslipsFileNames'
 
 const PAYSLIP = {
-  id: 'abc1',
+  id: `abc1`,
   file: {
-    name: 'Payslip for November Ivanov 2023.pdf',
+    name: `Payslip for November Ivanov 2023.pdf`,
   },
-};
+}  
 
-describe('validatePayslipsFileNames', () => {
+describe(`validatePayslipsFileNames`, () => {
   it(`
   GIVEN single file 
   WHEN no employees
@@ -18,8 +18,10 @@ describe('validatePayslipsFileNames', () => {
         PAYSLIP,
       ],
       employees: [],
-    })).to.deep.equal(['abc1']);
-  });
+    })).to.deep.equal([
+      `abc1`,
+    ])
+  })
 
   it(`
   GIVEN single file 
@@ -33,11 +35,12 @@ describe('validatePayslipsFileNames', () => {
       ],
       employees: [
         {
-          lastName: 'Ivanov',
+          lastName: `Ivanov`,
         },
       ],
-    }).length).eq(0);
-  });
+    }).length)
+      .eq(0)
+  })
 
   it(`
   GIVEN single file 
@@ -51,11 +54,13 @@ describe('validatePayslipsFileNames', () => {
       ],
       employees: [
         {
-          lastName: 'Petrov',
+          lastName: `Petrov`,
         },
       ],
-    })).to.deep.equal(['abc1']);
-  });
+    })).to.deep.equal([
+      `abc1`,
+    ])
+  })
 
   it(`
   GIVEN two employees
@@ -66,26 +71,27 @@ describe('validatePayslipsFileNames', () => {
     expect(validatePayslipsFileNames({
       payslips: [
         {
-          id: 'abc1',
+          id: `abc1`,
           file: {
-            name: 'Payslip for November for PETROV 2023.pdf',
+            name: `Payslip for November for PETROV 2023.pdf`,
           },
         },
         {
-          id: 'abc2',
+          id: `abc2`,
           file: {
-            name: 'Payslip for November for ivanov 2023.pdf',
+            name: `Payslip for November for ivanov 2023.pdf`,
           },
         },
       ],
       employees: [
         {
-          lastName: 'Ivanov',
+          lastName: `Ivanov`,
         },
         {
-          lastName: 'Petrov',
+          lastName: `Petrov`,
         },
       ],
-    }).length).eq(0);
-  });
-});
+    }).length)
+      .eq(0)
+  })
+})

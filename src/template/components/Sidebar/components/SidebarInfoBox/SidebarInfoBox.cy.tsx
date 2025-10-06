@@ -1,18 +1,18 @@
-import { SidebarInfoBox } from './SidebarInfoBox';
+import { SidebarInfoBox } from './SidebarInfoBox'
 
 const initialData = {
-  name: 'nlastname',
-};
+  name: `nlastname`,
+}
 
 const initialDataSecond = {
-  name: 'anklastname',
-};
+  name: `anklastname`,
+}  
 
 const initialDataThird = {
-  name: 'yulastname',
-};
+  name: `yulastname`,
+}
 
-describe('SidebarInfoBox', () => {
+describe(`SidebarInfoBox`, () => {
   it(`
   GIVEN compensations page 
   WHEN open sidebar
@@ -20,10 +20,11 @@ describe('SidebarInfoBox', () => {
   `, () => {
     mountComponent({
       infoBoxData: initialData,
-    });
+    })
 
-    cy.getByData('sidebar-infobox').should('have.text', 'Lastname N.');
-  });
+    cy.getByData(`sidebar-infobox`)
+      .should(`have.text`, `Lastname N.`)
+  })
 
   it(`
   GIVEN compensations page 
@@ -32,10 +33,11 @@ describe('SidebarInfoBox', () => {
   `, () => {
     mountComponent({
       infoBoxData: initialDataSecond,
-    });
+    })
 
-    cy.getByData('sidebar-infobox').should('have.text', 'Klastname A.');
-  });
+    cy.getByData(`sidebar-infobox`)
+      .should(`have.text`, `Klastname A.`)
+  })
 
   it(`
   GIVEN one of ui pages 
@@ -44,22 +46,23 @@ describe('SidebarInfoBox', () => {
   `, () => {
     mountComponent({
       infoBoxData: initialDataThird,
-    });
+    })
 
-    cy.getByData('sidebar-infobox').should('have.text', 'Lastname Y.');
-  });
-});
+    cy.getByData(`sidebar-infobox`)
+      .should(`have.text`, `Lastname Y.`)
+  })
+})
 
 function mountComponent({
   infoBoxData,
 }: {
   infoBoxData: {
-    photoUrl?: string;
-    name: string;
-    email?: string;
-  };
+    photoUrl?: string,
+    name: string,
+    email?: string,
+  },
 }) {
   cy.mount(
     <SidebarInfoBox {...infoBoxData} />,
-  );
+  )
 }
