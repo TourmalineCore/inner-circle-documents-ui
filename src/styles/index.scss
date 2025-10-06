@@ -1,5 +1,5 @@
-@import "media";
-@import "globals";
+@use "media";
+@use "globals";
 
 // Theme
-@import "../theme/themeVariables";
+@use "../theme/themeVariables";
