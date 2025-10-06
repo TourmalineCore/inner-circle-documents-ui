@@ -4,9 +4,6 @@ import '../env-config'
 
 /// <reference types="cypress" />
 
-// styles
-import 'react-loading-skeleton/dist/skeleton.css'
-
 import '../../src/styles/index.scss'
 
 // commands
