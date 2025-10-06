@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { PayslipsStateContext } from '../state/PayslipsStateContext'
 import { UploaderPayslips } from '../uploader/UploaderPayslips'
-import { Preloader } from '../../../../components/Preloader/Preloader'
+import { Preloader } from './components/Preloader/Preloader'
 import 'react-toastify/dist/ReactToastify.css'
 import { UploadedPayslip } from './components/uploaded-payslip/UploadedPayslip'
   

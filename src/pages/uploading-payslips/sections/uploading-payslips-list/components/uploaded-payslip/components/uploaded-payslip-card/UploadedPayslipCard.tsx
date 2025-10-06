@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 import IconDelete from '../../../../../../../../assets/icons/icon-delete.svg?react'
 import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext'
-import { InfoTip } from '../../../../../../../../components/InfoTip/InfoTip'
+import { InfoTip } from './components/InfoTip/InfoTip'
 import IconQuestionMark from '../../../../../../../../assets/icons/question-mark-circle.svg?react'
   
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
