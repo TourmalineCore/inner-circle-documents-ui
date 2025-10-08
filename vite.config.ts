@@ -45,7 +45,7 @@ export default defineConfig({
     svgr(),
     federation({
       // Unique name for the application
-      name: "inner_circle_books_ui",
+      name: "inner_circle_documents_ui",
       // The path where the remote application file can be found and its name
       remotes: {
         // `http://localhost:4455/assets/inner_circle_layout_ui.js` for local docker
