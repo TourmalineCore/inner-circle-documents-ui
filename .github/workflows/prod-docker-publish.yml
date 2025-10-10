@@ -46,7 +46,6 @@ jobs:
             --set "extraConfigMapEnvVars.LINK_TO_DOCUMENTS_SERVICE=${{ secrets.DEV_LINK_TO_DOCUMENTS_SERVICE }}" \
             --set "extraConfigMapEnvVars.API_ROOT=${{ secrets.DEV_LINK_TO_API_SERVICE }}" \
             --set "extraConfigMapEnvVars.API_ROOT_AUTH=${{ secrets.DEV_LINK_TO_API_ROOT_AUTH }}" \
-            --set "extraConfigMapEnvVars.ENV_KEY=${{ secrets.DEV_ENV }}" \
             --set "extraConfigMapEnvVars.VITE_BASE_URL=${{ secrets.BASE_URL }}" \
             "${RELEASE_NAME}" \
             bitnami/nginx --version 15.0.2
