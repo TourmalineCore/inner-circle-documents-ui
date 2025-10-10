@@ -1,13 +1,13 @@
-import { ChangeEvent, useContext } from 'react';
-import { observer } from 'mobx-react-lite';
-import { PayslipsStateContext } from '../state/PayslipsStateContext';
+import { ChangeEvent, useContext } from 'react'
+import { observer } from 'mobx-react-lite'
+import { PayslipsStateContext } from '../state/PayslipsStateContext'
 
 export const UploaderPayslips = observer(({
-  onUploadPayslips,
+  onUploadPayslips, 
 } : {
   onUploadPayslips: () => unknown,
 }) => {
-  const payslipsState = useContext(PayslipsStateContext);
+  const payslipsState = useContext(PayslipsStateContext)
   return (
     <label
       className="uploader-payslips"
@@ -28,12 +28,12 @@ export const UploaderPayslips = observer(({
         Upload payslips
       </span>
     </label>
-  );
+  )
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const fileList: File[] = Object.values(event.target.files!);
-    payslipsState.addUploadedPayslips(fileList);
+    const fileList: File[] = Object.values(event.target.files!)
+    payslipsState.addUploadedPayslips(fileList)
 
-    onUploadPayslips();
+    onUploadPayslips()
   }
-});
+})

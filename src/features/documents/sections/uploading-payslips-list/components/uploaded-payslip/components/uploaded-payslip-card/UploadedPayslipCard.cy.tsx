@@ -1,47 +1,47 @@
-import { PayslipsState } from '../../../../../state/PayslipsState';
-import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext';
-import { UploadedPayslipCard } from './UploadedPayslipCard';
+import { PayslipsState } from '../../../../../state/PayslipsState'
+import { PayslipsStateContext } from '../../../../../state/PayslipsStateContext'
+import { UploadedPayslipCard } from './UploadedPayslipCard'
 
-describe('UploadedPayslipCard', () => {
+describe(`UploadedPayslipCard`, () => {
   it(`
   GIVEN uploaded payslip card
   WHEN upload correct payslip
   THEN render uploaded payslip card without error
-  `, () => {
-    mountComponent();
+  `, () => {  
+    mountComponent()
 
     cy
-      .getByData('uploaded-payslip-card')
-      .should('exist');
+      .getByData(`uploaded-payslip-card`)
+      .should(`exist`)
 
     cy
-      .getByData('uploaded-payslip-card-inner')
-      .should('exist');
+      .getByData(`uploaded-payslip-card-inner`)
+      .should(`exist`)
 
     cy
-      .getByData('uploaded-payslip-card-header')
-      .should('exist');
+      .getByData(`uploaded-payslip-card-header`)
+      .should(`exist`)
 
     cy
-      .getByData('uploaded-payslip-card-name')
-      .should('exist');
+      .getByData(`uploaded-payslip-card-name`)
+      .should(`exist`)
 
     cy
-      .getByData('uploaded-payslip-card-delete')
-      .should('exist');
+      .getByData(`uploaded-payslip-card-delete`)
+      .should(`exist`)
 
     cy
-      .getByData('uploaded-payslip-card-delete-icon')
-      .should('exist');
+      .getByData(`uploaded-payslip-card-delete-icon`)
+      .should(`exist`)
 
     cy
-      .getByData('uploaded-payslip-card-name')
-      .should('have.text', 'Ivanov');
+      .getByData(`uploaded-payslip-card-name`)
+      .should(`have.text`, `Ivanov`)
 
     cy
-      .getByData('uploaded-payslip-card-error')
-      .should('not.exist');
-  });
+      .getByData(`uploaded-payslip-card-error`)
+      .should(`not.exist`)
+  })
 
   it(`
   GIVEN uploaded payslip card
@@ -49,31 +49,31 @@ describe('UploadedPayslipCard', () => {
   THEN render uploaded payslip card with error
   `, () => {
     mountComponent({
-      errorMessage: 'This file doesn\'t contain the same employee last name as in its file name',
-    });
+      errorMessage: `This file doesn't contain the same employee last name as in its file name`,
+    })
 
     cy
-      .getByData('uploaded-payslip-card-name')
-      .should('have.text', 'Ivanov');
+      .getByData(`uploaded-payslip-card-name`)
+      .should(`have.text`, `Ivanov`)
 
     cy
-      .getByData('uploaded-payslip-card-error')
-      .should('have.text', 'This file doesn\'t contain the same employee last name as in its file name');
-  });
+      .getByData(`uploaded-payslip-card-error`)
+      .should(`have.text`, `This file doesn't contain the same employee last name as in its file name`)
+  })
 
   it(`
   GIVEN info tip text 
   WHEN hover the mouse over the icon
   THEN render info tip text
   `, () => {
-    mountComponent();
+    mountComponent()
 
     cy
-      .get('.info-tip')
-      .trigger('mouseover');
+      .get(`.info-tip`)
+      .trigger(`mouseover`)
 
-    cy.contains('Payslip for Ivanov for November 2023');
-  });
+    cy.contains(`Payslip for Ivanov for November 2023`)
+  })
 
   it(`
   GIVEN uploaded payslip card
@@ -81,13 +81,13 @@ describe('UploadedPayslipCard', () => {
   THEN render correct last name
   `, () => {
     mountComponent({
-      name: 'Ivanov Payslip for November 2023',
-    });
+      name: `Ivanov Payslip for November 2023`,
+    })
 
     cy
-      .getByData('uploaded-payslip-card-name')
-      .should('have.text', 'Ivanov');
-  });
+      .getByData(`uploaded-payslip-card-name`)
+      .should(`have.text`, `Ivanov`)
+  })
 
   it(`
   GIVEN uploaded payslip card
@@ -96,40 +96,39 @@ describe('UploadedPayslipCard', () => {
   THEN button shound be disabled
   `, () => {
     mountComponent({
-      name: 'Ivanov Payslip for November 2023',
-    });
+      name: `Ivanov Payslip for November 2023`,
+    })
 
-    cy.getByData('uploaded-payslip-card-delete')
-      .should('not.be.disabled');
+    cy.getByData(`uploaded-payslip-card-delete`)
+      .should(`not.be.disabled`)
 
     cy
-      .get<PayslipsState>('@payslipsState')
+      .get<PayslipsState>(`@payslipsState`)
       .then((payslipsState) => {
-        payslipsState.setIsSent(true);
-      });
+        payslipsState.setIsSent(true)
+      })
 
-    cy.getByData('uploaded-payslip-card-delete')
-      .should('be.disabled');
-  });
-});
+    cy.getByData(`uploaded-payslip-card-delete`)
+      .should(`be.disabled`)
+  })
+})
 
 function mountComponent({
-  fileId = 'abc1',
-  name = 'Payslip for Ivanov for November 2023',
-  errorMessage = '',
-  lastName = 'Ivanov',
+  fileId = `abc1`,
+  name = `Payslip for Ivanov for November 2023`,
+  errorMessage = ``,
+  lastName = `Ivanov`,
 }: {
-  fileId?: string;
-  name?: string;
-  errorMessage?: string;
-  lastName?: string;
+  fileId?: string,
+  name?: string,
+  errorMessage?: string,
+  lastName?: string,
 } = {}) {
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const payslipsState = new PayslipsState();
+  const payslipsState = new PayslipsState()
 
   cy
     .wrap(payslipsState)
-    .as('payslipsState');
+    .as(`payslipsState`)
 
   cy.mount(
     <PayslipsStateContext.Provider value={payslipsState}>
@@ -140,5 +139,5 @@ function mountComponent({
         lastName={lastName}
       />
     </PayslipsStateContext.Provider>,
-  );
+  )
 }

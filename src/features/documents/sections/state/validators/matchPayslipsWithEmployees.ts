@@ -6,24 +6,25 @@ export function matchPayslipsWithEmployees({
   payslips: {
     id: string,
     file: {
-      name: string
-    }
+      name: string,
+    },
   }[],
   employees: {
-    lastName: string
+    lastName: string,
   }[],
 }) {
   const result: {
     [payslipId: string]: {
-      lastName: string;
-    };
-  } = {};
+      lastName: string, 
+    },
+  } = {}
 
   // TODO using Unicode-compatible comparison
   // This ensures accurate matching even if the names contain Unicode characters with accents or other diacritical marks
   // Normalization Form D (NFD) - canonical decomposition. Decompose cześć into c, z, e, c + ´, s + ´
   payslips.forEach((payslip) => {
-    const matchingEmployee = employees.find((employee) => payslip.file.name.toLowerCase().includes(employee.lastName.toLowerCase()));
+    const matchingEmployee = employees.find((employee) => payslip.file.name.toLowerCase()
+      .includes(employee.lastName.toLowerCase()))
 
     //  const matchingEmployee = employees.find(
     //      (employee) => payslip.file.name.toLowerCase()
@@ -35,9 +36,9 @@ export function matchPayslipsWithEmployees({
     if (matchingEmployee) {
       result[payslip.id] = {
         lastName: matchingEmployee.lastName,
-      };
+      }
     }
-  });
+  })
 
-  return result;
+  return result
 }
