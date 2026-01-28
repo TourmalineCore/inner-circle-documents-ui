@@ -7,8 +7,9 @@ releases:
     labels:
       app: inner-circle-documents-ui
     wait: true
-    chart: bitnami/aspnet-core
-    version: 4.4.7
+    chart: bitnami/nginx
+    # after 15.3.5 our docker file or setup can no longer start, need to investigate what is wrong for the newer versions
+    version: 15.3.5
     values:
       - values.yaml
       - image:
