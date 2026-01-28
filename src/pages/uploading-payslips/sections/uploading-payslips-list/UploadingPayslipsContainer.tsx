@@ -3,7 +3,6 @@ import { toast } from 'react-toastify'
 import { observer } from 'mobx-react-lite'
 import { UploadingPayslipsContent } from './UploadingPayslipsContent'
 import { api } from '../../../../common/api'
-import { LINK_TO_DOCUMENTS_SERVICE } from '../../../../common/config/config'
 import { PayslipsStateContext } from '../state/PayslipsStateContext'
 import { objectToFormData } from '../../../../common/utils/objectToFormData'
 
@@ -31,7 +30,7 @@ export const UploadingPayslipsContainer = observer(() => {
     try {
       payslipsState.setIsSent(true)
       await api.post(
-        `${LINK_TO_DOCUMENTS_SERVICE}sendMailingPayslips`,
+        `/sendMailingPayslips`,
         formData,
       )
       payslipsState.clearUploadedPayslips()
@@ -49,7 +48,7 @@ export const UploadingPayslipsContainer = observer(() => {
       data: {
         employees,
       },
-    } = await api.get(`${LINK_TO_DOCUMENTS_SERVICE}getEmployees`)
+    } = await api.get(`/getEmployees`)
 
     payslipsState.initialize({
       employees,
